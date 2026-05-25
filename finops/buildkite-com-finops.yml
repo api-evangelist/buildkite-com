@@ -1,0 +1,87 @@
+# Buildkite FinOps Surface
+# Aligned with FinOps Framework / FOCUS data spec
+specVersion: "0.1"
+provider:
+  aid: buildkite-com
+  name: Buildkite
+  url: https://buildkite.com/pricing
+updated: "2026-05-25"
+billingSurface:
+  invoicingModel: subscription-with-usage
+  cycle: monthly
+  currency: USD
+  contractAvailable: true
+  selfServeSignup: true
+costCategories:
+- id: platform-seats
+  name: Platform Active Users
+  focusBillingCategory: subscription
+  unit: active-user-month
+  description: Pro plan billed at $30 per active user per month. Enterprise pricing is contract-based with
+    volume discounts and a 30-user minimum.
+- id: hosted-linux-compute
+  name: Buildkite Hosted Linux Agents
+  focusBillingCategory: usage
+  unit: vCPU-minute
+  description: Linux Hosted Agent compute, with 2,000 vCPU-minutes included per month on Pro. Overage is
+    pay-as-you-go up to 48 vCPU concurrency.
+- id: hosted-mac-m4-compute
+  name: Buildkite Hosted Mac M4 Agents
+  focusBillingCategory: usage
+  unit: vCPU-minute
+  description: Mac M4 Hosted Agent compute. Pay-as-you-go on Pro up to 24 vCPU concurrency.
+- id: test-engine-tests
+  name: Test Engine Managed Tests
+  focusBillingCategory: usage
+  unit: test-execution
+  description: Test Engine billed per managed test execution. Pro plan includes 250 tests and bills $0.10 per
+    additional test. Enterprise plans include unlimited managed tests.
+- id: package-registries-storage
+  name: Package Registries Storage
+  focusBillingCategory: usage
+  unit: GB-month
+  description: Storage billed per GB-month. Pro plan includes 20GB and bills $1.25/GB beyond. Enterprise plans
+    add SLSA provenance, license checks, and threat scanning.
+allocation:
+  byOrganization: true
+  byPipeline: true
+  byCluster: true
+  byQueue: true
+  byTeam: true
+  byUser: true
+  tags: supported via pipeline metadata and build exports
+exports:
+- id: build-exports
+  name: Build Exports
+  description: Enterprise-tier export of build, job, and agent run data for downstream BI, FinOps, and
+    compliance pipelines.
+  format:
+  - json
+  - csv
+  availability: enterprise
+- id: audit-logs
+  name: Audit Logs
+  description: Organization audit events covering API token usage, pipeline edits, agent registration, and
+    security-sensitive changes.
+  format:
+  - json
+  availability: enterprise
+showback:
+  graphqlSurface:
+    description: GraphQL Audit Events and usage queries can be aggregated by organization, team, pipeline, or
+      user for showback and chargeback reporting.
+    endpoint: https://graphql.buildkite.com/v1
+  apiSurface:
+    description: REST API endpoints expose run counts, job durations, agent activity, artifact volumes, and
+      cluster/queue routing — feed into the FinOps reporting layer.
+    endpoint: https://api.buildkite.com/v2
+optimizationLevers:
+- Right-size Buildkite Hosted Agent vCPU per pipeline; bias to smaller agents where parallelism is high
+- Move long-running build steps to self-hosted clusters when burst pricing exceeds hardware amortization
+- Use Test Engine intelligent test splitting and flaky-test quarantine to reduce paid test executions
+- Tune Package Registries retention to control GB-month storage cost
+- Cap per-user API rate to prevent runaway integrations from inflating compute usage
+sources:
+- https://buildkite.com/pricing
+- https://buildkite.com/docs
+- https://buildkite.com/changelog

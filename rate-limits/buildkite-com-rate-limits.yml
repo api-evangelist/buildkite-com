@@ -1,0 +1,71 @@
+# Buildkite Rate Limits
+# API Commons Rate Limits 0.1
+specVersion: "0.1"
+provider:
+  aid: buildkite-com
+  name: Buildkite
+  url: https://buildkite.com/docs/apis/rest-api
+updated: "2026-05-25"
+policies:
+- id: rest-api-per-user
+  appliesTo:
+  - https://api.buildkite.com/v2
+  scope: per-user-api-token
+  algorithm: token-bucket
+  description: Each user API access token is governed by a per-user request rate limit. Configurable thresholds
+    allow organization admins to cap individual user usage independently of the org-wide cap.
+  responseHeaders:
+  - RateLimit-Limit
+  - RateLimit-Remaining
+  - RateLimit-Reset
+  exceedingBehavior: HTTP 429 Too Many Requests
+  source: https://buildkite.com/changelog
+- id: rest-api-organization-wide
+  appliesTo:
+  - https://api.buildkite.com/v2
+  scope: per-organization
+  algorithm: token-bucket
+  description: Organization-wide cap that limits total API usage across all tokens in the organization. Set
+    independently of per-user limits to prevent any single user from exhausting org capacity.
+  exceedingBehavior: HTTP 429 Too Many Requests
+  source: https://buildkite.com/changelog
+- id: graphql-api
+  appliesTo:
+  - https://graphql.buildkite.com/v1
+  scope: per-token
+  algorithm: complexity-and-rate
+  description: GraphQL queries are subject to a request rate limit and query complexity bounds. Costly nested
+    queries count against capacity faster than narrow queries.
+  exceedingBehavior: HTTP 429 with GraphQL error extensions
+  source: https://buildkite.com/docs/apis/graphql-api
+- id: webhooks
+  appliesTo:
+  - notification-services
+  scope: per-endpoint
+  description: Outbound webhook deliveries are retried with exponential backoff on failure. Endpoints that
+    repeatedly fail to acknowledge are throttled and disabled.
+  source: https://buildkite.com/docs/apis/webhooks
+- id: agent-api
+  appliesTo:
+  - https://agent.buildkite.com/v3
+  scope: per-agent-token
+  description: The Agent API enforces internal limits that protect the job dispatch and artifact upload paths.
+    The `/metrics` endpoint is intended for cluster autoscaling consumers.
+  source: https://buildkite.com/docs/apis/agent-api
+- id: hosted-agents-concurrency
+  appliesTo:
+  - buildkite-hosted-agents
+  scope: per-plan
+  description: Hosted agent concurrency is capped per plan. Pro is up to 48 vCPU concurrent on Linux and 24
+    vCPU concurrent on Mac M4. Enterprise raises these caps under volume contracts.
+  source: https://buildkite.com/pricing
+notes:
+- Per-user API rate limits with org-wide caps were introduced 2026-04-29 to prevent single-user quota abuse.
+- OAuth Token Exchange (RFC 8693) and OIDC token minting enable short-lived API tokens that participate in the
+  same rate-limit policies.
+sources:
+- https://buildkite.com/docs/apis/rest-api
+- https://buildkite.com/docs/apis/graphql-api
+- https://buildkite.com/docs/apis/agent-api
+- https://buildkite.com/changelog
+- https://buildkite.com/pricing

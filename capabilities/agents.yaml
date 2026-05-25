@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Buildkite Agents
+  description: Buildkite Agents capability covering listing, retrieving, and stopping agents via the REST API.
+    Self-contained Naftiko capability covering one Buildkite business surface.
+  tags:
+  - Buildkite
+  - Agents
+  - CI/CD
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    BUILDKITE_API_TOKEN: BUILDKITE_API_TOKEN
+    BUILDKITE_ORG_SLUG: BUILDKITE_ORG_SLUG
+capability:
+  consumes:
+  - type: http
+    namespace: agents
+    baseUri: https://api.buildkite.com
+    description: Buildkite Agents REST surface.
+    resources:
+    - name: agents
+      path: /v2/organizations/{org}/agents
+      operations:
+      - name: listagents
+        method: GET
+        description: Buildkite List Agents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.
+        inputParameters:
+        - name: org
+          in: path
+          type: string
+          required: true
+          value: '{{env.BUILDKITE_ORG_SLUG}}'
+    - name: agent
+      path: /v2/organizations/{org}/agents/{id}
+      operations:
+      - name: getagent
+        method: GET
+        description: Buildkite Get An Agent
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: org
+          in: path
+          type: string
+          required: true
+          value: '{{env.BUILDKITE_ORG_SLUG}}'
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: stop
+      path: /v2/organizations/{org}/agents/{id}/stop
+      operations:
+      - name: stopagent
+        method: PUT
+        description: Buildkite Stop An Agent
+        inputParameters:
+        - name: org
+          in: path
+          type: string
+          required: true
+          value: '{{env.BUILDKITE_ORG_SLUG}}'
+        - name: id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: 'Bearer {{env.BUILDKITE_API_TOKEN}}'
+      placement: header
+  exposes:
+  - type: mcp
+    namespace: agents-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Buildkite Agents.
+    tools:
+    - name: buildkite-list-agents
+      description: Buildkite List Agents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: agents.listagents
+    - name: buildkite-get-agent
+      description: Buildkite Get An Agent
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: agents.getagent
+      with:
+        id: tools.id
+    - name: buildkite-stop-agent
+      description: Buildkite Stop An Agent
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: agents.stopagent
+      with:
+        id: tools.id

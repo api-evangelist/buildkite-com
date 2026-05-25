@@ -1,0 +1,290 @@
+aid: buildkite-com
+url: https://raw.githubusercontent.com/api-evangelist/buildkite-com/refs/heads/main/apis.yml
+apis:
+- aid: buildkite-com:buildkite-rest-api
+  name: Buildkite REST API
+  tags:
+  - CI/CD
+  - Continuous Integration
+  - Continuous Delivery
+  - Pipelines
+  - Builds
+  - Agents
+  humanURL: https://buildkite.com/docs/apis/rest-api
+  baseURL: https://api.buildkite.com/v2
+  properties:
+  - url: https://buildkite.com/docs/apis/rest-api
+    type: Documentation
+  - url: https://buildkite.com/docs/apis/managing-api-tokens
+    type: Authentication
+  - url: openapi/buildkite-rest-api-openapi.yml
+    type: OpenAPI
+  - url: json-schema/buildkite-pipeline-schema.json
+    type: JSONSchema
+  - url: json-schema/buildkite-build-schema.json
+    type: JSONSchema
+  - url: json-schema/buildkite-agent-schema.json
+    type: JSONSchema
+  - url: json-ld/buildkite-com-context.jsonld
+    type: JSONLD
+  - type: NaftikoCapability
+    url: capabilities/pipelines.yaml
+  - type: NaftikoCapability
+    url: capabilities/builds.yaml
+  - type: NaftikoCapability
+    url: capabilities/agents.yaml
+  description: Programmatic access to Buildkite Pipelines covering organizations, pipelines, builds, jobs,
+    artifacts, annotations, agents, clusters, queues, agent tokens, teams, pipeline templates, rules, and
+    emojis. Uses Bearer token authentication with scoped API access tokens. Designed to extend, integrate,
+    and automate CI/CD workflows across hybrid infrastructure.
+- aid: buildkite-com:buildkite-graphql-api
+  name: Buildkite GraphQL API
+  tags:
+  - CI/CD
+  - GraphQL
+  - Pipelines
+  - Test Engine
+  humanURL: https://buildkite.com/docs/apis/graphql-api
+  baseURL: https://graphql.buildkite.com/v1
+  properties:
+  - url: https://buildkite.com/docs/apis/graphql-api
+    type: Documentation
+  - url: https://buildkite.com/docs/apis/graphql/graphql-cookbook
+    type: Documentation
+  - url: https://graphql.buildkite.com/explorer
+    type: Sandbox
+  - type: NaftikoCapability
+    url: capabilities/graphql-queries.yaml
+  description: GraphQL endpoint that returns deeply nested data on organizations, pipelines, builds, jobs,
+    agents, clusters, queues, teams, audit events, suites, test executions, and package registries in a single
+    request. Implements the Relay specification for pagination and supports schema introspection. Requires an
+    API access token with "Enable GraphQL API Access" permission. GraphQL Portals allow scoped, schema-filtered
+    access without per-token scopes.
+- aid: buildkite-com:buildkite-agent-api
+  name: Buildkite Agent API
+  tags:
+  - CI/CD
+  - Agents
+  - Hybrid CI
+  humanURL: https://buildkite.com/docs/apis/agent-api
+  baseURL: https://agent.buildkite.com/v3
+  properties:
+  - url: https://buildkite.com/docs/apis/agent-api
+    type: Documentation
+  - url: https://buildkite.com/docs/agent/v3
+    type: Documentation
+  - url: https://github.com/buildkite/agent
+    type: SourceCode
+  - type: NaftikoCapability
+    url: capabilities/agents.yaml
+  description: Backplane consumed by the Buildkite Agent (open source, Go) to register, deregister, accept and
+    finish jobs, upload artifacts, stream job logs, and emit metrics for cluster autoscaling. Authenticated via
+    Agent Tokens issued per cluster. Public surface includes `/metrics` (for autoscaling) and `/stacks` (for
+    self-hosted queue controllers). The `agent-edge.buildkite.com` host adds gRPC methods. Most other endpoints
+    are reserved for internal agent use.
+- aid: buildkite-com:buildkite-webhooks
+  name: Buildkite Webhooks
+  tags:
+  - CI/CD
+  - Webhooks
+  - Events
+  - Notifications
+  humanURL: https://buildkite.com/docs/apis/webhooks
+  properties:
+  - url: https://buildkite.com/docs/apis/webhooks
+    type: Documentation
+  - url: https://buildkite.com/docs/pipelines/integrations/notifications
+    type: Documentation
+  description: Outbound HTTP notifications fired in response to build, job, agent, ping, deployment, and
+    package events across Pipelines, Test Engine, and Package Registries. Verified with the
+    `X-Buildkite-Token` header. Configured per organization via Notification Services. Supports an expanded
+    set of GitHub-style triggers including pull request reviews, releases, issue comments, and deployment
+    status events.
+- aid: buildkite-com:buildkite-mcp-server
+  name: Buildkite MCP Server
+  tags:
+  - CI/CD
+  - MCP
+  - Model Context Protocol
+  - AI
+  - Agents
+  humanURL: https://github.com/buildkite/buildkite-mcp-server
+  properties:
+  - url: https://github.com/buildkite/buildkite-mcp-server
+    type: Documentation
+  - url: https://github.com/buildkite/buildkite-mcp-server
+    type: SourceCode
+  description: Official Model Context Protocol server that exposes Buildkite REST API surfaces (pipelines,
+    builds, jobs, agents, artifacts, annotations) as MCP tools and toolsets for AI coding agents. Available as
+    both a remote endpoint and a local binary. Pairs with the official Buildkite Skills for Claude Code and
+    Cursor.
+common:
+- type: Portal
+  url: https://buildkite.com
+- type: Documentation
+  url: https://buildkite.com/docs
+- type: GettingStarted
+  url: https://buildkite.com/docs/tutorials/getting-started
+- type: SignUp
+  url: https://buildkite.com/signup
+- type: Pricing
+  url: https://buildkite.com/pricing
+- type: TermsOfService
+  url: https://buildkite.com/legal/terms-of-service
+- type: PrivacyPolicy
+  url: https://buildkite.com/legal/privacy-policy
+- type: SecurityPolicy
+  url: https://buildkite.com/security
+- type: TrustCenter
+  url: https://buildkite.com/security
+- type: StatusPage
+  url: https://buildkitestatus.com
+- type: ChangeLog
+  url: https://buildkite.com/changelog
+- type: Blog
+  url: https://buildkite.com/blog
+- type: Forum
+  url: https://forum.buildkite.community
+- type: Support
+  url: https://buildkite.com/support
+- type: Authentication
+  url: https://buildkite.com/docs/apis/managing-api-tokens
+- type: RateLimits
+  url: https://buildkite.com/docs/apis/rest-api#rate-limits
+- url: https://github.com/buildkite
+  type: GitHubOrganization
+- url: https://github.com/buildkite/agent
+  name: Buildkite Agent (Go)
+  type: SourceCode
+- url: https://github.com/buildkite/cli
+  name: Buildkite CLI
+  type: CLI
+- url: https://github.com/buildkite/go-buildkite
+  name: Go SDK
+  type: SDK
+- url: https://github.com/buildkite/go-pipeline
+  name: Go Pipeline DSL
+  type: SDK
+- url: https://github.com/buildkite/pipeline-schema
+  name: Pipeline JSON Schema
+  type: JSONSchema
+- url: https://github.com/buildkite/buildkite-mcp-server
+  name: Buildkite MCP Server
+  type: Tool
+- url: https://github.com/buildkite/skills
+  name: Buildkite AI Coding Skills
+  type: Tool
+- url: https://github.com/buildkite/agent-stack-k8s
+  name: Agent Stack for Kubernetes
+  type: Tool
+- url: https://github.com/buildkite/elastic-ci-stack-for-aws
+  name: Elastic CI Stack for AWS
+  type: Tool
+- url: https://github.com/buildkite/buildkite-agent-scaler
+  name: Agent Auto-Scaler (Lambda)
+  type: Tool
+- url: https://github.com/buildkite/cleanroom
+  name: Cleanroom microVM sandboxes
+  type: Tool
+- url: https://github.com/buildkite/emojis
+  name: Buildkite Emoji set
+  type: Tool
+- url: https://github.com/buildkite/docs
+  name: Buildkite Documentation Source
+  type: SourceCode
+- type: Integrations
+  data:
+  - GitHub, GitLab, Bitbucket source control providers
+  - GitHub App, Apps for GitLab and Bitbucket Cloud
+  - AWS (Elastic CI Stack, EC2, ECS, EKS, Lambda autoscaler)
+  - Google Cloud (GCE, GKE)
+  - Microsoft Azure (AKS, Azure DevOps)
+  - Kubernetes via agent-stack-k8s
+  - Terraform provider community modules
+  - Slack, Microsoft Teams, email notifications
+  - PagerDuty, Opsgenie, Datadog observability
+  - Honeycomb, OpenTelemetry tracing
+  - 1Password, HashiCorp Vault, AWS Secrets Manager secrets
+  - Sentry, Rollbar error tracking
+  - Snyk, Aikido, Semgrep security scanning
+  - Docker, Docker Hub, ECR, GCR, GHCR container registries
+  - Test Engine integrations for RSpec, Jest, pytest, JUnit, Go, Cypress, Playwright
+  - Package Registries for npm, PyPI, RubyGems, Maven, Container, Debian, RPM, Terraform, Helm
+  - OIDC integrations with AWS, GCP, Azure, HashiCorp Vault
+  - OAuth Token Exchange (RFC 8693) for identity provider integrations
+  - Buildkite MCP Server for Claude, Cursor, and other AI coding agents
+- type: Features
+  data:
+  - Hybrid CI/CD — self-hosted agents on customer infrastructure plus optional Buildkite Hosted Agents
+  - Pipelines as YAML with dynamic pipeline upload from inside jobs
+  - Open source agent (Go) running on Linux, macOS, Windows, FreeBSD
+  - Clusters and Queues for routing jobs to specific agent pools
+  - Pipeline Templates for standardizing pipelines across teams
+  - Rules engine for organizational policies and automation
+  - Annotations, artifacts, and job logs as first-class API resources
+  - Buildkite Hosted Agents — Linux, Mac M4, with cache volumes and tunable vCPU sizes
+  - Test Engine with flaky test management, real-time test analytics, and intelligent test splitting
+  - Test Engine duration-threshold monitor for long-running test alerts
+  - Package Registries for npm, PyPI, RubyGems, Maven, Container, Debian, RPM, Terraform, Helm
+  - SLSA provenance, license checks, and threat scanning on Enterprise Package Registries
+  - OIDC and OAuth Token Exchange (RFC 8693) for short-lived API tokens from identity providers
+  - bktec build tooling with automatic OIDC token generation
+  - Per-user API rate limits with org-wide caps
+  - GraphQL Portals for scoped, schema-filtered API access
+  - Batch retry API for failed jobs with optional state filtering
+  - GitHub webhook trigger expansion (PR reviews, releases, issue comments, deployment status)
+  - Build page redesign with searchable job list and state-based filters
+  - SCIM, SAML, ADFS for Enterprise identity
+  - Audit logs and build exports for compliance and FinOps
+  - Official MCP server for AI coding agent integration
+  - Buildkite Skills for Claude Code and Cursor
+  sources:
+  - https://buildkite.com/docs
+  - https://buildkite.com/docs/apis
+  - https://buildkite.com/pricing
+  - https://buildkite.com/changelog
+  - https://github.com/buildkite
+  updated: '2026-05-25'
+- url: plans/buildkite-com-plans-pricing.yml
+  type: Plans
+- url: rate-limits/buildkite-com-rate-limits.yml
+  type: RateLimits
+- url: finops/buildkite-com-finops.yml
+  type: FinOps
+- url: vocabulary/buildkite-com-vocabulary.yml
+  type: Vocabulary
+- url: rules/buildkite-rules.yml
+  type: Spectral
+name: Buildkite
+tags:
+- CI/CD
+- Continuous Integration
+- Continuous Delivery
+- DevOps
+- Pipelines
+- Hybrid CI
+- Build Automation
+- Test Engine
+- Package Registries
+- Agents
+- GraphQL
+- REST
+- MCP
+- Webhooks
+created: '2026-05-25T00:00:00.000Z'
+modified: '2026-05-25'
+position: Consuming
+description: Buildkite is a hybrid CI/CD platform that combines a hosted control plane (pipelines.buildkite.com)
+  with self-hosted or Buildkite-Hosted agents that run jobs on customer-controlled infrastructure. The platform
+  spans three core products — Pipelines, Test Engine, and Package Registries — and exposes them through a v2
+  REST API, a Relay-compliant GraphQL API at graphql.buildkite.com/v1, an Agent API at agent.buildkite.com/v3
+  consumed by the open-source Go agent, webhooks, and an official MCP server that surfaces those APIs to AI
+  coding agents. Customers route work to specific agent pools through clusters and queues, define pipelines as
+  YAML with dynamic uploads, and integrate with the major source control, cloud, identity, secrets, and
+  observability vendors.
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com
+  X: apievangelist
+  url: https://apievangelist.com
+specificationVersion: '0.16'

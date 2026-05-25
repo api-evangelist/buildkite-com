@@ -1,0 +1,61 @@
+specVersion: "0.1"
+provider:
+  aid: buildkite-com
+  name: Buildkite
+updated: "2026-05-25"
+operationalDimensions:
+- name: Pipeline
+  description: A YAML-defined sequence of steps that runs against a source repository. The primary unit of
+    CI/CD work in Buildkite.
+- name: Build
+  description: A single execution of a pipeline. Has a state, a commit, a branch, and a set of jobs.
+- name: Job
+  description: An individual command, manual block, waiter, or trigger inside a build. Routed to an agent that
+    matches the job's agent_query_rules.
+- name: Agent
+  description: A long-running process (open-source Go) that polls the Agent API for jobs, executes them, and
+    uploads artifacts and logs.
+- name: Cluster
+  description: A logical grouping of agents and queues used to isolate workloads (for example by team or
+    environment).
+- name: Queue
+  description: A named slot inside a cluster that routes jobs to specific agents.
+- name: Agent Token
+  description: A credential issued per cluster used by agents to authenticate against the Agent API.
+- name: Pipeline Template
+  description: A standardized pipeline definition that Enterprise organizations can apply across many pipelines
+    for governance and consistency.
+- name: Rule
+  description: An organization-level policy that gates pipeline behavior, agent routing, or build creation.
+- name: Annotation
+  description: A markdown-rich note attached to a build, used for surfacing test reports, security findings,
+    or AI summaries.
+- name: Artifact
+  description: A file produced by a job, uploaded to Buildkite-managed or customer-managed storage.
+- name: Hosted Agent
+  description: A Buildkite-managed compute instance (Linux or Mac M4) that consumes the same Agent API as
+    self-hosted agents but is metered against the Pro or Enterprise plan.
+capabilityDimensions:
+- name: Pipelines
+  description: Plan, store, version, and execute CI/CD workflows.
+- name: Test Engine
+  description: Track, group, and intelligently split test executions; manage flaky tests and runtime alerts.
+- name: Package Registries
+  description: Host and manage packages (npm, PyPI, RubyGems, Maven, Container, Debian, RPM, Terraform, Helm)
+    with optional SLSA provenance, license checks, and threat scanning on Enterprise.
+- name: Hybrid CI
+  description: The control plane is hosted by Buildkite; jobs run on customer-controlled agents (self-hosted)
+    or Buildkite Hosted Agents.
+- name: MCP
+  description: Buildkite MCP Server surfaces the REST API as MCP tools for Claude Code, Cursor, and other AI
+    coding agents.
+identity:
+- OAuth Token Exchange (RFC 8693)
+- OIDC token minting for AWS, GCP, Azure, HashiCorp Vault
+- SCIM, SAML, ADFS on Enterprise
+- Per-token scopes; Portals for GraphQL scope filtering
+sources:
+- https://buildkite.com/docs
+- https://buildkite.com/docs/apis
+- https://buildkite.com/pricing
+- https://buildkite.com/changelog

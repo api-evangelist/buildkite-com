@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.buildkite.com/v2/organizations/api-evangelist/pipelines/example/builds",
+    "headers": {
+      "Authorization": "Bearer $BUILDKITE_API_TOKEN",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "commit": "HEAD",
+      "branch": "main",
+      "message": "Trigger from API Evangelist example",
+      "author": {
+        "name": "Kin Lane",
+        "email": "info@apievangelist.com"
+      },
+      "env": {
+        "DEPLOY_ENV": "staging"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "f8d2a3c4-1b5e-4d6a-9c0d-2f1e8b3d4567",
+      "number": 42,
+      "state": "scheduled",
+      "branch": "main",
+      "commit": "HEAD",
+      "message": "Trigger from API Evangelist example",
+      "url": "https://api.buildkite.com/v2/organizations/api-evangelist/pipelines/example/builds/42",
+      "web_url": "https://buildkite.com/api-evangelist/example/builds/42",
+      "created_at": "2026-05-25T18:00:00.000Z",
+      "scheduled_at": "2026-05-25T18:00:00.500Z",
+      "source": "api"
+    }
+  }
+}

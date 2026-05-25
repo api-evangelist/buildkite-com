@@ -1,0 +1,117 @@
+{
+  "name": "BuildkitePipelineStructure",
+  "version": "1.0",
+  "description": "Buildkite Pipeline canonical structure across REST API responses, the pipeline YAML configuration, and the pipeline-schema project.",
+  "entity": "Pipeline",
+  "fields": [
+    {
+      "name": "id",
+      "type": "uuid",
+      "required": true,
+      "description": "Server-assigned pipeline identifier"
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "required": true,
+      "pattern": "^[a-z0-9-]+$",
+      "description": "URL-safe pipeline slug; unique within an organization"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": "Human-readable pipeline name"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "repository",
+      "type": "string",
+      "required": true,
+      "description": "Source repository URL (HTTPS or SSH)"
+    },
+    {
+      "name": "default_branch",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "cluster_id",
+      "type": "uuid",
+      "required": false,
+      "description": "Cluster that owns this pipeline; null for legacy non-clustered pipelines"
+    },
+    {
+      "name": "configuration",
+      "type": "string",
+      "required": false,
+      "description": "Raw YAML pipeline configuration; alternative to inline `steps`"
+    },
+    {
+      "name": "steps",
+      "type": "array<object>",
+      "required": false,
+      "description": "Inline pipeline steps; each step validated by the pipeline-schema project"
+    },
+    {
+      "name": "provider",
+      "type": "object",
+      "fields": [
+        {
+          "name": "id",
+          "type": "enum",
+          "values": ["github", "gitlab", "bitbucket", "github_enterprise", "bitbucket_server"]
+        },
+        {
+          "name": "webhook_url",
+          "type": "uri"
+        },
+        {
+          "name": "settings",
+          "type": "object"
+        }
+      ]
+    },
+    {
+      "name": "visibility",
+      "type": "enum",
+      "values": ["private", "public"]
+    },
+    {
+      "name": "created_at",
+      "type": "date-time"
+    },
+    {
+      "name": "archived_at",
+      "type": "date-time",
+      "nullable": true
+    }
+  ],
+  "relationships": [
+    {
+      "name": "organization",
+      "type": "many-to-one",
+      "entity": "Organization",
+      "via": "slug-prefix"
+    },
+    {
+      "name": "cluster",
+      "type": "many-to-one",
+      "entity": "Cluster",
+      "via": "cluster_id"
+    },
+    {
+      "name": "builds",
+      "type": "one-to-many",
+      "entity": "Build"
+    }
+  ],
+  "sources": [
+    "https://buildkite.com/docs/apis/rest-api/pipelines",
+    "https://github.com/buildkite/pipeline-schema"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://graphql.buildkite.com/v1",
+    "headers": {
+      "Authorization": "Bearer $BUILDKITE_API_TOKEN",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "query": "query RecentBuilds($slug: ID!) { organization(slug: $slug) { name pipelines(first: 5) { edges { node { slug builds(first: 3) { edges { node { number state branch message } } } } } } } }",
+      "variables": {
+        "slug": "api-evangelist"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "organization": {
+          "name": "API Evangelist",
+          "pipelines": {
+            "edges": [
+              {
+                "node": {
+                  "slug": "example",
+                  "builds": {
+                    "edges": [
+                      {
+                        "node": {
+                          "number": 42,
+                          "state": "PASSED",
+                          "branch": "main",
+                          "message": "Trigger from API Evangelist example"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

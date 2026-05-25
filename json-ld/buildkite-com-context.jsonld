@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "buildkite": "https://buildkite.com/docs/apis/rest-api/",
+    "Pipeline": "buildkite:pipelines",
+    "Build": "buildkite:builds",
+    "Job": "buildkite:jobs",
+    "Agent": "buildkite:agents",
+    "Cluster": "buildkite:clusters",
+    "Queue": "buildkite:queues",
+    "Organization": {
+      "@id": "schema:Organization"
+    },
+    "User": {
+      "@id": "schema:Person"
+    },
+    "id": "@id",
+    "type": "@type",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "email": "schema:email",
+    "avatar_url": "schema:image",
+    "created_at": "schema:dateCreated",
+    "started_at": "schema:startTime",
+    "finished_at": "schema:endTime",
+    "state": "buildkite:state",
+    "branch": "buildkite:branch",
+    "commit": "buildkite:commit",
+    "message": "schema:description",
+    "number": "schema:identifier",
+    "slug": "schema:identifier",
+    "repository": {
+      "@id": "schema:codeRepository",
+      "@type": "@id"
+    },
+    "default_branch": "buildkite:defaultBranch",
+    "cluster_id": "buildkite:clusterId",
+    "queue": "buildkite:queue",
+    "connection_state": "buildkite:connectionState",
+    "hostname": "schema:hostingProvider",
+    "ip_address": "buildkite:ipAddress",
+    "version": "schema:softwareVersion",
+    "meta_data": "buildkite:tag",
+    "jobs": "buildkite:job",
+    "agents": "buildkite:agent",
+    "creator": {
+      "@id": "schema:creator",
+      "@type": "@id"
+    },
+    "pipelines": "buildkite:pipeline",
+    "builds": "buildkite:build",
+    "organization": {
+      "@id": "schema:parentOrganization",
+      "@type": "@id"
+    }
+  }
+}

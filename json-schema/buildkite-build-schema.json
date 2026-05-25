@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/buildkite-com/main/json-schema/buildkite-build-schema.json",
+  "title": "Buildkite Build",
+  "description": "A Buildkite Build resource as returned by the REST API. Tracks https://buildkite.com/docs/apis/rest-api/builds.",
+  "type": "object",
+  "required": ["id", "number", "state", "branch", "commit"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "graphql_id": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "web_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "number": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "running",
+        "scheduled",
+        "passed",
+        "failed",
+        "blocked",
+        "canceled",
+        "canceling",
+        "skipped",
+        "not_run",
+        "finished"
+      ]
+    },
+    "blocked": {
+      "type": "boolean"
+    },
+    "message": {
+      "type": ["string", "null"]
+    },
+    "commit": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "tag": {
+      "type": ["string", "null"]
+    },
+    "env": {
+      "type": "object"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["webhook", "ui", "api", "schedule", "trigger_job"]
+    },
+    "creator": {
+      "type": "object"
+    },
+    "jobs": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scheduled_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "started_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "finished_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "pipeline_id": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}

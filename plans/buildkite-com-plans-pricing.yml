@@ -1,0 +1,107 @@
+# Buildkite Plans & Pricing
+# API Commons Plans 0.1
+specVersion: "0.1"
+provider:
+  aid: buildkite-com
+  name: Buildkite
+  url: https://buildkite.com/pricing
+currency: USD
+updated: "2026-05-25"
+plans:
+- id: personal
+  name: Personal
+  type: free
+  price:
+    amount: 0
+    period: month
+  audience: Individuals, side projects, evaluation
+  limits:
+    users: 1
+    concurrentJobs: 3
+    selfHostedAgents: 1
+    retentionDays: 90
+    monthlyTestExecutions: 50000
+    packageRegistryStorageGB: 1
+  features:
+  - Buildkite Pipelines
+  - Test Engine (50k monthly test executions)
+  - Package Registries (1GB storage)
+  - Self-hosted agents (1 max)
+  - Community support
+  source: https://buildkite.com/pricing
+- id: pro
+  name: Pro
+  type: subscription
+  price:
+    amount: 30
+    period: month
+    unit: active-user
+  audience: Growing engineering teams
+  limits:
+    users: unlimited
+    concurrentJobs: unlimited
+  features:
+  - Unlimited concurrent jobs and users
+  - All Buildkite Hosted Agent sizes including Mac M4
+  - Cache volumes for hosted agents
+  - 2,000 Linux vCPU minutes/month (up to 48 vCPU concurrency)
+  - Pay-as-you-go Mac M4 agent access (up to 24 vCPU concurrency)
+  - 250 Test Engine managed tests included; $0.10/test thereafter
+  - 20GB Package Registries storage included; $1.25/GB thereafter
+  - SSO and priority email support
+  source: https://buildkite.com/pricing
+  meters:
+  - id: test-engine-managed-test
+    description: Test Engine managed test execution beyond the 250 included
+    unit: test
+    includedQuantity: 250
+    overageAmount: 0.10
+  - id: package-registry-storage
+    description: Package Registries storage beyond the 20GB included
+    unit: GB-month
+    includedQuantity: 20
+    overageAmount: 1.25
+  - id: hosted-linux-vcpu-minutes
+    description: Buildkite Hosted Linux agent compute (vCPU-minutes)
+    unit: vCPU-minute
+    includedQuantity: 2000
+    overageNote: Pay-as-you-go pricing applies after included quantity
+  - id: hosted-mac-m4-minutes
+    description: Buildkite Hosted Mac M4 agent compute
+    unit: vCPU-minute
+    pricingNote: Pay-as-you-go, up to 24 vCPU concurrency
+- id: enterprise
+  name: Enterprise
+  type: contract
+  price:
+    amount: null
+    period: contract
+    note: Custom pricing with volume discounts; 30-user minimum
+  audience: Large organizations, regulated industries, scale CI/CD
+  features:
+  - Everything in Pro
+  - SCIM, SAML, ADFS
+  - Audit logs and build exports
+  - Pipeline Templates
+  - Advanced governance and Rules engine
+  - Unlimited managed tests and workflows
+  - Advanced Package Registries — SLSA provenance, license checks, threat scanning
+  - Premium support SLA available
+  - Volume discounts on managed tests and registry storage
+  source: https://buildkite.com/pricing
+- id: trial
+  name: All Access Trial
+  type: trial
+  price:
+    amount: 0
+    period: 30-day
+    note: No credit card required
+  features:
+  - Full access to Pipelines, Test Engine, Package Registries, and Hosted Agents
+  - Dedicated Developer Success Engineer
+  duration:
+    days: 30
+  source: https://buildkite.com/pricing
+sources:
+- https://buildkite.com/pricing
+- https://buildkite.com/docs

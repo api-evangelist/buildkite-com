@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/buildkite-com/main/json-schema/buildkite-pipeline-schema.json",
+  "title": "Buildkite Pipeline",
+  "description": "A Buildkite Pipeline resource as returned by the REST API. Closely tracks https://buildkite.com/docs/apis/rest-api/pipelines.",
+  "type": "object",
+  "required": ["id", "slug", "name", "repository"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "web_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "description": {
+      "type": ["string", "null"]
+    },
+    "repository": {
+      "type": "string"
+    },
+    "default_branch": {
+      "type": "string"
+    },
+    "branch_configuration": {
+      "type": ["string", "null"]
+    },
+    "skip_intermediate_builds": {
+      "type": "boolean"
+    },
+    "skip_intermediate_builds_branch_filter": {
+      "type": ["string", "null"]
+    },
+    "cancel_running_branch_builds": {
+      "type": "boolean"
+    },
+    "cancel_running_branch_builds_filter": {
+      "type": ["string", "null"]
+    },
+    "cluster_id": {
+      "type": ["string", "null"],
+      "format": "uuid"
+    },
+    "configuration": {
+      "type": "string",
+      "description": "YAML or JSON pipeline configuration"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "provider": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": ["github", "gitlab", "bitbucket", "github_enterprise", "bitbucket_server"]
+        },
+        "settings": {
+          "type": "object"
+        },
+        "webhook_url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "archived_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["private", "public"]
+    }
+  }
+}

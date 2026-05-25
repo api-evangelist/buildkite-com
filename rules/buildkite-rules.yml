@@ -1,0 +1,76 @@
+# Spectral ruleset enforcing Buildkite REST API conventions.
+extends:
+- spectral:oas
+rules:
+  buildkite-server-url:
+    description: REST surface MUST be served from api.buildkite.com/v2.
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://api\.buildkite\.com/v2$'
+  buildkite-bearer-auth:
+    description: REST API uses HTTP Bearer authentication with an API access token.
+    given: $.components.securitySchemes.bearerAuth
+    severity: error
+    then:
+    - field: type
+      function: enumeration
+      functionOptions:
+        values: [http]
+    - field: scheme
+      function: enumeration
+      functionOptions:
+        values: [bearer]
+  buildkite-title-case-summaries:
+    description: Operation summaries should use Title Case.
+    given: $.paths[*][*].summary
+    severity: warn
+    then:
+      function: casing
+      functionOptions:
+        type: pascal
+        separator:
+          char: ' '
+          allowLeading: true
+  buildkite-org-slug-param:
+    description: Organization-scoped paths MUST include the `org` slug parameter.
+    given: "$.paths['/organizations/{org}/pipelines'].get.parameters[*].name"
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^org$|^.*$'
+  buildkite-operation-id-camel:
+    description: operationId MUST be camelCase.
+    given: $.paths[*][*].operationId
+    severity: warn
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  buildkite-build-state-enum:
+    description: Build state enum MUST include the canonical lifecycle states.
+    given: $.components.schemas.Build.properties.state.enum
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            type: string
+            enum: [running, scheduled, passed, failed, blocked, canceled, canceling, skipped, not_run, finished]
+  buildkite-agent-connection-state-enum:
+    description: Agent connection_state enum MUST cover the documented states.
+    given: $.components.schemas.Agent.properties.connection_state.enum
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          contains:
+            type: string
+            enum: [connected, disconnected, stopped, stopping, lost, never_connected]

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/buildkite-com/main/json-schema/buildkite-agent-schema.json",
+  "title": "Buildkite Agent",
+  "description": "A Buildkite Agent record. Tracks https://buildkite.com/docs/apis/rest-api/agents.",
+  "type": "object",
+  "required": ["id", "name", "connection_state"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "web_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "name": {
+      "type": "string"
+    },
+    "connection_state": {
+      "type": "string",
+      "enum": [
+        "connected",
+        "disconnected",
+        "stopped",
+        "stopping",
+        "lost",
+        "never_connected"
+      ]
+    },
+    "hostname": {
+      "type": "string"
+    },
+    "ip_address": {
+      "type": "string"
+    },
+    "user_agent": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "creator": {
+      "type": "object"
+    },
+    "meta_data": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Free-form key=value tags used in agent_query_rules to route jobs"
+    },
+    "cluster_id": {
+      "type": ["string", "null"],
+      "format": "uuid"
+    },
+    "queue": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_job_finished_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    }
+  }
+}

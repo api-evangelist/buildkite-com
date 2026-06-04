@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: Buildkite Stop Disconnected Agent
+  summary: List agents, inspect one, and stop it when it is no longer connected.
+  description: >-
+    A fleet-hygiene flow for reaping stale agents. The workflow lists the agents
+    in an organization, reads the supplied agent to capture its connection state,
+    and when that agent is no longer connected it issues a stop so the slot is
+    released. This keeps an organization's agent inventory clean of agents that
+    have lost their connection. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: buildkiteRestApi
+  url: ../openapi/buildkite-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: stop-disconnected-agent
+  summary: Stop an agent that is no longer connected.
+  description: >-
+    Lists agents, reads the supplied agent, and stops it when its connection
+    state is not connected.
+  inputs:
+    type: object
+    required:
+    - org
+    - id
+    properties:
+      org:
+        type: string
+        description: Organization slug that owns the agents.
+      id:
+        type: string
+        description: UUID of the agent to inspect and potentially stop.
+  steps:
+  - stepId: listAgents
+    description: >-
+      List the agents in the organization to provide context for the target
+      agent.
+    operationId: listAgents
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      agents: $response.body
+  - stepId: getAgent
+    description: >-
+      Read the supplied agent and capture its connection state.
+    operationId: getAgent
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: id
+      in: path
+      value: $inputs.id
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      connectionState: $response.body#/connection_state
+      name: $response.body#/name
+    onSuccess:
+    - name: notConnected
+      type: goto
+      stepId: stopAgent
+      criteria:
+      - context: $response.body
+        condition: $.connection_state != "connected"
+        type: jsonpath
+    onFailure:
+    - name: stillConnected
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.connection_state == "connected"
+        type: jsonpath
+  - stepId: stopAgent
+    description: >-
+      Stop the agent, releasing its slot in the organization.
+    operationId: stopAgent
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: id
+      in: path
+      value: $inputs.id
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    agentName: $steps.getAgent.outputs.name
+    connectionState: $steps.getAgent.outputs.connectionState

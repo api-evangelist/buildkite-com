@@ -1,0 +1,108 @@
+arazzo: 1.0.1
+info:
+  title: Buildkite Cancel Running Build
+  summary: Find the latest running build on a pipeline and cancel it.
+  description: >-
+    A stop-the-line flow for halting in-progress work. The workflow lists builds
+    for a pipeline, captures the most recent build and its state, and when that
+    build is still running or scheduled it issues a cancel and reads the build
+    back to confirm it has moved into a canceling or canceled state. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: buildkiteRestApi
+  url: ../openapi/buildkite-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: cancel-running-build
+  summary: Cancel the most recent running build of a pipeline.
+  description: >-
+    Lists builds, and when the most recent one is still in progress cancels it
+    and confirms the cancellation.
+  inputs:
+    type: object
+    required:
+    - org
+    - pipeline
+    properties:
+      org:
+        type: string
+        description: Organization slug that owns the pipeline.
+      pipeline:
+        type: string
+        description: Pipeline slug to cancel the latest build of.
+  steps:
+  - stepId: listBuilds
+    description: >-
+      List builds for the pipeline and capture the most recent build number and
+      state.
+    operationId: listBuilds
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      latestNumber: $response.body#/0/number
+      latestState: $response.body#/0/state
+    onSuccess:
+    - name: inProgress
+      type: goto
+      stepId: cancelBuild
+      criteria:
+      - context: $response.body
+        condition: $[0].state == "running" || $[0].state == "scheduled"
+        type: jsonpath
+    onFailure:
+    - name: nothingToCancel
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $[0].state != "running" && $[0].state != "scheduled"
+        type: jsonpath
+  - stepId: cancelBuild
+    description: >-
+      Cancel the most recent in-progress build.
+    operationId: cancelBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $steps.listBuilds.outputs.latestNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      cancelState: $response.body#/state
+  - stepId: confirmCancel
+    description: >-
+      Read the build back to confirm it has moved into a canceling or canceled
+      state.
+    operationId: getBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $steps.listBuilds.outputs.latestNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalState: $response.body#/state
+      webUrl: $response.body#/web_url
+  outputs:
+    canceledNumber: $steps.listBuilds.outputs.latestNumber
+    finalState: $steps.confirmCancel.outputs.finalState

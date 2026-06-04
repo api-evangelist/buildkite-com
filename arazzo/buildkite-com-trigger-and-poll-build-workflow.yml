@@ -1,0 +1,131 @@
+arazzo: 1.0.1
+info:
+  title: Buildkite Trigger And Poll Build
+  summary: Create a build on a pipeline, then poll until it reaches a terminal state.
+  description: >-
+    The core continuous integration loop for Buildkite Pipelines. The workflow
+    creates a new build on an existing pipeline for a given commit and branch,
+    captures the returned build number, and then polls the build record on an
+    interval until it leaves the running and scheduled states. When the build
+    finishes it branches on the final state so callers can react to a passing or
+    failing result. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: buildkiteRestApi
+  url: ../openapi/buildkite-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: trigger-and-poll-build
+  summary: Create a build and poll it to completion.
+  description: >-
+    Triggers a build on the supplied pipeline for a commit and branch, then
+    repeatedly fetches the build until it reaches a terminal state, surfacing the
+    final state, build number and web URL.
+  inputs:
+    type: object
+    required:
+    - org
+    - pipeline
+    - commit
+    - branch
+    properties:
+      org:
+        type: string
+        description: Organization slug that owns the pipeline.
+      pipeline:
+        type: string
+        description: Pipeline slug to create the build on.
+      commit:
+        type: string
+        description: Git commit SHA (or HEAD) to build.
+      branch:
+        type: string
+        description: Git branch to build.
+      message:
+        type: string
+        description: Optional build message shown in the Buildkite UI.
+  steps:
+  - stepId: createBuild
+    description: >-
+      Create a new build on the pipeline for the supplied commit and branch.
+    operationId: createBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    requestBody:
+      contentType: application/json
+      payload:
+        commit: $inputs.commit
+        branch: $inputs.branch
+        message: $inputs.message
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      buildNumber: $response.body#/number
+      buildId: $response.body#/id
+      buildState: $response.body#/state
+  - stepId: pollBuild
+    description: >-
+      Fetch the build record and check whether it has left the running and
+      scheduled states; loop back while it is still in progress.
+    operationId: getBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $steps.createBuild.outputs.buildNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      buildState: $response.body#/state
+      webUrl: $response.body#/web_url
+      finishedAt: $response.body#/finished_at
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollBuild
+      criteria:
+      - context: $response.body
+        condition: $.state == "running" || $.state == "scheduled"
+        type: jsonpath
+    - name: finished
+      type: goto
+      stepId: classifyResult
+      criteria:
+      - context: $response.body
+        condition: $.state != "running" && $.state != "scheduled"
+        type: jsonpath
+  - stepId: classifyResult
+    description: >-
+      Re-read the finished build so the terminal state is captured as the
+      workflow result.
+    operationId: getBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $steps.createBuild.outputs.buildNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalState: $response.body#/state
+      webUrl: $response.body#/web_url
+  outputs:
+    buildNumber: $steps.createBuild.outputs.buildNumber
+    finalState: $steps.classifyResult.outputs.finalState
+    webUrl: $steps.classifyResult.outputs.webUrl

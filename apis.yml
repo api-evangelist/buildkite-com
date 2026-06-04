@@ -119,6 +119,36 @@ apis:
     both a remote endpoint and a local binary. Pairs with the official Buildkite Skills for Claude Code and
     Cursor.
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/buildkite-com-build-failure-triage-workflow.yml
+    name: Buildkite Build Failure Triage
+    summary: Inspect a finished build, then pull its annotations and artifacts for triage.
+  - url: arazzo/buildkite-com-cancel-running-build-workflow.yml
+    name: Buildkite Cancel Running Build
+    summary: Find the latest running build on a pipeline and cancel it.
+  - url: arazzo/buildkite-com-collect-build-artifacts-workflow.yml
+    name: Buildkite Collect Build Artifacts
+    summary: Look up a build, confirm it finished, then list its artifacts.
+  - url: arazzo/buildkite-com-fetch-job-log-workflow.yml
+    name: Buildkite Fetch Job Log
+    summary: Read a build, pick a finished job, and fetch its log output.
+  - url: arazzo/buildkite-com-provision-pipeline-and-first-build-workflow.yml
+    name: Buildkite Provision Pipeline And First Build
+    summary: Create a pipeline in an organization, then trigger its first build.
+  - url: arazzo/buildkite-com-rebuild-latest-build-workflow.yml
+    name: Buildkite Rebuild Latest Build
+    summary: Find the most recent build on a pipeline, rebuild it, then poll the new build.
+  - url: arazzo/buildkite-com-retry-failed-job-workflow.yml
+    name: Buildkite Retry Failed Job
+    summary: Find a failed job in a build, retry it, then poll the build to completion.
+  - url: arazzo/buildkite-com-stop-disconnected-agent-workflow.yml
+    name: Buildkite Stop Disconnected Agent
+    summary: List agents, inspect one, and stop it when it is no longer connected.
+  - url: arazzo/buildkite-com-trigger-and-poll-build-workflow.yml
+    name: Buildkite Trigger And Poll Build
+    summary: Create a build on a pipeline, then poll until it reaches a terminal state.
 - type: Portal
   url: https://buildkite.com
 - type: Documentation

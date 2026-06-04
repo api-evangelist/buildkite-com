@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Buildkite Collect Build Artifacts
+  summary: Look up a build, confirm it finished, then list its artifacts.
+  description: >-
+    A reporting flow that gathers the outputs of a completed build. The workflow
+    fetches a build by number, branches on whether it has finished, and once it
+    is terminal lists the artifacts that the build uploaded. This is the basis
+    for downstream packaging or release steps that need the artifact inventory
+    of a build. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: buildkiteRestApi
+  url: ../openapi/buildkite-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: collect-build-artifacts
+  summary: Confirm a build finished and list its artifacts.
+  description: >-
+    Reads a build, branches on its finished state, and when complete lists the
+    artifacts uploaded by the build.
+  inputs:
+    type: object
+    required:
+    - org
+    - pipeline
+    - number
+    properties:
+      org:
+        type: string
+        description: Organization slug that owns the pipeline.
+      pipeline:
+        type: string
+        description: Pipeline slug the build belongs to.
+      number:
+        type: integer
+        description: Build number to collect artifacts from.
+  steps:
+  - stepId: getBuild
+    description: >-
+      Fetch the build record and capture its state to decide whether artifacts
+      are ready to be listed.
+    operationId: getBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $inputs.number
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      buildState: $response.body#/state
+      webUrl: $response.body#/web_url
+    onSuccess:
+    - name: finished
+      type: goto
+      stepId: listArtifacts
+      criteria:
+      - context: $response.body
+        condition: $.state != "running" && $.state != "scheduled"
+        type: jsonpath
+    onFailure:
+    - name: notReady
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.state == "running" || $.state == "scheduled"
+        type: jsonpath
+  - stepId: listArtifacts
+    description: >-
+      List all artifacts uploaded across the jobs of the finished build.
+    operationId: listArtifactsForBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $inputs.number
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      artifacts: $response.body
+  outputs:
+    buildState: $steps.getBuild.outputs.buildState
+    artifacts: $steps.listArtifacts.outputs.artifacts

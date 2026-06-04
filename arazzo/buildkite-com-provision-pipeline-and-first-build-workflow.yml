@@ -1,0 +1,116 @@
+arazzo: 1.0.1
+info:
+  title: Buildkite Provision Pipeline And First Build
+  summary: Create a pipeline in an organization, then trigger its first build.
+  description: >-
+    A bootstrap flow for onboarding a new repository onto Buildkite Pipelines.
+    The workflow creates a pipeline in the organization with a repository and an
+    inline step configuration, reads the created pipeline back to confirm its
+    slug, and then triggers an initial build on the pipeline's default branch.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: buildkiteRestApi
+  url: ../openapi/buildkite-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-pipeline-and-first-build
+  summary: Create a pipeline and kick off its first build.
+  description: >-
+    Creates a pipeline from a repository and step configuration, confirms the
+    created pipeline, and triggers an initial build on the supplied branch.
+  inputs:
+    type: object
+    required:
+    - org
+    - name
+    - repository
+    - configuration
+    - branch
+    properties:
+      org:
+        type: string
+        description: Organization slug to create the pipeline in.
+      name:
+        type: string
+        description: Human-readable pipeline name.
+      repository:
+        type: string
+        description: Git repository URL the pipeline builds.
+      configuration:
+        type: string
+        description: YAML pipeline step configuration as a string.
+      branch:
+        type: string
+        description: Branch to trigger the first build on.
+      commit:
+        type: string
+        description: Commit SHA to build; defaults to HEAD when omitted.
+  steps:
+  - stepId: createPipeline
+    description: >-
+      Create a new pipeline in the organization with the supplied repository and
+      step configuration.
+    operationId: createPipeline
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        repository: $inputs.repository
+        configuration: $inputs.configuration
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      pipelineSlug: $response.body#/slug
+      pipelineId: $response.body#/id
+      webUrl: $response.body#/web_url
+  - stepId: confirmPipeline
+    description: >-
+      Read the created pipeline back to confirm it exists and capture its
+      default branch.
+    operationId: getPipeline
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $steps.createPipeline.outputs.pipelineSlug
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      defaultBranch: $response.body#/default_branch
+      slug: $response.body#/slug
+  - stepId: triggerFirstBuild
+    description: >-
+      Trigger the first build on the newly created pipeline for the supplied
+      branch and commit.
+    operationId: createBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $steps.confirmPipeline.outputs.slug
+    requestBody:
+      contentType: application/json
+      payload:
+        commit: $inputs.commit
+        branch: $inputs.branch
+        message: First build
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      buildNumber: $response.body#/number
+      buildState: $response.body#/state
+      buildWebUrl: $response.body#/web_url
+  outputs:
+    pipelineSlug: $steps.createPipeline.outputs.pipelineSlug
+    pipelineWebUrl: $steps.createPipeline.outputs.webUrl
+    buildNumber: $steps.triggerFirstBuild.outputs.buildNumber

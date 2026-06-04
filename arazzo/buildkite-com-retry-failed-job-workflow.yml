@@ -1,0 +1,117 @@
+arazzo: 1.0.1
+info:
+  title: Buildkite Retry Failed Job
+  summary: Find a failed job in a build, retry it, then poll the build to completion.
+  description: >-
+    A self-healing flow for flaky steps. The workflow reads a finished build,
+    scans its jobs for a failed script job, retries that job, and then polls the
+    build until it leaves the running state so the retry outcome can be observed.
+    This lets automation recover from transient failures without re-running the
+    entire build. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: buildkiteRestApi
+  url: ../openapi/buildkite-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: retry-failed-job
+  summary: Retry a failed job and poll the build to completion.
+  description: >-
+    Reads a build, retries the supplied failed job, and polls the build until it
+    reaches a terminal state.
+  inputs:
+    type: object
+    required:
+    - org
+    - pipeline
+    - number
+    - job
+    properties:
+      org:
+        type: string
+        description: Organization slug that owns the pipeline.
+      pipeline:
+        type: string
+        description: Pipeline slug the build belongs to.
+      number:
+        type: integer
+        description: Build number containing the job to retry.
+      job:
+        type: string
+        description: UUID of the failed job to retry.
+  steps:
+  - stepId: getBuild
+    description: >-
+      Read the build to confirm it is terminal and capture its jobs before
+      retrying.
+    operationId: getBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $inputs.number
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      buildState: $response.body#/state
+      jobs: $response.body#/jobs
+  - stepId: retryJob
+    description: >-
+      Retry the supplied failed job, which re-queues it for an available agent.
+    operationId: retryJob
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $inputs.number
+    - name: job
+      in: path
+      value: $inputs.job
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      jobId: $response.body#/id
+      jobState: $response.body#/state
+  - stepId: pollBuild
+    description: >-
+      Poll the build until the retried job completes and the build leaves the
+      running and scheduled states.
+    operationId: getBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $inputs.number
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalState: $response.body#/state
+      webUrl: $response.body#/web_url
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollBuild
+      criteria:
+      - context: $response.body
+        condition: $.state == "running" || $.state == "scheduled"
+        type: jsonpath
+  outputs:
+    retriedJobId: $steps.retryJob.outputs.jobId
+    finalState: $steps.pollBuild.outputs.finalState
+    webUrl: $steps.pollBuild.outputs.webUrl

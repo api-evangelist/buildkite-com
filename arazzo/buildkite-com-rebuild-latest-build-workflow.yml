@@ -1,0 +1,105 @@
+arazzo: 1.0.1
+info:
+  title: Buildkite Rebuild Latest Build
+  summary: Find the most recent build on a pipeline, rebuild it, then poll the new build.
+  description: >-
+    A re-run flow that re-queues the newest build of a pipeline. The workflow
+    lists builds for the pipeline, takes the first (most recent) build number,
+    issues a rebuild that creates a fresh build from the same commit and
+    configuration, and then polls the new build until it reaches a terminal
+    state. This is useful for re-running against an unchanged commit after a
+    transient infrastructure issue. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: buildkiteRestApi
+  url: ../openapi/buildkite-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: rebuild-latest-build
+  summary: Rebuild the most recent build of a pipeline and poll it.
+  description: >-
+    Lists builds for a pipeline, rebuilds the most recent one, and polls the
+    resulting build to completion.
+  inputs:
+    type: object
+    required:
+    - org
+    - pipeline
+    properties:
+      org:
+        type: string
+        description: Organization slug that owns the pipeline.
+      pipeline:
+        type: string
+        description: Pipeline slug to rebuild the latest build of.
+  steps:
+  - stepId: listBuilds
+    description: >-
+      List builds for the pipeline and capture the most recent build number.
+    operationId: listBuilds
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      latestNumber: $response.body#/0/number
+      latestState: $response.body#/0/state
+  - stepId: rebuild
+    description: >-
+      Rebuild the most recent build, re-queuing a new build from the same commit
+      and configuration.
+    operationId: rebuildBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $steps.listBuilds.outputs.latestNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      newBuildNumber: $response.body#/number
+      newBuildState: $response.body#/state
+      webUrl: $response.body#/web_url
+  - stepId: pollRebuild
+    description: >-
+      Poll the new build until it leaves the running and scheduled states.
+    operationId: getBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $steps.rebuild.outputs.newBuildNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalState: $response.body#/state
+      webUrl: $response.body#/web_url
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollRebuild
+      criteria:
+      - context: $response.body
+        condition: $.state == "running" || $.state == "scheduled"
+        type: jsonpath
+  outputs:
+    rebuiltFromNumber: $steps.listBuilds.outputs.latestNumber
+    newBuildNumber: $steps.rebuild.outputs.newBuildNumber
+    finalState: $steps.pollRebuild.outputs.finalState

@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Buildkite Build Failure Triage
+  summary: Inspect a finished build, then pull its annotations and artifacts for triage.
+  description: >-
+    A diagnostic flow for understanding why a build failed. The workflow fetches
+    a build by number, and when it has reached a terminal state it gathers the
+    annotations rendered by the build for human-readable failure context and
+    lists the artifacts so logs and reports can be retrieved. This gives an
+    on-call engineer or an automated triage bot a single pass over the most
+    useful failure signals. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: buildkiteRestApi
+  url: ../openapi/buildkite-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: build-failure-triage
+  summary: Gather annotations and artifacts for a finished build.
+  description: >-
+    Reads a build, and once it is terminal collects its annotations and
+    artifacts to support failure triage.
+  inputs:
+    type: object
+    required:
+    - org
+    - pipeline
+    - number
+    properties:
+      org:
+        type: string
+        description: Organization slug that owns the pipeline.
+      pipeline:
+        type: string
+        description: Pipeline slug the build belongs to.
+      number:
+        type: integer
+        description: Build number to triage.
+  steps:
+  - stepId: getBuild
+    description: >-
+      Fetch the build and capture its terminal state before collecting triage
+      signals.
+    operationId: getBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $inputs.number
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      buildState: $response.body#/state
+      webUrl: $response.body#/web_url
+    onSuccess:
+    - name: terminal
+      type: goto
+      stepId: listAnnotations
+      criteria:
+      - context: $response.body
+        condition: $.state != "running" && $.state != "scheduled"
+        type: jsonpath
+  - stepId: listAnnotations
+    description: >-
+      List the annotations rendered by the build, which carry human-readable
+      failure context and links.
+    operationId: listAnnotations
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $inputs.number
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      annotations: $response.body
+  - stepId: listArtifacts
+    description: >-
+      List the artifacts uploaded by the build so logs and reports can be
+      retrieved for diagnosis.
+    operationId: listArtifactsForBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $inputs.number
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      artifacts: $response.body
+  outputs:
+    buildState: $steps.getBuild.outputs.buildState
+    annotations: $steps.listAnnotations.outputs.annotations
+    artifacts: $steps.listArtifacts.outputs.artifacts

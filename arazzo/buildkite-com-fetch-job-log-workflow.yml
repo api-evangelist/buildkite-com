@@ -1,0 +1,86 @@
+arazzo: 1.0.1
+info:
+  title: Buildkite Fetch Job Log
+  summary: Read a build, pick a finished job, and fetch its log output.
+  description: >-
+    A log-retrieval flow for surfacing the raw output of a specific job. The
+    workflow fetches a build by number, captures its jobs array, and then fetches
+    the log output for the supplied job UUID. This is the building block for
+    pushing Buildkite job logs into an external log store or attaching them to an
+    incident. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: buildkiteRestApi
+  url: ../openapi/buildkite-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: fetch-job-log
+  summary: Fetch the log output for a job in a build.
+  description: >-
+    Reads a build to confirm the job exists, then retrieves the log output for
+    the supplied job.
+  inputs:
+    type: object
+    required:
+    - org
+    - pipeline
+    - number
+    - job
+    properties:
+      org:
+        type: string
+        description: Organization slug that owns the pipeline.
+      pipeline:
+        type: string
+        description: Pipeline slug the build belongs to.
+      number:
+        type: integer
+        description: Build number containing the job.
+      job:
+        type: string
+        description: UUID of the job to fetch the log for.
+  steps:
+  - stepId: getBuild
+    description: >-
+      Read the build and capture its jobs so the target job can be confirmed.
+    operationId: getBuild
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $inputs.number
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      buildState: $response.body#/state
+      jobs: $response.body#/jobs
+  - stepId: getJobLog
+    description: >-
+      Fetch the log output for the supplied job.
+    operationId: getJobLog
+    parameters:
+    - name: org
+      in: path
+      value: $inputs.org
+    - name: pipeline
+      in: path
+      value: $inputs.pipeline
+    - name: number
+      in: path
+      value: $inputs.number
+    - name: job
+      in: path
+      value: $inputs.job
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      log: $response.body
+  outputs:
+    buildState: $steps.getBuild.outputs.buildState
+    log: $steps.getJobLog.outputs.log

@@ -27,16 +27,11 @@ apis:
     type: JSONSchema
   - url: json-ld/buildkite-com-context.jsonld
     type: JSONLD
-  - type: NaftikoCapability
-    url: capabilities/pipelines.yaml
-  - type: NaftikoCapability
-    url: capabilities/builds.yaml
-  - type: NaftikoCapability
-    url: capabilities/agents.yaml
-  description: Programmatic access to Buildkite Pipelines covering organizations, pipelines, builds, jobs,
-    artifacts, annotations, agents, clusters, queues, agent tokens, teams, pipeline templates, rules, and
-    emojis. Uses Bearer token authentication with scoped API access tokens. Designed to extend, integrate,
-    and automate CI/CD workflows across hybrid infrastructure.
+  description: >-
+    Programmatic access to Buildkite Pipelines covering organizations, pipelines, builds, jobs, artifacts,
+    annotations, agents, clusters, queues, agent tokens, teams, pipeline templates, rules, and emojis. Uses Bearer
+    token authentication with scoped API access tokens. Designed to extend, integrate, and automate CI/CD workflows
+    across hybrid infrastructure.
 - aid: buildkite-com:buildkite-graphql-api
   name: Buildkite GraphQL API
   tags:
@@ -53,13 +48,13 @@ apis:
     type: Documentation
   - url: https://graphql.buildkite.com/explorer
     type: Sandbox
-  - type: NaftikoCapability
-    url: capabilities/graphql-queries.yaml
-  description: GraphQL endpoint that returns deeply nested data on organizations, pipelines, builds, jobs,
-    agents, clusters, queues, teams, audit events, suites, test executions, and package registries in a single
-    request. Implements the Relay specification for pagination and supports schema introspection. Requires an
-    API access token with "Enable GraphQL API Access" permission. GraphQL Portals allow scoped, schema-filtered
-    access without per-token scopes.
+  - url: graphql/buildkite-com-graphql.md
+    type: GraphQL
+  description: >-
+    GraphQL endpoint that returns deeply nested data on organizations, pipelines, builds, jobs, agents, clusters,
+    queues, teams, audit events, suites, test executions, and package registries in a single request. Implements the
+    Relay specification for pagination and supports schema introspection. Requires an API access token with "Enable
+    GraphQL API Access" permission. GraphQL Portals allow scoped, schema-filtered access without per-token scopes.
 - aid: buildkite-com:buildkite-agent-api
   name: Buildkite Agent API
   tags:
@@ -75,13 +70,12 @@ apis:
     type: Documentation
   - url: https://github.com/buildkite/agent
     type: SourceCode
-  - type: NaftikoCapability
-    url: capabilities/agents.yaml
-  description: Backplane consumed by the Buildkite Agent (open source, Go) to register, deregister, accept and
-    finish jobs, upload artifacts, stream job logs, and emit metrics for cluster autoscaling. Authenticated via
-    Agent Tokens issued per cluster. Public surface includes `/metrics` (for autoscaling) and `/stacks` (for
-    self-hosted queue controllers). The `agent-edge.buildkite.com` host adds gRPC methods. Most other endpoints
-    are reserved for internal agent use.
+  description: >-
+    Backplane consumed by the Buildkite Agent (open source, Go) to register, deregister, accept and finish jobs,
+    upload artifacts, stream job logs, and emit metrics for cluster autoscaling. Authenticated via Agent Tokens issued
+    per cluster. Public surface includes `/metrics` (for autoscaling) and `/stacks` (for self-hosted queue
+    controllers). The `agent-edge.buildkite.com` host adds gRPC methods. Most other endpoints are reserved for
+    internal agent use.
 - aid: buildkite-com:buildkite-webhooks
   name: Buildkite Webhooks
   tags:
@@ -95,11 +89,11 @@ apis:
     type: Documentation
   - url: https://buildkite.com/docs/pipelines/integrations/notifications
     type: Documentation
-  description: Outbound HTTP notifications fired in response to build, job, agent, ping, deployment, and
-    package events across Pipelines, Test Engine, and Package Registries. Verified with the
-    `X-Buildkite-Token` header. Configured per organization via Notification Services. Supports an expanded
-    set of GitHub-style triggers including pull request reviews, releases, issue comments, and deployment
-    status events.
+  description: >-
+    Outbound HTTP notifications fired in response to build, job, agent, ping, deployment, and package events across
+    Pipelines, Test Engine, and Package Registries. Verified with the `X-Buildkite-Token` header. Configured per
+    organization via Notification Services. Supports an expanded set of GitHub-style triggers including pull request
+    reviews, releases, issue comments, and deployment status events.
 - aid: buildkite-com:buildkite-mcp-server
   name: Buildkite MCP Server
   tags:
@@ -114,11 +108,13 @@ apis:
     type: Documentation
   - url: https://github.com/buildkite/buildkite-mcp-server
     type: SourceCode
-  description: Official Model Context Protocol server that exposes Buildkite REST API surfaces (pipelines,
-    builds, jobs, agents, artifacts, annotations) as MCP tools and toolsets for AI coding agents. Available as
-    both a remote endpoint and a local binary. Pairs with the official Buildkite Skills for Claude Code and
-    Cursor.
+  description: >-
+    Official Model Context Protocol server that exposes Buildkite REST API surfaces (pipelines, builds, jobs, agents,
+    artifacts, annotations) as MCP tools and toolsets for AI coding agents. Available as both a remote endpoint and a
+    local binary. Pairs with the official Buildkite Skills for Claude Code and Cursor.
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/buildkite/overview
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:
@@ -304,14 +300,14 @@ tags:
 created: '2026-05-25T00:00:00.000Z'
 modified: '2026-05-25'
 position: Consuming
-description: Buildkite is a hybrid CI/CD platform that combines a hosted control plane (pipelines.buildkite.com)
-  with self-hosted or Buildkite-Hosted agents that run jobs on customer-controlled infrastructure. The platform
-  spans three core products — Pipelines, Test Engine, and Package Registries — and exposes them through a v2
-  REST API, a Relay-compliant GraphQL API at graphql.buildkite.com/v1, an Agent API at agent.buildkite.com/v3
-  consumed by the open-source Go agent, webhooks, and an official MCP server that surfaces those APIs to AI
-  coding agents. Customers route work to specific agent pools through clusters and queues, define pipelines as
-  YAML with dynamic uploads, and integrate with the major source control, cloud, identity, secrets, and
-  observability vendors.
+description: >-
+  Buildkite is a hybrid CI/CD platform that combines a hosted control plane (pipelines.buildkite.com) with self-hosted
+  or Buildkite-Hosted agents that run jobs on customer-controlled infrastructure. The platform spans three core products
+  — Pipelines, Test Engine, and Package Registries — and exposes them through a v2 REST API, a Relay-compliant GraphQL
+  API at graphql.buildkite.com/v1, an Agent API at agent.buildkite.com/v3 consumed by the open-source Go agent,
+  webhooks, and an official MCP server that surfaces those APIs to AI coding agents. Customers route work to specific
+  agent pools through clusters and queues, define pipelines as YAML with dynamic uploads, and integrate with the major
+  source control, cloud, identity, secrets, and observability vendors.
 maintainers:
 - FN: Kin Lane
   email: info@apievangelist.com

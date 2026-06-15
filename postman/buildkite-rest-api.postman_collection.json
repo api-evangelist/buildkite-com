@@ -1,0 +1,2845 @@
+{
+  "info": {
+    "_postman_id": "15071d3c-2eb4-42d4-af13-a359de969da3",
+    "name": "Buildkite REST API",
+    "description": "Programmatic control of Buildkite Pipelines covering organizations, pipelines,\nbuilds, jobs, artifacts, annotations, agents, clusters, queues, and access tokens.\nAuthenticated with a Bearer API access token.\n\n\nContact Support:\n Name: Buildkite Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:06:08.000Z",
+    "updatedAt": "2026-06-05T15:06:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-15071d3c-2eb4-42d4-af13-a359de969da3"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "Get The Current User",
+          "id": "3744587c-21bc-4189-809b-3eba9e87cf99",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c5853c4a-baae-4ceb-aa30-e4a7cf1c0d4c",
+              "name": "Authenticated user record",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"avatar_url\": \"<uri>\",\n  \"created_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-c5853c4a-baae-4ceb-aa30-e4a7cf1c0d4c"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-3744587c-21bc-4189-809b-3eba9e87cf99"
+        }
+      ],
+      "id": "4a16a5ad-932e-49dc-872b-a966d30e3613",
+      "createdAt": "2026-06-05T15:06:08.000Z",
+      "updatedAt": "2026-06-05T15:06:08.000Z",
+      "uid": "35240-4a16a5ad-932e-49dc-872b-a966d30e3613"
+    },
+    {
+      "name": "access-token",
+      "item": [
+        {
+          "name": "Get The Current Access Token",
+          "id": "440cd85e-c612-41dc-8f48-cfd0bb39edf9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/access-token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "access-token"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7efcfd8a-4eca-4553-81a5-c8d1b7a4426b",
+              "name": "Access token metadata including scopes",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/access-token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "access-token"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-7efcfd8a-4eca-4553-81a5-c8d1b7a4426b"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-440cd85e-c612-41dc-8f48-cfd0bb39edf9"
+        },
+        {
+          "name": "Revoke The Current Access Token",
+          "id": "67125096-e9ba-4343-bc06-9e0e8efba6f4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/access-token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "access-token"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "84d4ab61-8662-4f31-86a2-046954462a22",
+              "name": "Revoked",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/access-token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "access-token"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-84d4ab61-8662-4f31-86a2-046954462a22"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-67125096-e9ba-4343-bc06-9e0e8efba6f4"
+        }
+      ],
+      "id": "47b0a669-dbac-42b0-9cde-781b56fc9802",
+      "createdAt": "2026-06-05T15:06:08.000Z",
+      "updatedAt": "2026-06-05T15:06:08.000Z",
+      "uid": "35240-47b0a669-dbac-42b0-9cde-781b56fc9802"
+    },
+    {
+      "name": "meta",
+      "item": [
+        {
+          "name": "Get Meta Information",
+          "id": "9f2163ff-3046-431a-ad2f-39c141b1f69e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/meta",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "meta"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a3a6016c-7db5-49d6-956f-6ce8efa8428f",
+              "name": "Service metadata including webhook IP ranges",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/meta",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "meta"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-a3a6016c-7db5-49d6-956f-6ce8efa8428f"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-9f2163ff-3046-431a-ad2f-39c141b1f69e"
+        }
+      ],
+      "id": "26bd0e5d-3144-4f48-9f88-1aca33a44cd9",
+      "createdAt": "2026-06-05T15:06:08.000Z",
+      "updatedAt": "2026-06-05T15:06:08.000Z",
+      "uid": "35240-26bd0e5d-3144-4f48-9f88-1aca33a44cd9"
+    },
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "{org}",
+          "item": [
+            {
+              "name": "pipelines",
+              "item": [
+                {
+                  "name": "{pipeline}",
+                  "item": [
+                    {
+                      "name": "builds",
+                      "item": [
+                        {
+                          "name": "{number}",
+                          "item": [
+                            {
+                              "name": "cancel",
+                              "item": [
+                                {
+                                  "name": "Cancel A Build",
+                                  "id": "7d7e809f-8376-41f1-a93f-5a07a4cc5caa",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/cancel",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":org",
+                                        "pipelines",
+                                        ":pipeline",
+                                        "builds",
+                                        ":number",
+                                        "cancel"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "8be93725-a097-4b50-9602-7b632875841d",
+                                          "key": "org",
+                                          "value": "<string>",
+                                          "description": "(Required) Organization slug"
+                                        },
+                                        {
+                                          "id": "fadbad79-9924-4f71-bef5-d6f003e96d4d",
+                                          "key": "pipeline",
+                                          "value": "<string>",
+                                          "description": "(Required) Pipeline slug"
+                                        },
+                                        {
+                                          "id": "0af029be-8762-46d7-bc76-27e750a9de0c",
+                                          "key": "number",
+                                          "value": "<integer>",
+                                          "description": "(Required) Build number"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "161e1797-545c-4528-9168-948716c5d85e",
+                                      "name": "Build cancelled",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/cancel",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "organizations",
+                                            ":org",
+                                            "pipelines",
+                                            ":pipeline",
+                                            "builds",
+                                            ":number",
+                                            "cancel"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "org"
+                                            },
+                                            {
+                                              "key": "pipeline"
+                                            },
+                                            {
+                                              "key": "number"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:06:08.000Z",
+                                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                                      "uid": "35240-161e1797-545c-4528-9168-948716c5d85e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:06:08.000Z",
+                                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                                  "uid": "35240-7d7e809f-8376-41f1-a93f-5a07a4cc5caa"
+                                }
+                              ],
+                              "id": "75482248-5fb7-461f-a7ad-c0769b37a96a",
+                              "createdAt": "2026-06-05T15:06:08.000Z",
+                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                              "uid": "35240-75482248-5fb7-461f-a7ad-c0769b37a96a"
+                            },
+                            {
+                              "name": "rebuild",
+                              "item": [
+                                {
+                                  "name": "Rebuild A Build",
+                                  "id": "81b864b1-71e3-4440-8780-80599f8392cc",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PUT",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/rebuild",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":org",
+                                        "pipelines",
+                                        ":pipeline",
+                                        "builds",
+                                        ":number",
+                                        "rebuild"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "7acb3530-78a3-4a24-8c75-78f062e2fabc",
+                                          "key": "org",
+                                          "value": "<string>",
+                                          "description": "(Required) Organization slug"
+                                        },
+                                        {
+                                          "id": "e3922d4e-9960-426c-a8c2-6f69919199bf",
+                                          "key": "pipeline",
+                                          "value": "<string>",
+                                          "description": "(Required) Pipeline slug"
+                                        },
+                                        {
+                                          "id": "c63522b6-082d-4127-9d1f-a7886579bd47",
+                                          "key": "number",
+                                          "value": "<integer>",
+                                          "description": "(Required) Build number"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "02758ff5-9a02-472a-a5dd-a8d7c6852782",
+                                      "name": "Build re-queued",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/rebuild",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "organizations",
+                                            ":org",
+                                            "pipelines",
+                                            ":pipeline",
+                                            "builds",
+                                            ":number",
+                                            "rebuild"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "org"
+                                            },
+                                            {
+                                              "key": "pipeline"
+                                            },
+                                            {
+                                              "key": "number"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:06:08.000Z",
+                                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                                      "uid": "35240-02758ff5-9a02-472a-a5dd-a8d7c6852782"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:06:08.000Z",
+                                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                                  "uid": "35240-81b864b1-71e3-4440-8780-80599f8392cc"
+                                }
+                              ],
+                              "id": "833a910c-50ca-4edf-a446-0426b79ffce7",
+                              "createdAt": "2026-06-05T15:06:08.000Z",
+                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                              "uid": "35240-833a910c-50ca-4edf-a446-0426b79ffce7"
+                            },
+                            {
+                              "name": "jobs",
+                              "item": [
+                                {
+                                  "name": "{job}",
+                                  "item": [
+                                    {
+                                      "name": "retry",
+                                      "item": [
+                                        {
+                                          "name": "Retry A Job",
+                                          "id": "96b336a1-7b9d-4b4e-be6f-f39b034e63f6",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "method": "PUT",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/jobs/:job/retry",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "organizations",
+                                                ":org",
+                                                "pipelines",
+                                                ":pipeline",
+                                                "builds",
+                                                ":number",
+                                                "jobs",
+                                                ":job",
+                                                "retry"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "4120adeb-6155-4c18-b0cd-a59afd36a281",
+                                                  "key": "org",
+                                                  "value": "<string>",
+                                                  "description": "(Required) Organization slug"
+                                                },
+                                                {
+                                                  "id": "e42164db-b578-4922-b1c9-6e687f23128b",
+                                                  "key": "pipeline",
+                                                  "value": "<string>",
+                                                  "description": "(Required) Pipeline slug"
+                                                },
+                                                {
+                                                  "id": "71d9af85-b59a-4f49-af09-a94ea486b7a9",
+                                                  "key": "number",
+                                                  "value": "<integer>",
+                                                  "description": "(Required) Build number"
+                                                },
+                                                {
+                                                  "id": "acc77246-62d3-4f5d-bcbe-785d1753e00c",
+                                                  "key": "job",
+                                                  "value": "<string>",
+                                                  "description": "(Required) Job UUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "7bf22d53-9120-4672-8b37-e2c899e9920d",
+                                              "name": "Job retried",
+                                              "originalRequest": {
+                                                "method": "PUT",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/jobs/:job/retry",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "organizations",
+                                                    ":org",
+                                                    "pipelines",
+                                                    ":pipeline",
+                                                    "builds",
+                                                    ":number",
+                                                    "jobs",
+                                                    ":job",
+                                                    "retry"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "org"
+                                                    },
+                                                    {
+                                                      "key": "pipeline"
+                                                    },
+                                                    {
+                                                      "key": "number"
+                                                    },
+                                                    {
+                                                      "key": "job"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:06:08.000Z",
+                                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                                              "uid": "35240-7bf22d53-9120-4672-8b37-e2c899e9920d"
+                                            }
+                                          ],
+                                          "createdAt": "2026-06-05T15:06:08.000Z",
+                                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                                          "uid": "35240-96b336a1-7b9d-4b4e-be6f-f39b034e63f6"
+                                        }
+                                      ],
+                                      "id": "18a0d442-cdae-4d6a-8200-b3b123a70171",
+                                      "createdAt": "2026-06-05T15:06:08.000Z",
+                                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                                      "uid": "35240-18a0d442-cdae-4d6a-8200-b3b123a70171"
+                                    },
+                                    {
+                                      "name": "log",
+                                      "item": [
+                                        {
+                                          "name": "Get Job Log Output",
+                                          "id": "f5984e7b-7d5a-4b44-a619-0036dc10be7f",
+                                          "protocolProfileBehavior": {
+                                            "disableBodyPruning": true
+                                          },
+                                          "request": {
+                                            "method": "GET",
+                                            "header": [],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/jobs/:job/log",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "organizations",
+                                                ":org",
+                                                "pipelines",
+                                                ":pipeline",
+                                                "builds",
+                                                ":number",
+                                                "jobs",
+                                                ":job",
+                                                "log"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "id": "d0aadbaa-30a4-4a16-aa6e-117aa6ab3139",
+                                                  "key": "org",
+                                                  "value": "<string>",
+                                                  "description": "(Required) Organization slug"
+                                                },
+                                                {
+                                                  "id": "be3bcdb3-b641-4852-bbeb-4a11a6b731e2",
+                                                  "key": "pipeline",
+                                                  "value": "<string>",
+                                                  "description": "(Required) Pipeline slug"
+                                                },
+                                                {
+                                                  "id": "932556ac-27b5-42c7-bcc8-ba410bc519ae",
+                                                  "key": "number",
+                                                  "value": "<integer>",
+                                                  "description": "(Required) Build number"
+                                                },
+                                                {
+                                                  "id": "0b982a8a-e6df-4d00-8adc-dedbf4926a03",
+                                                  "key": "job",
+                                                  "value": "<string>",
+                                                  "description": "(Required) Job UUID"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "response": [
+                                            {
+                                              "id": "b8722288-900d-4537-9938-923be36f23e9",
+                                              "name": "Log content",
+                                              "originalRequest": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "description": "Added as a part of security scheme: bearer",
+                                                    "key": "Authorization",
+                                                    "value": "Bearer <token>"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/jobs/:job/log",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "organizations",
+                                                    ":org",
+                                                    "pipelines",
+                                                    ":pipeline",
+                                                    "builds",
+                                                    ":number",
+                                                    "jobs",
+                                                    ":job",
+                                                    "log"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "key": "org"
+                                                    },
+                                                    {
+                                                      "key": "pipeline"
+                                                    },
+                                                    {
+                                                      "key": "number"
+                                                    },
+                                                    {
+                                                      "key": "job"
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              "status": "OK",
+                                              "code": 200,
+                                              "_postman_previewlanguage": "text",
+                                              "header": [],
+                                              "cookie": [],
+                                              "responseTime": null,
+                                              "body": null,
+                                              "createdAt": "2026-06-05T15:06:08.000Z",
+                                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                                              "uid": "35240-b8722288-900d-4537-9938-923be36f23e9"
+                                            }
+                                          ],
+                                          "createdAt": "2026-06-05T15:06:08.000Z",
+                                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                                          "uid": "35240-f5984e7b-7d5a-4b44-a619-0036dc10be7f"
+                                        }
+                                      ],
+                                      "id": "72e84abf-4e2a-4c0a-be18-d77c13e21e1f",
+                                      "createdAt": "2026-06-05T15:06:08.000Z",
+                                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                                      "uid": "35240-72e84abf-4e2a-4c0a-be18-d77c13e21e1f"
+                                    }
+                                  ],
+                                  "id": "0c001905-a0d3-499f-9166-1dcb03914fd0",
+                                  "createdAt": "2026-06-05T15:06:08.000Z",
+                                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                                  "uid": "35240-0c001905-a0d3-499f-9166-1dcb03914fd0"
+                                }
+                              ],
+                              "id": "9a0b7ef9-8322-4836-b04e-08860b1ea663",
+                              "createdAt": "2026-06-05T15:06:08.000Z",
+                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                              "uid": "35240-9a0b7ef9-8322-4836-b04e-08860b1ea663"
+                            },
+                            {
+                              "name": "artifacts",
+                              "item": [
+                                {
+                                  "name": "List Artifacts For A Build",
+                                  "id": "adc60b92-1774-4af2-8053-5e978c9193bc",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/artifacts",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":org",
+                                        "pipelines",
+                                        ":pipeline",
+                                        "builds",
+                                        ":number",
+                                        "artifacts"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "94603a86-8ef3-45c4-ba8c-8f2a832e5edf",
+                                          "key": "org",
+                                          "value": "<string>",
+                                          "description": "(Required) Organization slug"
+                                        },
+                                        {
+                                          "id": "cde6ec15-a991-4417-9627-5342f06177b2",
+                                          "key": "pipeline",
+                                          "value": "<string>",
+                                          "description": "(Required) Pipeline slug"
+                                        },
+                                        {
+                                          "id": "2e5ec36d-e4fa-4ef7-8b6b-e57554c08762",
+                                          "key": "number",
+                                          "value": "<integer>",
+                                          "description": "(Required) Build number"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "77ff8373-11a9-4dac-8d62-55a599a37572",
+                                      "name": "A list of artifacts",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/artifacts",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "organizations",
+                                            ":org",
+                                            "pipelines",
+                                            ":pipeline",
+                                            "builds",
+                                            ":number",
+                                            "artifacts"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "org"
+                                            },
+                                            {
+                                              "key": "pipeline"
+                                            },
+                                            {
+                                              "key": "number"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:06:08.000Z",
+                                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                                      "uid": "35240-77ff8373-11a9-4dac-8d62-55a599a37572"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:06:08.000Z",
+                                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                                  "uid": "35240-adc60b92-1774-4af2-8053-5e978c9193bc"
+                                }
+                              ],
+                              "id": "b1538b06-b0f3-4010-bdbc-96cf1cc41c87",
+                              "createdAt": "2026-06-05T15:06:08.000Z",
+                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                              "uid": "35240-b1538b06-b0f3-4010-bdbc-96cf1cc41c87"
+                            },
+                            {
+                              "name": "annotations",
+                              "item": [
+                                {
+                                  "name": "List Annotations For A Build",
+                                  "id": "ab8af51f-6a1c-4dda-8684-7389e32903df",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/annotations",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":org",
+                                        "pipelines",
+                                        ":pipeline",
+                                        "builds",
+                                        ":number",
+                                        "annotations"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "232e7f0b-0eb0-477e-97a6-c7d5d69bdfb3",
+                                          "key": "org",
+                                          "value": "<string>",
+                                          "description": "(Required) Organization slug"
+                                        },
+                                        {
+                                          "id": "c3d0b3c6-b944-4a9d-aed3-a098b27925ae",
+                                          "key": "pipeline",
+                                          "value": "<string>",
+                                          "description": "(Required) Pipeline slug"
+                                        },
+                                        {
+                                          "id": "a1741e16-e538-4cfd-92c1-377925bb2b5e",
+                                          "key": "number",
+                                          "value": "<integer>",
+                                          "description": "(Required) Build number"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "c968a854-9346-4657-9c5d-eb3daa680274",
+                                      "name": "A list of annotations",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number/annotations",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "organizations",
+                                            ":org",
+                                            "pipelines",
+                                            ":pipeline",
+                                            "builds",
+                                            ":number",
+                                            "annotations"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "org"
+                                            },
+                                            {
+                                              "key": "pipeline"
+                                            },
+                                            {
+                                              "key": "number"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T15:06:08.000Z",
+                                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                                      "uid": "35240-c968a854-9346-4657-9c5d-eb3daa680274"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T15:06:08.000Z",
+                                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                                  "uid": "35240-ab8af51f-6a1c-4dda-8684-7389e32903df"
+                                }
+                              ],
+                              "id": "0b22a523-206c-49d9-8662-fd10d504ad51",
+                              "createdAt": "2026-06-05T15:06:08.000Z",
+                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                              "uid": "35240-0b22a523-206c-49d9-8662-fd10d504ad51"
+                            },
+                            {
+                              "name": "Get A Build",
+                              "id": "aadd76de-bebb-4dcc-9f44-c564585f4be0",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":org",
+                                    "pipelines",
+                                    ":pipeline",
+                                    "builds",
+                                    ":number"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "520cda58-a10f-4680-82f3-10bfa1c3759a",
+                                      "key": "org",
+                                      "value": "<string>",
+                                      "description": "(Required) Organization slug"
+                                    },
+                                    {
+                                      "id": "9423075f-7212-4317-b6d9-e7ddb21061c8",
+                                      "key": "pipeline",
+                                      "value": "<string>",
+                                      "description": "(Required) Pipeline slug"
+                                    },
+                                    {
+                                      "id": "e3b99fe5-0535-41bb-83e5-8ccaa82b17d4",
+                                      "key": "number",
+                                      "value": "<integer>",
+                                      "description": "(Required) Build number"
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "10de3dc1-c28a-48f1-97c4-b8cfa08b19df",
+                                  "name": "Build record",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds/:number",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "organizations",
+                                        ":org",
+                                        "pipelines",
+                                        ":pipeline",
+                                        "builds",
+                                        ":number"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "org"
+                                        },
+                                        {
+                                          "key": "pipeline"
+                                        },
+                                        {
+                                          "key": "number"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-06-05T15:06:08.000Z",
+                                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                                  "uid": "35240-10de3dc1-c28a-48f1-97c4-b8cfa08b19df"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:06:08.000Z",
+                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                              "uid": "35240-aadd76de-bebb-4dcc-9f44-c564585f4be0"
+                            }
+                          ],
+                          "id": "a424dd37-55d4-4048-ac8d-2296cee2bb0d",
+                          "createdAt": "2026-06-05T15:06:08.000Z",
+                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                          "uid": "35240-a424dd37-55d4-4048-ac8d-2296cee2bb0d"
+                        },
+                        {
+                          "name": "List Builds For A Pipeline",
+                          "id": "f2521d3f-412a-417a-9ce6-51c7c8fbe09d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":org",
+                                "pipelines",
+                                ":pipeline",
+                                "builds"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "97980177-7204-4d4e-a2e5-69a431222f4c",
+                                  "key": "org",
+                                  "value": "<string>",
+                                  "description": "(Required) Organization slug"
+                                },
+                                {
+                                  "id": "e6b25e5d-9df7-47ee-82f5-642ee65e5523",
+                                  "key": "pipeline",
+                                  "value": "<string>",
+                                  "description": "(Required) Pipeline slug"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "93aa7e09-94d1-45a3-af89-9986a5383e38",
+                              "name": "A list of builds",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":org",
+                                    "pipelines",
+                                    ":pipeline",
+                                    "builds"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "org"
+                                    },
+                                    {
+                                      "key": "pipeline"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"number\": \"<integer>\",\n    \"state\": \"not_run\",\n    \"branch\": \"<string>\",\n    \"commit\": \"<string>\",\n    \"message\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"web_url\": \"<uri>\",\n    \"created_at\": \"<dateTime>\",\n    \"scheduled_at\": \"<dateTime>\",\n    \"started_at\": \"<dateTime>\",\n    \"finished_at\": \"<dateTime>\",\n    \"creator\": {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"avatar_url\": \"<uri>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    \"jobs\": [\n      {\n        \"id\": \"<uuid>\",\n        \"type\": \"manual\",\n        \"name\": \"<string>\",\n        \"state\": \"<string>\",\n        \"command\": \"<string>\",\n        \"agent_query_rules\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"web_url\": \"<uri>\",\n        \"log_url\": \"<uri>\",\n        \"raw_log_url\": \"<uri>\",\n        \"exit_status\": \"<integer>\",\n        \"started_at\": \"<dateTime>\",\n        \"finished_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"type\": \"block\",\n        \"name\": \"<string>\",\n        \"state\": \"<string>\",\n        \"command\": \"<string>\",\n        \"agent_query_rules\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"web_url\": \"<uri>\",\n        \"log_url\": \"<uri>\",\n        \"raw_log_url\": \"<uri>\",\n        \"exit_status\": \"<integer>\",\n        \"started_at\": \"<dateTime>\",\n        \"finished_at\": \"<dateTime>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"number\": \"<integer>\",\n    \"state\": \"failed\",\n    \"branch\": \"<string>\",\n    \"commit\": \"<string>\",\n    \"message\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"web_url\": \"<uri>\",\n    \"created_at\": \"<dateTime>\",\n    \"scheduled_at\": \"<dateTime>\",\n    \"started_at\": \"<dateTime>\",\n    \"finished_at\": \"<dateTime>\",\n    \"creator\": {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"avatar_url\": \"<uri>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    \"jobs\": [\n      {\n        \"id\": \"<uuid>\",\n        \"type\": \"manual\",\n        \"name\": \"<string>\",\n        \"state\": \"<string>\",\n        \"command\": \"<string>\",\n        \"agent_query_rules\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"web_url\": \"<uri>\",\n        \"log_url\": \"<uri>\",\n        \"raw_log_url\": \"<uri>\",\n        \"exit_status\": \"<integer>\",\n        \"started_at\": \"<dateTime>\",\n        \"finished_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<uuid>\",\n        \"type\": \"waiter\",\n        \"name\": \"<string>\",\n        \"state\": \"<string>\",\n        \"command\": \"<string>\",\n        \"agent_query_rules\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"web_url\": \"<uri>\",\n        \"log_url\": \"<uri>\",\n        \"raw_log_url\": \"<uri>\",\n        \"exit_status\": \"<integer>\",\n        \"started_at\": \"<dateTime>\",\n        \"finished_at\": \"<dateTime>\"\n      }\n    ]\n  }\n]",
+                              "createdAt": "2026-06-05T15:06:08.000Z",
+                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                              "uid": "35240-93aa7e09-94d1-45a3-af89-9986a5383e38"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:06:08.000Z",
+                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                          "uid": "35240-f2521d3f-412a-417a-9ce6-51c7c8fbe09d"
+                        },
+                        {
+                          "name": "Create A Build",
+                          "id": "c743bf5f-3a2d-4d89-b90a-ef6aa50c5ae6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":org",
+                                "pipelines",
+                                ":pipeline",
+                                "builds"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c06520ae-caf1-44cd-8743-2c75a7745500",
+                                  "key": "org",
+                                  "value": "<string>",
+                                  "description": "(Required) Organization slug"
+                                },
+                                {
+                                  "id": "2ba89efa-44d6-4662-8c1a-844d474785fd",
+                                  "key": "pipeline",
+                                  "value": "<string>",
+                                  "description": "(Required) Pipeline slug"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "8773022d-3b40-4eee-92a7-1c18791fa98f",
+                              "name": "Build created",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline/builds",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":org",
+                                    "pipelines",
+                                    ":pipeline",
+                                    "builds"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "org"
+                                    },
+                                    {
+                                      "key": "pipeline"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:06:08.000Z",
+                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                              "uid": "35240-8773022d-3b40-4eee-92a7-1c18791fa98f"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:06:08.000Z",
+                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                          "uid": "35240-c743bf5f-3a2d-4d89-b90a-ef6aa50c5ae6"
+                        }
+                      ],
+                      "id": "9057b5c4-aefa-469f-b732-450637e22784",
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-9057b5c4-aefa-469f-b732-450637e22784"
+                    },
+                    {
+                      "name": "Get A Pipeline",
+                      "id": "c8b16488-310b-4b2f-a4f4-2d01e4b72d07",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "pipelines",
+                            ":pipeline"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e40b0f44-f93b-4f94-901c-b0d0c3591150",
+                              "key": "org",
+                              "value": "<string>",
+                              "description": "(Required) Organization slug"
+                            },
+                            {
+                              "id": "feac104b-765a-4979-b5f6-42ca43a34031",
+                              "key": "pipeline",
+                              "value": "<string>",
+                              "description": "(Required) Pipeline slug"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "37923b57-c254-4a24-af94-25008d0b55c0",
+                          "name": "Pipeline record",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":org",
+                                "pipelines",
+                                ":pipeline"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "org"
+                                },
+                                {
+                                  "key": "pipeline"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:06:08.000Z",
+                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                          "uid": "35240-37923b57-c254-4a24-af94-25008d0b55c0"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-c8b16488-310b-4b2f-a4f4-2d01e4b72d07"
+                    },
+                    {
+                      "name": "Update A Pipeline",
+                      "id": "f7afdb1b-f490-48f8-a55d-f0b71ae5834f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "pipelines",
+                            ":pipeline"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1ffca819-640a-4595-accb-1d79ca350382",
+                              "key": "org",
+                              "value": "<string>",
+                              "description": "(Required) Organization slug"
+                            },
+                            {
+                              "id": "29e19a0b-067b-4acc-9d60-3a080d465ef7",
+                              "key": "pipeline",
+                              "value": "<string>",
+                              "description": "(Required) Pipeline slug"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "e7bd1f2b-4a23-42f5-87f6-ee710b86c8c8",
+                          "name": "Pipeline updated",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":org",
+                                "pipelines",
+                                ":pipeline"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "org"
+                                },
+                                {
+                                  "key": "pipeline"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:06:08.000Z",
+                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                          "uid": "35240-e7bd1f2b-4a23-42f5-87f6-ee710b86c8c8"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-f7afdb1b-f490-48f8-a55d-f0b71ae5834f"
+                    },
+                    {
+                      "name": "Delete A Pipeline",
+                      "id": "9fb7af73-c4c7-4057-9115-ff75b1590c8e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "pipelines",
+                            ":pipeline"
+                          ],
+                          "variable": [
+                            {
+                              "id": "32997513-f7db-4643-aefc-fb502fe44b36",
+                              "key": "org",
+                              "value": "<string>",
+                              "description": "(Required) Organization slug"
+                            },
+                            {
+                              "id": "089e7b61-0b56-4572-b8bf-3ba15993d145",
+                              "key": "pipeline",
+                              "value": "<string>",
+                              "description": "(Required) Pipeline slug"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "1da868b4-7b26-4cb6-8d85-e8d58045a8f3",
+                          "name": "Pipeline deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:org/pipelines/:pipeline",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":org",
+                                "pipelines",
+                                ":pipeline"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "org"
+                                },
+                                {
+                                  "key": "pipeline"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:06:08.000Z",
+                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                          "uid": "35240-1da868b4-7b26-4cb6-8d85-e8d58045a8f3"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-9fb7af73-c4c7-4057-9115-ff75b1590c8e"
+                    }
+                  ],
+                  "id": "0524298c-4bd1-42b9-a00e-277c76eebfdf",
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-0524298c-4bd1-42b9-a00e-277c76eebfdf"
+                },
+                {
+                  "name": "List Pipelines",
+                  "id": "cec175fa-0d7c-416b-8e24-8cdf1a02b583",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:org/pipelines",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":org",
+                        "pipelines"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4a9c0a7c-0f5a-4a03-bb6f-3c76c07e6835",
+                          "key": "org",
+                          "value": "<string>",
+                          "description": "(Required) Organization slug"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "ff4942ef-0974-4fc3-b7f7-81c0868a85b0",
+                      "name": "A list of pipelines",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/pipelines",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "pipelines"
+                          ],
+                          "variable": [
+                            {
+                              "key": "org"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"url\": \"<uri>\",\n    \"web_url\": \"<uri>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"repository\": \"<string>\",\n    \"cluster_id\": \"<uuid>\",\n    \"default_branch\": \"<string>\",\n    \"description\": \"<string>\",\n    \"configuration\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"archived_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"url\": \"<uri>\",\n    \"web_url\": \"<uri>\",\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\",\n    \"repository\": \"<string>\",\n    \"cluster_id\": \"<uuid>\",\n    \"default_branch\": \"<string>\",\n    \"description\": \"<string>\",\n    \"configuration\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"archived_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-ff4942ef-0974-4fc3-b7f7-81c0868a85b0"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-cec175fa-0d7c-416b-8e24-8cdf1a02b583"
+                },
+                {
+                  "name": "Create A Pipeline",
+                  "id": "08d961e7-5350-4097-a592-c3122b44c17c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<uuid>\",\n  \"url\": \"<uri>\",\n  \"web_url\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"repository\": \"<string>\",\n  \"cluster_id\": \"<uuid>\",\n  \"default_branch\": \"<string>\",\n  \"description\": \"<string>\",\n  \"configuration\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"archived_at\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:org/pipelines",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":org",
+                        "pipelines"
+                      ],
+                      "variable": [
+                        {
+                          "id": "39135c9d-34af-4b7e-aee8-c41e4f6f7571",
+                          "key": "org",
+                          "value": "<string>",
+                          "description": "(Required) Organization slug"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "7e5a5bfc-6efc-4e49-8300-6e2e1a60a277",
+                      "name": "Pipeline created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<uuid>\",\n  \"url\": \"<uri>\",\n  \"web_url\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"repository\": \"<string>\",\n  \"cluster_id\": \"<uuid>\",\n  \"default_branch\": \"<string>\",\n  \"description\": \"<string>\",\n  \"configuration\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"archived_at\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/pipelines",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "pipelines"
+                          ],
+                          "variable": [
+                            {
+                              "key": "org"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-7e5a5bfc-6efc-4e49-8300-6e2e1a60a277"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-08d961e7-5350-4097-a592-c3122b44c17c"
+                }
+              ],
+              "id": "76e5a2d6-52f1-4043-831c-08cafde77494",
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-76e5a2d6-52f1-4043-831c-08cafde77494"
+            },
+            {
+              "name": "agents",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "stop",
+                      "item": [
+                        {
+                          "name": "Stop An Agent",
+                          "id": "8b95a480-3c75-49a3-a6ce-bbf071e767c4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:org/agents/:id/stop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":org",
+                                "agents",
+                                ":id",
+                                "stop"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f84a5598-66de-486a-8402-1441deb4b39d",
+                                  "key": "org",
+                                  "value": "<string>",
+                                  "description": "(Required) Organization slug"
+                                },
+                                {
+                                  "id": "09d3e5e0-1272-491b-85a6-61288286b0d1",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) Agent UUID"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "2d2d44b1-f15c-4cd7-a6f1-790a945c9b23",
+                              "name": "Agent stopped",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:org/agents/:id/stop",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":org",
+                                    "agents",
+                                    ":id",
+                                    "stop"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "org"
+                                    },
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:06:08.000Z",
+                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                              "uid": "35240-2d2d44b1-f15c-4cd7-a6f1-790a945c9b23"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:06:08.000Z",
+                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                          "uid": "35240-8b95a480-3c75-49a3-a6ce-bbf071e767c4"
+                        }
+                      ],
+                      "id": "77c49145-0c13-42a8-b122-c7d979f2005b",
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-77c49145-0c13-42a8-b122-c7d979f2005b"
+                    },
+                    {
+                      "name": "Get An Agent",
+                      "id": "7ce8ec69-bc4c-47f2-aa93-708ada45326d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/agents/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "agents",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "72c38199-e4ee-4dc3-83d4-550a05a1c79a",
+                              "key": "org",
+                              "value": "<string>",
+                              "description": "(Required) Organization slug"
+                            },
+                            {
+                              "id": "ea228a5e-9d36-42e6-9e0e-76962645de6a",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Agent UUID"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "53600bde-a4da-490d-9383-53b1ebf061ee",
+                          "name": "Agent record",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:org/agents/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":org",
+                                "agents",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "org"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:06:08.000Z",
+                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                          "uid": "35240-53600bde-a4da-490d-9383-53b1ebf061ee"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-7ce8ec69-bc4c-47f2-aa93-708ada45326d"
+                    }
+                  ],
+                  "id": "ced6be96-3627-4198-b8d4-db478ddcf18b",
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-ced6be96-3627-4198-b8d4-db478ddcf18b"
+                },
+                {
+                  "name": "List Agents",
+                  "id": "4f71777d-b6db-4346-8298-db9bbb189726",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:org/agents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":org",
+                        "agents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5d161bdf-b0ad-4e23-b222-f07e00ad7c56",
+                          "key": "org",
+                          "value": "<string>",
+                          "description": "(Required) Organization slug"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "856eb074-81f8-4544-8cc2-ce91d6ee4866",
+                      "name": "A list of agents",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/agents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "agents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "org"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"connection_state\": \"disconnected\",\n    \"hostname\": \"<string>\",\n    \"ip_address\": \"<string>\",\n    \"user_agent\": \"<string>\",\n    \"version\": \"<string>\",\n    \"meta_data\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cluster_id\": \"<uuid>\",\n    \"queue\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"connection_state\": \"stopped\",\n    \"hostname\": \"<string>\",\n    \"ip_address\": \"<string>\",\n    \"user_agent\": \"<string>\",\n    \"version\": \"<string>\",\n    \"meta_data\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cluster_id\": \"<uuid>\",\n    \"queue\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-856eb074-81f8-4544-8cc2-ce91d6ee4866"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-4f71777d-b6db-4346-8298-db9bbb189726"
+                }
+              ],
+              "id": "db257efe-9415-483a-951e-0bc4164bffc4",
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-db257efe-9415-483a-951e-0bc4164bffc4"
+            },
+            {
+              "name": "clusters",
+              "item": [
+                {
+                  "name": "{cluster}",
+                  "item": [
+                    {
+                      "name": "queues",
+                      "item": [
+                        {
+                          "name": "List Queues For A Cluster",
+                          "id": "36ca3218-c391-4b77-9b0e-e655bede772b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:org/clusters/:cluster/queues",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":org",
+                                "clusters",
+                                ":cluster",
+                                "queues"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b347435b-05cf-448e-b869-242707c0934b",
+                                  "key": "org",
+                                  "value": "<string>",
+                                  "description": "(Required) Organization slug"
+                                },
+                                {
+                                  "id": "f27b914d-0a11-4c50-b6a0-c9e04c0adcfb",
+                                  "key": "cluster",
+                                  "value": "<string>",
+                                  "description": "(Required) Cluster UUID"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "2cefe0ca-ac0f-4879-8bec-91dd4fc60ec1",
+                              "name": "A list of queues",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:org/clusters/:cluster/queues",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":org",
+                                    "clusters",
+                                    ":cluster",
+                                    "queues"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "org"
+                                    },
+                                    {
+                                      "key": "cluster"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:06:08.000Z",
+                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                              "uid": "35240-2cefe0ca-ac0f-4879-8bec-91dd4fc60ec1"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:06:08.000Z",
+                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                          "uid": "35240-36ca3218-c391-4b77-9b0e-e655bede772b"
+                        }
+                      ],
+                      "id": "402f3cf1-8af7-41f4-877f-1245c08fbebf",
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-402f3cf1-8af7-41f4-877f-1245c08fbebf"
+                    },
+                    {
+                      "name": "tokens",
+                      "item": [
+                        {
+                          "name": "List Agent Tokens For A Cluster",
+                          "id": "9f11536a-9f23-428b-9ed1-fd727ce03627",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/organizations/:org/clusters/:cluster/tokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "organizations",
+                                ":org",
+                                "clusters",
+                                ":cluster",
+                                "tokens"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2b17e216-66fb-442a-8bde-9cf6fd4cb474",
+                                  "key": "org",
+                                  "value": "<string>",
+                                  "description": "(Required) Organization slug"
+                                },
+                                {
+                                  "id": "9692fc96-55e1-4f45-9391-668b8da804f5",
+                                  "key": "cluster",
+                                  "value": "<string>",
+                                  "description": "(Required) Cluster UUID"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "0df4e2eb-ffb5-4ee2-a4f1-b108d72b960f",
+                              "name": "A list of agent tokens",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/organizations/:org/clusters/:cluster/tokens",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "organizations",
+                                    ":org",
+                                    "clusters",
+                                    ":cluster",
+                                    "tokens"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "org"
+                                    },
+                                    {
+                                      "key": "cluster"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T15:06:08.000Z",
+                              "updatedAt": "2026-06-05T15:06:08.000Z",
+                              "uid": "35240-0df4e2eb-ffb5-4ee2-a4f1-b108d72b960f"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:06:08.000Z",
+                          "updatedAt": "2026-06-05T15:06:08.000Z",
+                          "uid": "35240-9f11536a-9f23-428b-9ed1-fd727ce03627"
+                        }
+                      ],
+                      "id": "5dee94de-2359-461b-ad15-0340fe1d8b7e",
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-5dee94de-2359-461b-ad15-0340fe1d8b7e"
+                    }
+                  ],
+                  "id": "182a39a0-40cc-429f-8f62-99b2d20ac3a3",
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-182a39a0-40cc-429f-8f62-99b2d20ac3a3"
+                },
+                {
+                  "name": "List Clusters",
+                  "id": "85eef2be-8b1d-4433-a607-f72805aa4c2a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:org/clusters",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":org",
+                        "clusters"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1c7c10e8-4d3c-459e-9109-aa756e3fc36c",
+                          "key": "org",
+                          "value": "<string>",
+                          "description": "(Required) Organization slug"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a16ca58c-cb3c-4c19-a095-4171ccccf5e0",
+                      "name": "A list of clusters",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/clusters",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "clusters"
+                          ],
+                          "variable": [
+                            {
+                              "key": "org"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-a16ca58c-cb3c-4c19-a095-4171ccccf5e0"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-85eef2be-8b1d-4433-a607-f72805aa4c2a"
+                }
+              ],
+              "id": "dc91cee6-3c1a-4393-b2cd-ec2a8456c6ea",
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-dc91cee6-3c1a-4393-b2cd-ec2a8456c6ea"
+            },
+            {
+              "name": "teams",
+              "item": [
+                {
+                  "name": "List Teams",
+                  "id": "dd3d7fcc-f89e-47d3-8746-bbf6049a5861",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:org/teams",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":org",
+                        "teams"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ca453f70-9f2e-4a19-af46-607408a1abbb",
+                          "key": "org",
+                          "value": "<string>",
+                          "description": "(Required) Organization slug"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "197d7788-85a8-4200-818b-0fe3770cc8d2",
+                      "name": "A list of teams",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/teams",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "teams"
+                          ],
+                          "variable": [
+                            {
+                              "key": "org"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-197d7788-85a8-4200-818b-0fe3770cc8d2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-dd3d7fcc-f89e-47d3-8746-bbf6049a5861"
+                }
+              ],
+              "id": "bdb31685-9c98-44af-9036-b168d52ae54a",
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-bdb31685-9c98-44af-9036-b168d52ae54a"
+            },
+            {
+              "name": "pipeline-templates",
+              "item": [
+                {
+                  "name": "List Pipeline Templates",
+                  "id": "0d876dd0-a7c6-44a9-a90f-e02c5184b50e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:org/pipeline-templates",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":org",
+                        "pipeline-templates"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6df30b0d-74e0-4a47-ae20-16ec789de9fa",
+                          "key": "org",
+                          "value": "<string>",
+                          "description": "(Required) Organization slug"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "ec77e0f9-dc04-479e-92b3-c1bcf423f5c7",
+                      "name": "A list of pipeline templates",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/pipeline-templates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "pipeline-templates"
+                          ],
+                          "variable": [
+                            {
+                              "key": "org"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-ec77e0f9-dc04-479e-92b3-c1bcf423f5c7"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-0d876dd0-a7c6-44a9-a90f-e02c5184b50e"
+                }
+              ],
+              "id": "5fad94b4-677a-4792-89cd-85e359fc4832",
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-5fad94b4-677a-4792-89cd-85e359fc4832"
+            },
+            {
+              "name": "rules",
+              "item": [
+                {
+                  "name": "List Organization Rules",
+                  "id": "af4fb621-cd48-414b-a495-430c4504170d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:org/rules",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":org",
+                        "rules"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4b974d89-e45e-4bb3-9c91-804350a44c24",
+                          "key": "org",
+                          "value": "<string>",
+                          "description": "(Required) Organization slug"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "82a038b9-7d40-422e-9e1a-f4ad7054e12a",
+                      "name": "A list of rules",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/rules",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "rules"
+                          ],
+                          "variable": [
+                            {
+                              "key": "org"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-82a038b9-7d40-422e-9e1a-f4ad7054e12a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-af4fb621-cd48-414b-a495-430c4504170d"
+                }
+              ],
+              "id": "dd2de026-ccea-49ba-9a88-996ca7d82331",
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-dd2de026-ccea-49ba-9a88-996ca7d82331"
+            },
+            {
+              "name": "emojis",
+              "item": [
+                {
+                  "name": "List Custom Emojis",
+                  "id": "051cacb7-3cf8-491a-bdc8-a01195b18a26",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:org/emojis",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":org",
+                        "emojis"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c77a0fcb-ea44-4b2d-ae14-99b810c46086",
+                          "key": "org",
+                          "value": "<string>",
+                          "description": "(Required) Organization slug"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "24084c46-7f44-4694-8c82-24e52773bfb0",
+                      "name": "A list of custom emojis",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:org/emojis",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":org",
+                            "emojis"
+                          ],
+                          "variable": [
+                            {
+                              "key": "org"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:06:08.000Z",
+                      "updatedAt": "2026-06-05T15:06:08.000Z",
+                      "uid": "35240-24084c46-7f44-4694-8c82-24e52773bfb0"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-051cacb7-3cf8-491a-bdc8-a01195b18a26"
+                }
+              ],
+              "id": "f01bf5ef-be93-47e1-ae52-e58bfa62e889",
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-f01bf5ef-be93-47e1-ae52-e58bfa62e889"
+            },
+            {
+              "name": "Get An Organization",
+              "id": "43ff8201-5830-4bf9-9341-d8596580c3b2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/organizations/:org",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations",
+                    ":org"
+                  ],
+                  "variable": [
+                    {
+                      "id": "775ba2c4-d1d9-4066-9ccb-4ff4be956b0b",
+                      "key": "org",
+                      "value": "<string>",
+                      "description": "(Required) Organization slug"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ccb9b42c-2a76-4587-840a-b647782bd7c2",
+                  "name": "Organization record",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:org",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":org"
+                      ],
+                      "variable": [
+                        {
+                          "key": "org"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:06:08.000Z",
+                  "updatedAt": "2026-06-05T15:06:08.000Z",
+                  "uid": "35240-ccb9b42c-2a76-4587-840a-b647782bd7c2"
+                }
+              ],
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-43ff8201-5830-4bf9-9341-d8596580c3b2"
+            }
+          ],
+          "id": "a68c6ca2-af68-4733-a6da-926a23f1b579",
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-a68c6ca2-af68-4733-a6da-926a23f1b579"
+        },
+        {
+          "name": "List Organizations",
+          "id": "8cde3863-008a-4589-86aa-88f5bef8476a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/organizations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "organizations"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1616d922-8d7a-4598-9c11-752415fe9ff6",
+              "name": "A list of organizations",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/organizations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "organizations"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:06:08.000Z",
+              "updatedAt": "2026-06-05T15:06:08.000Z",
+              "uid": "35240-1616d922-8d7a-4598-9c11-752415fe9ff6"
+            }
+          ],
+          "createdAt": "2026-06-05T15:06:08.000Z",
+          "updatedAt": "2026-06-05T15:06:08.000Z",
+          "uid": "35240-8cde3863-008a-4589-86aa-88f5bef8476a"
+        }
+      ],
+      "id": "7527d773-3e6b-474f-a1c9-ca5ae0794fa6",
+      "createdAt": "2026-06-05T15:06:08.000Z",
+      "updatedAt": "2026-06-05T15:06:08.000Z",
+      "uid": "35240-7527d773-3e6b-474f-a1c9-ca5ae0794fa6"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.buildkite.com/v2"
+    }
+  ]
+}

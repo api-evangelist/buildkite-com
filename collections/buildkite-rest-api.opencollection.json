@@ -1,0 +1,836 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Buildkite REST API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get The Current User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/user"
+          },
+          "docs": "Get The Current User"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Access Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get The Current Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/access-token"
+          },
+          "docs": "Get The Current Access Token"
+        },
+        {
+          "info": {
+            "name": "Revoke The Current Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.buildkite.com/v2/access-token"
+          },
+          "docs": "Revoke The Current Access Token"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Meta",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Meta Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/meta"
+          },
+          "docs": "Get Meta Information"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations"
+          },
+          "docs": "List Organizations"
+        },
+        {
+          "info": {
+            "name": "Get An Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "Get An Organization"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pipelines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "List Pipelines"
+        },
+        {
+          "info": {
+            "name": "Create A Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create A Pipeline"
+        },
+        {
+          "info": {
+            "name": "Get A Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              }
+            ]
+          },
+          "docs": "Get A Pipeline"
+        },
+        {
+          "info": {
+            "name": "Update A Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              }
+            ]
+          },
+          "docs": "Update A Pipeline"
+        },
+        {
+          "info": {
+            "name": "Delete A Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              }
+            ]
+          },
+          "docs": "Delete A Pipeline"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Builds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Builds For A Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline/builds",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              }
+            ]
+          },
+          "docs": "List Builds For A Pipeline"
+        },
+        {
+          "info": {
+            "name": "Create A Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline/builds",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              }
+            ]
+          },
+          "docs": "Create A Build"
+        },
+        {
+          "info": {
+            "name": "Get A Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline/builds/:number",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              }
+            ]
+          },
+          "docs": "Get A Build"
+        },
+        {
+          "info": {
+            "name": "Cancel A Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline/builds/:number/cancel",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              }
+            ]
+          },
+          "docs": "Cancel A Build"
+        },
+        {
+          "info": {
+            "name": "Rebuild A Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline/builds/:number/rebuild",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              }
+            ]
+          },
+          "docs": "Rebuild A Build"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retry A Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline/builds/:number/jobs/:job/retry",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              },
+              {
+                "name": "job",
+                "value": "",
+                "type": "path",
+                "description": "Job UUID"
+              }
+            ]
+          },
+          "docs": "Retry A Job"
+        },
+        {
+          "info": {
+            "name": "Get Job Log Output",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline/builds/:number/jobs/:job/log",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              },
+              {
+                "name": "job",
+                "value": "",
+                "type": "path",
+                "description": "Job UUID"
+              }
+            ]
+          },
+          "docs": "Get Job Log Output"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Artifacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Artifacts For A Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline/builds/:number/artifacts",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              }
+            ]
+          },
+          "docs": "List Artifacts For A Build"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Annotations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Annotations For A Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipelines/:pipeline/builds/:number/annotations",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              }
+            ]
+          },
+          "docs": "List Annotations For A Build"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/agents",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "List Agents"
+        },
+        {
+          "info": {
+            "name": "Get An Agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/agents/:id",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Agent UUID"
+              }
+            ]
+          },
+          "docs": "Get An Agent"
+        },
+        {
+          "info": {
+            "name": "Stop An Agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.buildkite.com/v2/organizations/:org/agents/:id/stop",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Agent UUID"
+              }
+            ]
+          },
+          "docs": "Stop An Agent"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/clusters",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "List Clusters"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Queues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Queues For A Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/clusters/:cluster/queues",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path",
+                "description": "Cluster UUID"
+              }
+            ]
+          },
+          "docs": "List Queues For A Cluster"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Agent Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Agent Tokens For A Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/clusters/:cluster/tokens",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path",
+                "description": "Cluster UUID"
+              }
+            ]
+          },
+          "docs": "List Agent Tokens For A Cluster"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/teams",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "List Teams"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pipeline Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pipeline Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/pipeline-templates",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "List Pipeline Templates"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organization Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/rules",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "List Organization Rules"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Emojis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Custom Emojis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.buildkite.com/v2/organizations/:org/emojis",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "List Custom Emojis"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

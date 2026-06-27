@@ -115,43 +115,40 @@ apis:
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/buildkite/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/buildkite-com-build-failure-triage-workflow.yml
-    name: Buildkite Build Failure Triage
-    summary: Inspect a finished build, then pull its annotations and artifacts for triage.
-  - url: arazzo/buildkite-com-cancel-running-build-workflow.yml
-    name: Buildkite Cancel Running Build
-    summary: Find the latest running build on a pipeline and cancel it.
-  - url: arazzo/buildkite-com-collect-build-artifacts-workflow.yml
-    name: Buildkite Collect Build Artifacts
-    summary: Look up a build, confirm it finished, then list its artifacts.
-  - url: arazzo/buildkite-com-fetch-job-log-workflow.yml
-    name: Buildkite Fetch Job Log
-    summary: Read a build, pick a finished job, and fetch its log output.
-  - url: arazzo/buildkite-com-provision-pipeline-and-first-build-workflow.yml
-    name: Buildkite Provision Pipeline And First Build
-    summary: Create a pipeline in an organization, then trigger its first build.
-  - url: arazzo/buildkite-com-rebuild-latest-build-workflow.yml
-    name: Buildkite Rebuild Latest Build
-    summary: Find the most recent build on a pipeline, rebuild it, then poll the new build.
-  - url: arazzo/buildkite-com-retry-failed-job-workflow.yml
-    name: Buildkite Retry Failed Job
-    summary: Find a failed job in a build, retry it, then poll the build to completion.
-  - url: arazzo/buildkite-com-stop-disconnected-agent-workflow.yml
-    name: Buildkite Stop Disconnected Agent
-    summary: List agents, inspect one, and stop it when it is no longer connected.
-  - url: arazzo/buildkite-com-trigger-and-poll-build-workflow.yml
-    name: Buildkite Trigger And Poll Build
-    summary: Create a build on a pipeline, then poll until it reaches a terminal state.
+- type: Arazzo
+  url: arazzo/buildkite-com-build-failure-triage-workflow.yml
+  name: Buildkite Build Failure Triage
+- type: Arazzo
+  url: arazzo/buildkite-com-cancel-running-build-workflow.yml
+  name: Buildkite Cancel Running Build
+- type: Arazzo
+  url: arazzo/buildkite-com-collect-build-artifacts-workflow.yml
+  name: Buildkite Collect Build Artifacts
+- type: Arazzo
+  url: arazzo/buildkite-com-fetch-job-log-workflow.yml
+  name: Buildkite Fetch Job Log
+- type: Arazzo
+  url: arazzo/buildkite-com-provision-pipeline-and-first-build-workflow.yml
+  name: Buildkite Provision Pipeline And First Build
+- type: Arazzo
+  url: arazzo/buildkite-com-rebuild-latest-build-workflow.yml
+  name: Buildkite Rebuild Latest Build
+- type: Arazzo
+  url: arazzo/buildkite-com-retry-failed-job-workflow.yml
+  name: Buildkite Retry Failed Job
+- type: Arazzo
+  url: arazzo/buildkite-com-stop-disconnected-agent-workflow.yml
+  name: Buildkite Stop Disconnected Agent
+- type: Arazzo
+  url: arazzo/buildkite-com-trigger-and-poll-build-workflow.yml
+  name: Buildkite Trigger And Poll Build
 - type: Portal
   url: https://buildkite.com
 - type: Documentation
   url: https://buildkite.com/docs
 - type: GettingStarted
   url: https://buildkite.com/docs/tutorials/getting-started
-- type: SignUp
+- type: Signup
   url: https://buildkite.com/signup
 - type: Pricing
   url: https://buildkite.com/pricing
@@ -169,7 +166,7 @@ common:
   url: https://buildkite.com/changelog
 - type: Blog
   url: https://buildkite.com/blog
-- type: Forum
+- type: Forums
   url: https://forum.buildkite.community
 - type: Support
   url: https://buildkite.com/support
@@ -187,34 +184,34 @@ common:
   type: CLI
 - url: https://github.com/buildkite/go-buildkite
   name: Go SDK
-  type: SDK
+  type: SDKs
 - url: https://github.com/buildkite/go-pipeline
   name: Go Pipeline DSL
-  type: SDK
+  type: SDKs
 - url: https://github.com/buildkite/pipeline-schema
   name: Pipeline JSON Schema
   type: JSONSchema
 - url: https://github.com/buildkite/buildkite-mcp-server
   name: Buildkite MCP Server
-  type: Tool
+  type: Tools
 - url: https://github.com/buildkite/skills
   name: Buildkite AI Coding Skills
-  type: Tool
+  type: Tools
 - url: https://github.com/buildkite/agent-stack-k8s
   name: Agent Stack for Kubernetes
-  type: Tool
+  type: Tools
 - url: https://github.com/buildkite/elastic-ci-stack-for-aws
   name: Elastic CI Stack for AWS
-  type: Tool
+  type: Tools
 - url: https://github.com/buildkite/buildkite-agent-scaler
   name: Agent Auto-Scaler (Lambda)
-  type: Tool
+  type: Tools
 - url: https://github.com/buildkite/cleanroom
   name: Cleanroom microVM sandboxes
-  type: Tool
+  type: Tools
 - url: https://github.com/buildkite/emojis
   name: Buildkite Emoji set
-  type: Tool
+  type: Tools
 - url: https://github.com/buildkite/docs
   name: Buildkite Documentation Source
   type: SourceCode

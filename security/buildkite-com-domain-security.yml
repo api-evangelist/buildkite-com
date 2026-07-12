@@ -1,0 +1,34 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: buildkite.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan  8 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.buildkite.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan  8 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: graphql.buildkite.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan  8 23:59:59 2027 GMT
+  hsts: null
+domains:
+- domain: buildkite.com
+  dnssec: false
+  caa:
+  - 0 issuewild "globalsign.com"
+  - 0 issuewild "letsencrypt.org"
+  - 0 issuewild "pki.goog"
+  - 0 issuewild "sectigo.com"
+  - 0 issue "amazonaws.com"
+  - 0 issue "comodoca.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/buildkite-agent-api-openapi.yml, openapi/buildkite-rest-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: agentToken
+  type: http
+  scheme: bearer
+  bearerFormat: Agent Token (sent as `Token <value>`)
+  sources:
+  - openapi/buildkite-agent-api-openapi.yml
+  - openapi/buildkite-rest-api-openapi.yml

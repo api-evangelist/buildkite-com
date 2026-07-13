@@ -12,7 +12,14 @@
       "source": "https://buildkite.com/changelog.atom",
       "feed_url": "https://buildkite.com/changelog.atom",
       "title": "",
-      "saved": 1,
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://buildkite.com:443/changelog.atom",
+      "feed_url": "https://buildkite.com:443/changelog.atom",
+      "title": "",
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -23,6 +30,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 11,
-  "fetched": "2026-06-27T12:03:07Z"
+  "post_count": 23,
+  "fetched": "2026-07-11T11:50:51Z"
 }

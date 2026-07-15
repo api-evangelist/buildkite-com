@@ -113,6 +113,8 @@ apis:
     artifacts, annotations) as MCP tools and toolsets for AI coding agents. Available as both a remote endpoint and a
     local binary. Pairs with the official Buildkite Skills for Claude Code and Cursor.
 common:
+- type: AgenticAccess
+  url: agentic-access/buildkite-com-agentic-access.yml
 - type: TrustCenter
   url: security/buildkite-com-trust-center.yml
 - type: DomainSecurity

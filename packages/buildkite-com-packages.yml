@@ -1,0 +1,74 @@
+generated: '2026-06-20'
+method: searched
+source: https://github.com/buildkite
+description: >-
+  First-party Buildkite client libraries, SDKs, and installable tools, verified
+  against the Buildkite GitHub organization and public package registries. Buildkite
+  ships primarily Go tooling (the agent, the CLI, the REST SDK, the pipeline DSL);
+  the MCP server is distributed as a container image and Go binary rather than a
+  language-registry package. Registry HTTP status recorded at fetch time.
+packages:
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/buildkite/go-buildkite/v5
+    url: https://pkg.go.dev/github.com/buildkite/go-buildkite/v5
+    source: https://github.com/buildkite/go-buildkite
+    install: go get github.com/buildkite/go-buildkite/v5
+    official: true
+    note: Go client library for the Buildkite REST API (current major v5).
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/buildkite/go-pipeline
+    url: https://pkg.go.dev/github.com/buildkite/go-pipeline
+    source: https://github.com/buildkite/go-pipeline
+    install: go get github.com/buildkite/go-pipeline
+    official: true
+    note: Go library for parsing and representing Buildkite pipeline YAML.
+  - language: go
+    registry: github
+    name: buildkite/agent
+    url: https://github.com/buildkite/agent
+    source: https://github.com/buildkite/agent
+    install: "curl -sL https://raw.githubusercontent.com/buildkite/agent/main/install.sh | bash"
+    official: true
+    note: Open-source Buildkite Agent (Go); also distributed via apt/yum, Homebrew, Docker, and Chocolatey.
+  - language: go
+    registry: github
+    name: buildkite/cli
+    url: https://github.com/buildkite/cli
+    source: https://github.com/buildkite/cli
+    install: "brew install buildkite/buildkite/bk"
+    official: true
+    note: The bk command-line interface. See cli/buildkite-com-cli.yml for the command surface.
+  - language: go
+    registry: github
+    name: buildkite/buildkite-mcp-server
+    url: https://github.com/buildkite/buildkite-mcp-server
+    source: https://github.com/buildkite/buildkite-mcp-server
+    install: "docker pull ghcr.io/buildkite/buildkite-mcp-server"
+    official: true
+    note: Official MCP server (Go binary + Chainguard container). See mcp/buildkite-com-mcp.yml.
+  - language: json-schema
+    registry: github
+    name: buildkite/pipeline-schema
+    url: https://github.com/buildkite/pipeline-schema
+    source: https://github.com/buildkite/pipeline-schema
+    install: "https://raw.githubusercontent.com/buildkite/pipeline-schema/main/schema.json"
+    official: true
+    note: JSON Schema for Buildkite pipeline YAML (editor validation).
+  - language: go
+    registry: github
+    name: buildkite/agent-stack-k8s
+    url: https://github.com/buildkite/agent-stack-k8s
+    source: https://github.com/buildkite/agent-stack-k8s
+    install: "helm upgrade --install agent-stack-k8s oci://ghcr.io/buildkite/helm/agent-stack-k8s"
+    official: true
+    note: Kubernetes controller that runs Buildkite jobs as Kubernetes pods.
+  - language: go
+    registry: github
+    name: buildkite/buildkite-agent-scaler
+    url: https://github.com/buildkite/buildkite-agent-scaler
+    source: https://github.com/buildkite/buildkite-agent-scaler
+    install: "AWS Lambda / SAM deployment"
+    official: true
+    note: AWS Lambda autoscaler that scales agent ASGs from Buildkite queue metrics.

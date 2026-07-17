@@ -1,0 +1,26 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/buildkite-rest-api-openapi.yml, graphql/buildkite-com-graphql.md, https://buildkite.com/docs
+description: >-
+  Which industry / cross-cutting standards the Buildkite APIs conform to, derived from
+  the OpenAPI, the GraphQL schema/docs, and public compliance claims. "conforms: false"
+  is recorded data, not a gap judgement.
+standards:
+  - {id: oauth2, conforms: false, evidence: "REST/Agent use Bearer API tokens (http bearer), not oauth2 authorization flows; the remote MCP server does use OAuth."}
+  - {id: oidc, conforms: false, evidence: "No OpenID Connect discovery; /.well-known/openid-configuration returns 404."}
+  - {id: rfc9457-problem-details, conforms: false, evidence: "Errors returned as application/json with a message field, not application/problem+json."}
+  - {id: rfc9116-security-txt, conforms: false, evidence: "No /.well-known/security.txt published (see well-known/)."}
+  - {id: rfc8693-token-exchange, conforms: true, evidence: "OAuth Token Exchange (RFC 8693) documented for identity-provider integrations and short-lived tokens."}
+  - {id: graphql, conforms: true, evidence: "graphql.buildkite.com/v1 endpoint with schema introspection."}
+  - {id: relay-cursor-connections, conforms: true, evidence: "GraphQL API implements the Relay specification for pagination."}
+  - {id: rest-pagination, conforms: true, evidence: "page/per_page params with RFC 5988 Link header (next/prev/first/last)."}
+  - {id: oidc-federation-workload, conforms: true, evidence: "OIDC integrations with AWS, GCP, Azure, and HashiCorp Vault for keyless auth from jobs."}
+  - {id: scim, conforms: true, evidence: "SCIM documented for Enterprise identity provisioning."}
+  - {id: saml, conforms: true, evidence: "SAML and ADFS documented for Enterprise SSO."}
+  - {id: slsa-provenance, conforms: true, evidence: "SLSA provenance on Enterprise Package Registries."}
+  - {id: soc2, conforms: true, evidence: "SOC 2 attested; see security/buildkite-com-trust-center.yml (trust.buildkite.com)."}
+  - {id: idempotency, conforms: false, evidence: "No idempotency-key header documented for REST writes."}
+  - {id: fhir, conforms: false}
+  - {id: fapi, conforms: false}
+  - {id: odata, conforms: false}
+  - {id: json-api, conforms: false}

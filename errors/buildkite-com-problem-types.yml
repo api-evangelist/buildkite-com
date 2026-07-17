@@ -1,0 +1,23 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/buildkite-rest-api-openapi.yml, https://buildkite.com/docs/apis/rest-api
+format: json
+description: >-
+  Error catalog for the Buildkite REST API. The OpenAPI defines only success (2xx)
+  responses, so the status set below is derived from documented REST behavior (standard
+  HTTP status codes) rather than declared 4xx/5xx response objects. Buildkite returns
+  errors as application/json with a human-readable "message" field; validation errors
+  additionally carry an "errors" array. This is NOT RFC 9457 problem+json.
+envelope:
+  content_type: application/json
+  primary_field: message
+  validation_field: errors
+problems:
+  - {status: 400, title: Bad Request, meaning: Malformed request or invalid parameters.}
+  - {status: 401, title: Unauthorized, meaning: Missing, invalid, or revoked API access token.}
+  - {status: 403, title: Forbidden, meaning: Token lacks the required scope for the operation (see scopes/buildkite-com-scopes.yml).}
+  - {status: 404, title: Not Found, meaning: Organization, pipeline, build, job, agent, or other resource does not exist or is not visible to the token.}
+  - {status: 422, title: Unprocessable Entity, meaning: Validation failed; details returned in the errors array.}
+  - {status: 429, title: Too Many Requests, meaning: Rate limit exceeded; retry after the RateLimit-Reset / RateLimit-User-Reset seconds. See rate-limits/ and conventions/.}
+  - {status: 500, title: Internal Server Error, meaning: Unexpected server error.}
+  - {status: 503, title: Service Unavailable, meaning: Temporary outage or maintenance; see https://buildkitestatus.com.}

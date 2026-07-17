@@ -1,14 +1,46 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/buildkite-agent-api-openapi.yml, openapi/buildkite-rest-api-openapi.yml
+generated: '2026-06-20'
+method: searched
+source: openapi/buildkite-rest-api-openapi.yml, openapi/buildkite-agent-api-openapi.yml
+docs: https://buildkite.com/docs/apis/managing-api-tokens
+description: >-
+  Buildkite authenticates every API with Bearer-style tokens. The REST and GraphQL
+  APIs use a user/organization API access token carrying granular scopes; the Agent
+  API uses per-cluster Agent Tokens. A JWT public-key-pair signing method for the REST
+  API is in preview. The remote MCP server additionally supports OAuth. Scope surface
+  is captured in scopes/buildkite-com-scopes.yml.
 summary:
   types:
   - http
+  - oauth2
+  http_schemes:
+  - bearer
+  scoped: true
+  scopes: scopes/buildkite-com-scopes.yml
 schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: API access token
+  applies_to: [REST API, GraphQL API]
+  header: "Authorization: Bearer <token>"
+  scoped: true
+  note: >-
+    Token scopes gate access (read_builds, write_pipelines, ...); GraphQL access is a
+    separate boolean toggle. A JWT public-key signature method is in preview.
+  sources:
+  - openapi/buildkite-rest-api-openapi.yml
 - name: agentToken
   type: http
   scheme: bearer
   bearerFormat: Agent Token (sent as `Token <value>`)
+  applies_to: [Agent API]
+  header: "Authorization: Token <value>"
+  note: Issued per cluster; used by the Buildkite Agent to register and run jobs.
   sources:
   - openapi/buildkite-agent-api-openapi.yml
-  - openapi/buildkite-rest-api-openapi.yml
+- name: oauth
+  type: oauth2
+  applies_to: [Remote MCP Server]
+  note: >-
+    The hosted MCP server (mcp.buildkite.com/mcp) uses OAuth with short-lived (12h)
+    access tokens; the /direct endpoint accepts API-token pass-through instead.

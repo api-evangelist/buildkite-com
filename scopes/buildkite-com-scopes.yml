@@ -1,0 +1,58 @@
+generated: '2026-06-20'
+method: searched
+source: openapi/buildkite-rest-api-openapi.yml
+docs: https://buildkite.com/docs/apis/managing-api-tokens
+description: >-
+  Buildkite REST API access tokens are Bearer tokens (not OAuth2 authorization-code
+  flows), but they carry a rich, granular scope surface configured per token. This
+  artifact captures the full documented scope list verbatim from the managing-api-tokens
+  reference. GraphQL access is a separate boolean toggle ("Enable GraphQL API access")
+  rather than a scope — it is full-access with no further granular restriction.
+model: bearer-token-scoped
+graphql_access:
+  type: boolean-toggle
+  name: Enable GraphQL API access
+  note: Full-access; does not provide further granular scopes/permission restrictions.
+scopes:
+  - {scope: read_agents, description: List and retrieve details of agents.}
+  - {scope: write_agents, description: Stop agents.}
+  - {scope: read_clusters, description: List and retrieve details of clusters.}
+  - {scope: write_clusters, description: Create, update, and delete clusters.}
+  - {scope: read_pipelines, description: List and retrieve details of pipelines.}
+  - {scope: write_pipelines, description: Create, update, and delete pipelines.}
+  - {scope: read_pipeline_templates, description: List and retrieve details of pipeline templates.}
+  - {scope: write_pipeline_templates, description: Create, update, and delete pipeline templates.}
+  - {scope: read_builds, description: List and retrieve details of builds.}
+  - {scope: write_builds, description: Create new builds.}
+  - {scope: read_build_logs, description: Retrieve build logs.}
+  - {scope: write_build_logs, description: Delete build logs.}
+  - {scope: read_job_env, description: Retrieve job environment variables.}
+  - {scope: read_artifacts, description: Retrieve build artifacts.}
+  - {scope: write_artifacts, description: Delete build artifacts.}
+  - {scope: read_rules, description: List and retrieve details of rules.}
+  - {scope: write_rules, description: Create or delete rules.}
+  - {scope: read_teams, description: List teams.}
+  - {scope: write_teams, description: Create, update, and delete teams.}
+  - {scope: read_organizations, description: List and retrieve details of organizations.}
+  - {scope: write_organizations, description: Update organization settings.}
+  - {scope: read_organization_settings, description: Read organization's API security and pipeline settings.}
+  - {scope: write_organization_settings, description: Update organization's API security and pipeline settings.}
+  - {scope: read_organization_repository_connections, description: List and retrieve details of connected source control integrations.}
+  - {scope: read_notification_services, description: List and retrieve notification services.}
+  - {scope: write_notification_services, description: Create, update, delete, enable, and disable notification services.}
+  - {scope: read_user, description: Retrieve basic details of the user.}
+  - {scope: read_audit_events, description: List and retrieve details of audit log events (Enterprise plan only).}
+  - {scope: read_secrets_details, description: List and retrieve details about secrets.}
+  - {scope: write_secrets, description: Create, update, and delete secrets.}
+  - {scope: read_suites, description: Retrieve suite information (Test Engine).}
+  - {scope: write_suites, description: Create suites (Test Engine).}
+  - {scope: read_test_plan, description: Retrieve test plan information (Test Engine).}
+  - {scope: write_test_plan, description: Create test plan (Test Engine).}
+  - {scope: read_registries, description: List and retrieve details of package registries.}
+  - {scope: write_registries, description: Create and update package registries.}
+  - {scope: delete_registries, description: Delete package registries.}
+  - {scope: read_packages, description: List and retrieve details of packages.}
+  - {scope: write_packages, description: Create packages.}
+  - {scope: delete_packages, description: Delete packages.}
+  - {scope: read_portals, description: List and retrieve details of GraphQL Portals.}
+  - {scope: write_portals, description: Create, update, and delete GraphQL Portals.}

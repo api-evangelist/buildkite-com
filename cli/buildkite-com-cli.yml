@@ -1,0 +1,43 @@
+generated: '2026-06-20'
+method: searched
+source: https://buildkite.com/docs/platform/cli/reference
+description: >-
+  The Buildkite CLI (bk) — an official Go command-line interface for interacting with
+  Buildkite organizations, pipelines, builds, jobs, agents, clusters, and packages
+  from the terminal. Requires a Buildkite API access token. The binary itself is
+  catalogued in packages/ (buildkite/cli); this artifact captures its command surface.
+name: bk
+repository: https://github.com/buildkite/cli
+docs: https://buildkite.com/docs/platform/cli
+language: go
+install:
+  - {method: homebrew, command: "brew tap buildkite/buildkite && brew install buildkite/buildkite/bk"}
+  - {method: binary, command: "download from https://github.com/buildkite/cli/releases"}
+  - {method: update, command: "bk update"}
+auth:
+  flow: api-access-token
+  command: bk auth login
+  note: Requires a Buildkite API access token to interact with your organizations.
+commands:
+  - {name: agent, description: Manage Buildkite agents and their configuration.}
+  - {name: api, description: Interact directly with the Buildkite API.}
+  - {name: artifacts, description: Work with build artifacts.}
+  - {name: auth, description: Handle authentication (login/logout).}
+  - {name: browse, description: Open Buildkite resources in a browser.}
+  - {name: build, description: Manage and query pipeline builds.}
+  - {name: cluster, description: Administer cluster resources.}
+  - {name: config, description: Manage configuration settings.}
+  - {name: configure, description: Set up CLI configuration.}
+  - {name: init, description: Initialize a new project or pipeline.}
+  - {name: job, description: Control job execution.}
+  - {name: maintainer, description: Manage maintainer roles.}
+  - {name: organization, description: Handle organization operations.}
+  - {name: package, description: Work with Buildkite package registries.}
+  - {name: pipeline, description: Manage pipelines.}
+  - {name: preflight, description: Run preflight checks.}
+  - {name: queue, description: Manage job queues.}
+  - {name: secret, description: Handle secrets and sensitive data.}
+  - {name: skill, description: Manage Buildkite AI coding skills.}
+  - {name: update, description: Update the CLI tool.}
+  - {name: user, description: Manage user accounts.}
+  - {name: version, description: Display CLI version information.}

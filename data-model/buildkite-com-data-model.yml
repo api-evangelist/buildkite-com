@@ -1,0 +1,28 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/buildkite-rest-api-openapi.yml
+description: >-
+  Entity-relationship graph derived from the Buildkite REST OpenAPI schemas ($ref links
+  and id-reference fields such as cluster_id and creator). Identifiers are UUIDs; the
+  public API also addresses organizations and pipelines by human-readable slug.
+entities:
+  - {name: Organization, id: slug, note: Top-level tenant; addressed by org slug.}
+  - {name: User, id: id, id_format: uuid}
+  - {name: Pipeline, id: id, id_format: uuid, slug: true}
+  - {name: Build, id: id, id_format: uuid, natural_key: number, states: [running, scheduled, passed, failed, blocked, canceled, canceling, skipped, not_run, finished]}
+  - {name: Job, id: id, id_format: uuid, types: [script, waiter, manual, trigger, block]}
+  - {name: Agent, id: id, id_format: uuid, states: [connected, disconnected, stopped, stopping, lost, never_connected]}
+  - {name: Cluster, id: id, id_format: uuid}
+  - {name: Queue, id: id, id_format: uuid}
+relationships:
+  - {from: Pipeline, to: Organization, kind: belongs_to, via: org}
+  - {from: Pipeline, to: Cluster, kind: belongs_to, via: cluster_id}
+  - {from: Pipeline, to: Build, kind: has_many, via: builds}
+  - {from: Build, to: Pipeline, kind: belongs_to, via: pipeline}
+  - {from: Build, to: User, kind: has_one, via: creator}
+  - {from: Build, to: Job, kind: has_many, via: jobs}
+  - {from: Job, to: Build, kind: belongs_to, via: build}
+  - {from: Agent, to: Cluster, kind: belongs_to, via: cluster_id}
+  - {from: Queue, to: Cluster, kind: belongs_to, via: cluster}
+  - {from: Cluster, to: Queue, kind: has_many, via: queues}
+  - {from: Cluster, to: Agent, kind: has_many, via: agents}

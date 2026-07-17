@@ -1,0 +1,25 @@
+generated: '2026-06-20'
+method: searched
+source: https://buildkite.com/docs/apis/rest-api
+description: >-
+  Versioning, deprecation, status, and change-communication posture for the Buildkite
+  APIs, captured from the public docs, status page, and changelog. The REST API is
+  URI-path versioned (v2); the Agent API is v3; the GraphQL API is v1 with schema
+  introspection and a Relay-compliant, additive evolution model.
+versioning:
+  rest: {scheme: uri-path, current: v2, base: https://api.buildkite.com/v2}
+  agent: {scheme: uri-path, current: v3, base: https://agent.buildkite.com/v3}
+  graphql: {scheme: single-endpoint, current: v1, base: https://graphql.buildkite.com/v1, evolution: additive-with-introspection}
+deprecation:
+  policy: >-
+    Changes are announced through the dated public changelog; breaking changes (e.g.
+    read-only tokens no longer exposing webhook_urls, MCP get_build/list_builds dropping
+    embedded job data) are called out with migration guidance and effective dates.
+  changelog: https://buildkite.com/changelog
+  sunset_header: unknown
+sla:
+  url: https://buildkite.com/sla
+  note: Enterprise plans include contractual uptime SLAs; see pricing/enterprise terms.
+status_page: https://buildkitestatus.com
+incident_reviews: https://buildkite.com/blog
+deprecated_operations: []

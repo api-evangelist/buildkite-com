@@ -1,0 +1,26 @@
+generated: '2026-06-20'
+method: searched
+source: https://buildkite.com/changelog
+description: >-
+  Recent window of the Buildkite public changelog. Buildkite publishes a dated,
+  continuously-updated changelog covering Pipelines, Test Engine, Package Registries,
+  the Agent, the REST/GraphQL APIs, and the MCP server. Entries below are the most
+  recent captured at fetch time; the live changelog is the source of truth.
+scheme: dated-continuous
+docs: https://buildkite.com/changelog
+entries:
+  - {date: '2026-07-15', title: "Remote MCP Server sessions refresh automatically and add a redirect confirmation step", type: addition}
+  - {date: '2026-07-15', title: "OAuth application authorizations now appear in the audit log", type: addition}
+  - {date: '2026-07-13', title: "View previous job attempts in the build list", type: addition}
+  - {date: '2026-07-13', title: "Buildkite MCP Server adds job tools and smarter artifact and log handling", type: breaking, note: "get_build and list_builds no longer return job data; use dedicated job endpoints."}
+  - {date: '2026-07-07', title: "Hosted Agent outbound IP address ranges updating August 2, 2026", type: breaking, note: "IP ranges expand; update firewall allowlists."}
+  - {date: '2026-06-29', title: "Diagnose infrastructure-related job failures through the REST API", type: addition, note: "Exposes signal, signal_reason, and agent lifecycle fields."}
+  - {date: '2026-06-22', title: "Read-only API tokens no longer expose pipeline webhook URLs", type: breaking, note: "Read-only tokens can no longer retrieve webhook_urls."}
+  - {date: '2026-06-17', title: "Improvements to log groups for running builds", type: addition}
+  - {date: '2026-06-17', title: "Track the performance of your hosted agents", type: addition}
+  - {date: '2026-06-15', title: "REST API job endpoints for large builds", type: addition}
+  - {date: '2026-06-12', title: "Buildkite Agent improvements", type: addition, note: "BUILDKITE_SKIP_CHECKOUT, multipart S3 downloads, timeout controls."}
+  - {date: '2026-06-12', title: "Remote MCP Server API access token support is now available (Preview)", type: addition, note: "New /direct endpoint for headless auth via API tokens."}
+  - {date: '2026-06-11', title: "Buildkite MCP Server adds cluster, build, and schedule management tools", type: addition}
+  - {date: '2026-06-11', title: "Buildkite GraphQL API updates", type: addition, note: "Metadata field increased to 1 MB; job annotations queryable via GraphQL."}
+  - {date: '2026-06-10', title: "Dynamically update job timeouts with buildkite-agent job update", type: addition}

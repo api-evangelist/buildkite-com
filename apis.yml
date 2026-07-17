@@ -108,6 +108,8 @@ apis:
     type: Documentation
   - url: https://github.com/buildkite/buildkite-mcp-server
     type: SourceCode
+  - url: mcp/buildkite-com-mcp.yml
+    type: MCPServer
   description: >-
     Official Model Context Protocol server that exposes Buildkite REST API surfaces (pipelines, builds, jobs, agents,
     artifacts, annotations) as MCP tools and toolsets for AI coding agents. Available as both a remote endpoint and a
@@ -121,6 +123,34 @@ common:
   url: security/buildkite-com-domain-security.yml
 - type: Authentication
   url: authentication/buildkite-com-authentication.yml
+- type: OAuthScopes
+  url: scopes/buildkite-com-scopes.yml
+- type: Packages
+  url: packages/buildkite-com-packages.yml
+- type: WellKnown
+  url: well-known/buildkite-com-well-known.yml
+- type: MCPServer
+  url: mcp/buildkite-com-mcp.yml
+- type: LLMsTxt
+  url: llms/buildkite-com-llms.txt
+- type: CLI
+  url: cli/buildkite-com-cli.yml
+- type: ChangeLog
+  url: changelog/buildkite-com-changelog.yml
+- type: Lifecycle
+  url: lifecycle/buildkite-com-lifecycle.yml
+- type: Conventions
+  url: conventions/buildkite-com-conventions.yml
+- type: Conformance
+  url: conformance/buildkite-com-conformance.yml
+- type: ErrorCatalog
+  url: errors/buildkite-com-problem-types.yml
+- type: DataModel
+  url: data-model/buildkite-com-data-model.yml
+- type: Overlay
+  url: overlays/buildkite-com-rest-api-overlay.yaml
+- type: Overlay
+  url: overlays/buildkite-com-agent-api-overlay.yaml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/buildkite/overview
 - type: Arazzo
@@ -303,7 +333,7 @@ tags:
 - MCP
 - Webhooks
 created: '2026-05-25T00:00:00.000Z'
-modified: '2026-05-25'
+modified: '2026-06-20'
 position: Consuming
 description: >-
   Buildkite is a hybrid CI/CD platform that combines a hosted control plane (pipelines.buildkite.com) with self-hosted

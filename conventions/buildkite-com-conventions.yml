@@ -1,0 +1,46 @@
+generated: '2026-06-20'
+method: searched
+source: https://buildkite.com/docs/apis/rest-api
+description: >-
+  Cross-cutting request/response semantics for the Buildkite REST API, captured from
+  the docs and derived from the OpenAPI. Cross-links errors/, lifecycle/,
+  authentication/, and rate-limits/.
+authentication:
+  style: bearer-token
+  header: "Authorization: Bearer <token>"
+  alternative: JWT signature via public key pairs (preview)
+  scopes: scopes/buildkite-com-scopes.yml
+  ref: authentication/buildkite-com-authentication.yml
+versioning:
+  style: uri-path
+  current: v2
+  ref: lifecycle/buildkite-com-lifecycle.yml
+pagination:
+  style: page-number
+  params:
+    - {name: page, default: 1, description: The page number.}
+    - {name: per_page, default: 30, max: 100, description: Results per page.}
+  response:
+    link_header: true
+    link_rels: [next, prev, first, last]
+    note: Pagination links returned in the Link HTTP response header.
+rate_limiting:
+  ref: rate-limits/buildkite-com-rate-limits.yml
+  headers:
+    organization: [RateLimit-Scope, RateLimit-Remaining, RateLimit-Limit, RateLimit-Reset]
+    per_user: [RateLimit-User-Scope, RateLimit-User-Remaining, RateLimit-User-Limit, RateLimit-User-Reset]
+  exceeded: 429 Too Many Requests
+  retry: Wait the seconds indicated in the reset header before retrying.
+error_envelope:
+  ref: errors/buildkite-com-problem-types.yml
+  format: json
+  primary_field: message
+  note: >-
+    Errors are returned as application/json with a human-readable message field;
+    validation failures additionally return an errors array. Not RFC 9457
+    problem+json.
+idempotency:
+  supported: false
+  note: No documented idempotency-key header; write operations are not idempotent by key.
+request_tracing:
+  note: Standard HTTP; no documented request-id echo header.

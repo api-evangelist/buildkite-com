@@ -1,0 +1,16 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Buildkite Agent API
+  version: 1.0.0
+extends: openapi/buildkite-agent-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: buildkite-com
+      x-apievangelist-artifacts:
+        authentication: authentication/buildkite-com-authentication.yml
+        lifecycle: lifecycle/buildkite-com-lifecycle.yml
+      x-apievangelist-notes: >-
+        Backplane consumed by the open-source Buildkite Agent (Go). Authenticated with
+        per-cluster Agent Tokens sent as "Authorization: Token <value>". The
+        agent-edge.buildkite.com host adds gRPC methods (no public .proto published).

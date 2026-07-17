@@ -1,0 +1,37 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Buildkite REST API
+  version: 1.0.0
+extends: openapi/buildkite-rest-api-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: buildkite-com
+      x-apievangelist-artifacts:
+        scopes: scopes/buildkite-com-scopes.yml
+        authentication: authentication/buildkite-com-authentication.yml
+        conventions: conventions/buildkite-com-conventions.yml
+        errors: errors/buildkite-com-problem-types.yml
+        lifecycle: lifecycle/buildkite-com-lifecycle.yml
+        data_model: data-model/buildkite-com-data-model.yml
+        mcp: mcp/buildkite-com-mcp.yml
+  - target: $.info
+    update:
+      x-apievangelist-rate-limits:
+        organization_headers: [RateLimit-Scope, RateLimit-Remaining, RateLimit-Limit, RateLimit-Reset]
+        per_user_headers: [RateLimit-User-Scope, RateLimit-User-Remaining, RateLimit-User-Limit, RateLimit-User-Reset]
+        exceeded_status: 429
+  - target: $.info
+    update:
+      x-apievangelist-pagination:
+        style: page-number
+        params: [page, per_page]
+        per_page_max: 100
+        link_header: true
+  - target: $.components.securitySchemes.bearerAuth
+    update:
+      x-apievangelist-scoped: true
+      x-apievangelist-scopes-ref: scopes/buildkite-com-scopes.yml
+      description: >-
+        Bearer API access token. Tokens carry granular scopes (read_builds,
+        write_pipelines, read_agents, ...) and an optional GraphQL access toggle.

@@ -1,0 +1,75 @@
+generated: '2026-06-20'
+method: searched
+status: published
+source: https://buildkite.com/docs/apis/mcp-server
+description: >-
+  Buildkite operates an official Model Context Protocol server that exposes the REST
+  API (organizations, clusters, agents, pipelines, builds, jobs, artifacts,
+  annotations, logs, Test Engine) as MCP tools for AI coding agents. It is available
+  as a hosted remote endpoint (OAuth or API-token pass-through) and as a local binary
+  / container image. Tool list captured verbatim from the Buildkite MCP tools
+  reference; tool token-scope requirements included where the docs state them.
+server:
+  name: buildkite
+  transport: http
+  url: https://mcp.buildkite.com/mcp
+  auth: oauth2
+  note: >-
+    OAuth flow issues short-lived (12-hour) access tokens with 7-day refresh tokens.
+  endpoints:
+    - {url: https://mcp.buildkite.com/mcp, auth: oauth2, mode: full}
+    - {url: https://mcp.buildkite.com/mcp/readonly, auth: oauth2, mode: read-only}
+    - {url: https://mcp.buildkite.com/direct, auth: bearer, mode: api-token-passthrough, note: "Authorization: Bearer <buildkite-api-token>"}
+local:
+  name: buildkite-mcp-server
+  transport: stdio
+  source: https://github.com/buildkite/buildkite-mcp-server
+  install: docker pull ghcr.io/buildkite/buildkite-mcp-server
+  auth: Buildkite API access token
+tools:
+  - {name: access_token, description: Retrieve current API token information including scopes and UUID.}
+  - {name: current_user, description: Get user account details like name, email, and avatar., scope: read_user}
+  - {name: user_token_organization, description: Fetch Buildkite organization details for the token user., scope: read_organizations}
+  - {name: list_clusters, description: List all clusters with names, descriptions, and configurations., scope: read_clusters}
+  - {name: get_cluster, description: Retrieve detailed information about a specific cluster., scope: read_clusters}
+  - {name: create_cluster, description: Establish a new cluster in an organization., scope: write_clusters}
+  - {name: update_cluster, description: Modify cluster name, description, emoji, color, or default queue., scope: write_clusters}
+  - {name: list_cluster_queues, description: List all queues within a cluster., scope: read_clusters}
+  - {name: get_cluster_queue, description: Retrieve detailed queue information including dispatch status., scope: read_clusters}
+  - {name: create_cluster_queue, description: Create a new queue in a cluster., scope: write_clusters}
+  - {name: update_cluster_queue, description: Modify queue description or retry agent affinity., scope: write_clusters}
+  - {name: pause_cluster_queue_dispatch, description: Pause dispatch on a queue to prevent job assignment., scope: write_clusters}
+  - {name: resume_cluster_queue_dispatch, description: Resume dispatch on a paused queue., scope: write_clusters}
+  - {name: list_agents, description: List agents with connection state, host details, and job status., scope: read_agents}
+  - {name: get_agent, description: Get detailed information about a specific agent., scope: read_agents}
+  - {name: list_pipelines, description: List all organization pipelines with basic details and build counts., scope: read_pipelines}
+  - {name: get_pipeline, description: Retrieve comprehensive pipeline configuration and statistics., scope: read_pipelines}
+  - {name: create_pipeline, description: Set up a new CI/CD pipeline with YAML configuration., scope: write_pipelines}
+  - {name: update_pipeline, description: Modify existing pipeline configuration and settings., scope: write_pipelines}
+  - {name: list_pipeline_schedules, description: List pipeline schedules including cron expressions and next build time., scope: read_pipelines}
+  - {name: get_pipeline_schedule, description: Retrieve specific schedule details with cron and branch info., scope: read_pipelines}
+  - {name: create_pipeline_schedule, description: Create a cron-driven pipeline schedule., scope: write_pipelines}
+  - {name: update_pipeline_schedule, description: Modify schedule cron, branch, variables, or enabled state., scope: write_pipelines}
+  - {name: list_builds, description: List builds for organization or pipeline with state, branch, and commit info., scope: read_builds}
+  - {name: get_build, description: Retrieve build metadata without jobs or expanded pipeline details., scope: read_builds}
+  - {name: get_build_test_engine_runs, description: Get Test Engine runs data for a specific build., scope: read_builds}
+  - {name: create_build, description: Trigger a new build on a pipeline for a specific commit., scope: write_builds}
+  - {name: cancel_build, description: Cancel a running build., scope: write_builds}
+  - {name: rebuild_build, description: Rebuild or retry an entire build., scope: write_builds}
+  - {name: list_jobs, description: List jobs for a build with optional state filtering and pagination., scope: read_builds}
+  - {name: get_job, description: Retrieve a job by UUID with full details., scope: read_builds}
+  - {name: unblock_job, description: Unblock a blocked job to allow continuation., scope: write_builds}
+  - {name: retry_job, description: Retry a failed or timed-out job., scope: write_builds}
+  - {name: get_job_env, description: Retrieve environment variables for a specific job., scope: read_job_env}
+  - {name: search_logs, description: Search log entries using regex patterns with optional context lines.}
+  - {name: tail_logs, description: Show the last N entries from the log file.}
+  - {name: read_logs, description: Read log entries optionally starting from a specific row number.}
+  - {name: list_artifacts_for_build, description: List all build artifacts across jobs with file details., scope: read_artifacts}
+  - {name: list_artifacts_for_job, description: List artifacts for a specific job., scope: read_artifacts}
+  - {name: get_artifact, description: Download a specific artifact's content in base64 format., scope: read_artifacts}
+  - {name: list_annotations, description: List annotations for a build or specific job., scope: read_builds}
+  - {name: create_annotation, description: Create an annotation on a build or job., scope: write_builds}
+  - {name: get_test, description: Retrieve a specific test with metadata for failed executions., scope: read_suites}
+  - {name: list_test_runs, description: List all test runs for a suite., scope: read_suites}
+  - {name: get_test_run, description: Retrieve a specific test run., scope: read_suites}
+  - {name: get_failed_executions, description: Retrieve failed test executions with optional expanded failure details., scope: read_suites}

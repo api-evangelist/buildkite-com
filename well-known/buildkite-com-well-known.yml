@@ -1,0 +1,27 @@
+generated: '2026-06-20'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface for every base host in
+  apis.yml (baseURL) and the OpenAPI servers[]. Status is the HTTP code observed at
+  fetch time. Buildkite publishes no /.well-known/ discovery documents on any API or
+  web host — every probed path returns 404. Absence is valid, expected data; nothing
+  was saved.
+hosts:
+  - host: https://api.buildkite.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+  - host: https://buildkite.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+  - host: https://agent.buildkite.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+  - host: https://graphql.buildkite.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404}

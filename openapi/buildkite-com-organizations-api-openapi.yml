@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: Buildkite Agent Access Token Organizations API
+  version: v3
+  description: 'Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+
+    accept, and finish jobs. Most endpoints are reserved for internal use; only the documented
+
+    public endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).
+
+    '
+  contact:
+    name: Buildkite Agent
+    url: https://github.com/buildkite/agent
+servers:
+- url: https://agent.buildkite.com/v3
+  description: Standard Agent API
+- url: https://agent-edge.buildkite.com/v3
+  description: Edge Agent API (adds gRPC methods alongside JSON)
+security:
+- agentToken: []
+tags:
+- name: Organizations
+paths:
+  /organizations:
+    get:
+      tags:
+      - Organizations
+      summary: List Organizations
+      operationId: listOrganizations
+      responses:
+        '200':
+          description: A list of organizations
+  /organizations/{org}:
+    get:
+      tags:
+      - Organizations
+      summary: Get An Organization
+      operationId: getOrganization
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      responses:
+        '200':
+          description: Organization record
+components:
+  parameters:
+    Org:
+      name: org
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization slug
+  securitySchemes:
+    agentToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Agent Token (sent as `Token <value>`)

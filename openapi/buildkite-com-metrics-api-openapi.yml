@@ -1,11 +1,14 @@
 openapi: 3.0.3
 info:
-  title: Buildkite Agent API
+  title: Buildkite Agent Access Token Metrics API
   version: v3
-  description: |
-    Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+  description: 'Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+
     accept, and finish jobs. Most endpoints are reserved for internal use; only the documented
+
     public endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).
+
+    '
   contact:
     name: Buildkite Agent
     url: https://github.com/buildkite/agent
@@ -18,15 +21,14 @@ security:
 - agentToken: []
 tags:
 - name: Metrics
-- name: Stacks
 paths:
   /metrics:
     get:
-      tags: [Metrics]
+      tags:
+      - Metrics
       summary: Get Cluster Agent Metrics
       operationId: getMetrics
-      description: Returns current agent and job counts for the cluster associated with the agent token.
-        Used by autoscalers (Lambda scaler, agent-stack-k8s, custom controllers) to size agent pools.
+      description: Returns current agent and job counts for the cluster associated with the agent token. Used by autoscalers (Lambda scaler, agent-stack-k8s, custom controllers) to size agent pools.
       responses:
         '200':
           description: Cluster metrics payload
@@ -58,16 +60,6 @@ paths:
                     properties:
                       slug:
                         type: string
-  /stacks:
-    get:
-      tags: [Stacks]
-      summary: Get Stack Configuration For Self-Hosted Queues
-      operationId: getStacks
-      description: Returns the desired stack configuration for a self-hosted queue's controller process.
-        The controller watches the queue for jobs and runs agents on demand.
-      responses:
-        '200':
-          description: Stack configuration payload
 components:
   securitySchemes:
     agentToken:

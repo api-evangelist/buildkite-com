@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: Buildkite Agent Access Token Queues API
+  version: v3
+  description: 'Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+
+    accept, and finish jobs. Most endpoints are reserved for internal use; only the documented
+
+    public endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).
+
+    '
+  contact:
+    name: Buildkite Agent
+    url: https://github.com/buildkite/agent
+servers:
+- url: https://agent.buildkite.com/v3
+  description: Standard Agent API
+- url: https://agent-edge.buildkite.com/v3
+  description: Edge Agent API (adds gRPC methods alongside JSON)
+security:
+- agentToken: []
+tags:
+- name: Queues
+paths:
+  /organizations/{org}/clusters/{cluster}/queues:
+    get:
+      tags:
+      - Queues
+      summary: List Queues For A Cluster
+      operationId: listQueues
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/ClusterId'
+      responses:
+        '200':
+          description: A list of queues
+components:
+  parameters:
+    Org:
+      name: org
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization slug
+    ClusterId:
+      name: cluster
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Cluster UUID
+  securitySchemes:
+    agentToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Agent Token (sent as `Token <value>`)

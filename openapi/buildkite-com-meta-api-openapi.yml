@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  title: Buildkite Agent Access Token Meta API
+  version: v3
+  description: 'Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+
+    accept, and finish jobs. Most endpoints are reserved for internal use; only the documented
+
+    public endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).
+
+    '
+  contact:
+    name: Buildkite Agent
+    url: https://github.com/buildkite/agent
+servers:
+- url: https://agent.buildkite.com/v3
+  description: Standard Agent API
+- url: https://agent-edge.buildkite.com/v3
+  description: Edge Agent API (adds gRPC methods alongside JSON)
+security:
+- agentToken: []
+tags:
+- name: Meta
+paths:
+  /meta:
+    get:
+      tags:
+      - Meta
+      summary: Get Meta Information
+      operationId: getMeta
+      responses:
+        '200':
+          description: Service metadata including webhook IP ranges
+components:
+  securitySchemes:
+    agentToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Agent Token (sent as `Token <value>`)

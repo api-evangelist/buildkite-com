@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  title: Buildkite Agent Access Token Stacks API
+  version: v3
+  description: 'Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+
+    accept, and finish jobs. Most endpoints are reserved for internal use; only the documented
+
+    public endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).
+
+    '
+  contact:
+    name: Buildkite Agent
+    url: https://github.com/buildkite/agent
+servers:
+- url: https://agent.buildkite.com/v3
+  description: Standard Agent API
+- url: https://agent-edge.buildkite.com/v3
+  description: Edge Agent API (adds gRPC methods alongside JSON)
+security:
+- agentToken: []
+tags:
+- name: Stacks
+paths:
+  /stacks:
+    get:
+      tags:
+      - Stacks
+      summary: Get Stack Configuration For Self-Hosted Queues
+      operationId: getStacks
+      description: Returns the desired stack configuration for a self-hosted queue's controller process. The controller watches the queue for jobs and runs agents on demand.
+      responses:
+        '200':
+          description: Stack configuration payload
+components:
+  securitySchemes:
+    agentToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Agent Token (sent as `Token <value>`)

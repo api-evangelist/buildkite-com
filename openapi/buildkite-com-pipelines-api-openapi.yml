@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: Buildkite Agent Access Token Pipelines API
+  version: v3
+  description: 'Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+
+    accept, and finish jobs. Most endpoints are reserved for internal use; only the documented
+
+    public endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).
+
+    '
+  contact:
+    name: Buildkite Agent
+    url: https://github.com/buildkite/agent
+servers:
+- url: https://agent.buildkite.com/v3
+  description: Standard Agent API
+- url: https://agent-edge.buildkite.com/v3
+  description: Edge Agent API (adds gRPC methods alongside JSON)
+security:
+- agentToken: []
+tags:
+- name: Pipelines
+paths:
+  /organizations/{org}/pipelines:
+    get:
+      tags:
+      - Pipelines
+      summary: List Pipelines
+      operationId: listPipelines
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      responses:
+        '200':
+          description: A list of pipelines
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pipeline'
+    post:
+      tags:
+      - Pipelines
+      summary: Create A Pipeline
+      operationId: createPipeline
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pipeline'
+      responses:
+        '201':
+          description: Pipeline created
+  /organizations/{org}/pipelines/{pipeline}:
+    get:
+      tags:
+      - Pipelines
+      summary: Get A Pipeline
+      operationId: getPipeline
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/Pipeline'
+      responses:
+        '200':
+          description: Pipeline record
+    patch:
+      tags:
+      - Pipelines
+      summary: Update A Pipeline
+      operationId: updatePipeline
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/Pipeline'
+      responses:
+        '200':
+          description: Pipeline updated
+    delete:
+      tags:
+      - Pipelines
+      summary: Delete A Pipeline
+      operationId: deletePipeline
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/Pipeline'
+      responses:
+        '204':
+          description: Pipeline deleted
+components:
+  parameters:
+    Org:
+      name: org
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization slug
+    Pipeline:
+      name: pipeline
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Pipeline slug
+  schemas:
+    Pipeline:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        url:
+          type: string
+          format: uri
+        web_url:
+          type: string
+          format: uri
+        name:
+          type: string
+        slug:
+          type: string
+        repository:
+          type: string
+        cluster_id:
+          type: string
+          format: uuid
+        default_branch:
+          type: string
+        description:
+          type: string
+        configuration:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+        created_at:
+          type: string
+          format: date-time
+        archived_at:
+          type: string
+          format: date-time
+          nullable: true
+  securitySchemes:
+    agentToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Agent Token (sent as `Token <value>`)

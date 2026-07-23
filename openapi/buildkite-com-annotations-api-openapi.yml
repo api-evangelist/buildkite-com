@@ -1,0 +1,65 @@
+openapi: 3.0.3
+info:
+  title: Buildkite Agent Access Token Annotations API
+  version: v3
+  description: 'Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+
+    accept, and finish jobs. Most endpoints are reserved for internal use; only the documented
+
+    public endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).
+
+    '
+  contact:
+    name: Buildkite Agent
+    url: https://github.com/buildkite/agent
+servers:
+- url: https://agent.buildkite.com/v3
+  description: Standard Agent API
+- url: https://agent-edge.buildkite.com/v3
+  description: Edge Agent API (adds gRPC methods alongside JSON)
+security:
+- agentToken: []
+tags:
+- name: Annotations
+paths:
+  /organizations/{org}/pipelines/{pipeline}/builds/{number}/annotations:
+    get:
+      tags:
+      - Annotations
+      summary: List Annotations For A Build
+      operationId: listAnnotations
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/Pipeline'
+      - $ref: '#/components/parameters/BuildNumber'
+      responses:
+        '200':
+          description: A list of annotations
+components:
+  parameters:
+    BuildNumber:
+      name: number
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Build number
+    Org:
+      name: org
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization slug
+    Pipeline:
+      name: pipeline
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Pipeline slug
+  securitySchemes:
+    agentToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Agent Token (sent as `Token <value>`)

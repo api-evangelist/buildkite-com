@@ -1,0 +1,124 @@
+openapi: 3.0.3
+info:
+  title: Buildkite Agent Access Token Agents API
+  version: v3
+  description: 'Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+
+    accept, and finish jobs. Most endpoints are reserved for internal use; only the documented
+
+    public endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).
+
+    '
+  contact:
+    name: Buildkite Agent
+    url: https://github.com/buildkite/agent
+servers:
+- url: https://agent.buildkite.com/v3
+  description: Standard Agent API
+- url: https://agent-edge.buildkite.com/v3
+  description: Edge Agent API (adds gRPC methods alongside JSON)
+security:
+- agentToken: []
+tags:
+- name: Agents
+paths:
+  /organizations/{org}/agents:
+    get:
+      tags:
+      - Agents
+      summary: List Agents
+      operationId: listAgents
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      responses:
+        '200':
+          description: A list of agents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Agent'
+  /organizations/{org}/agents/{id}:
+    get:
+      tags:
+      - Agents
+      summary: Get An Agent
+      operationId: getAgent
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/AgentId'
+      responses:
+        '200':
+          description: Agent record
+  /organizations/{org}/agents/{id}/stop:
+    put:
+      tags:
+      - Agents
+      summary: Stop An Agent
+      operationId: stopAgent
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/AgentId'
+      responses:
+        '204':
+          description: Agent stopped
+components:
+  parameters:
+    AgentId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Agent UUID
+    Org:
+      name: org
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization slug
+  schemas:
+    Agent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        connection_state:
+          type: string
+          enum:
+          - connected
+          - disconnected
+          - stopped
+          - stopping
+          - lost
+          - never_connected
+        hostname:
+          type: string
+        ip_address:
+          type: string
+        user_agent:
+          type: string
+        version:
+          type: string
+        meta_data:
+          type: array
+          items:
+            type: string
+        cluster_id:
+          type: string
+          format: uuid
+        queue:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    agentToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Agent Token (sent as `Token <value>`)

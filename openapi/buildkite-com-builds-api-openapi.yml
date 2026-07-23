@@ -1,0 +1,235 @@
+openapi: 3.0.3
+info:
+  title: Buildkite Agent Access Token Builds API
+  version: v3
+  description: 'Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+
+    accept, and finish jobs. Most endpoints are reserved for internal use; only the documented
+
+    public endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).
+
+    '
+  contact:
+    name: Buildkite Agent
+    url: https://github.com/buildkite/agent
+servers:
+- url: https://agent.buildkite.com/v3
+  description: Standard Agent API
+- url: https://agent-edge.buildkite.com/v3
+  description: Edge Agent API (adds gRPC methods alongside JSON)
+security:
+- agentToken: []
+tags:
+- name: Builds
+paths:
+  /organizations/{org}/pipelines/{pipeline}/builds:
+    get:
+      tags:
+      - Builds
+      summary: List Builds For A Pipeline
+      operationId: listBuilds
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/Pipeline'
+      responses:
+        '200':
+          description: A list of builds
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Build'
+    post:
+      tags:
+      - Builds
+      summary: Create A Build
+      operationId: createBuild
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/Pipeline'
+      responses:
+        '201':
+          description: Build created
+  /organizations/{org}/pipelines/{pipeline}/builds/{number}:
+    get:
+      tags:
+      - Builds
+      summary: Get A Build
+      operationId: getBuild
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/Pipeline'
+      - $ref: '#/components/parameters/BuildNumber'
+      responses:
+        '200':
+          description: Build record
+  /organizations/{org}/pipelines/{pipeline}/builds/{number}/cancel:
+    put:
+      tags:
+      - Builds
+      summary: Cancel A Build
+      operationId: cancelBuild
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/Pipeline'
+      - $ref: '#/components/parameters/BuildNumber'
+      responses:
+        '200':
+          description: Build cancelled
+  /organizations/{org}/pipelines/{pipeline}/builds/{number}/rebuild:
+    put:
+      tags:
+      - Builds
+      summary: Rebuild A Build
+      operationId: rebuildBuild
+      parameters:
+      - $ref: '#/components/parameters/Org'
+      - $ref: '#/components/parameters/Pipeline'
+      - $ref: '#/components/parameters/BuildNumber'
+      responses:
+        '200':
+          description: Build re-queued
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        avatar_url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
+    Job:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+          - script
+          - waiter
+          - manual
+          - trigger
+          - block
+        name:
+          type: string
+        state:
+          type: string
+        command:
+          type: string
+        agent_query_rules:
+          type: array
+          items:
+            type: string
+        web_url:
+          type: string
+          format: uri
+        log_url:
+          type: string
+          format: uri
+        raw_log_url:
+          type: string
+          format: uri
+        exit_status:
+          type: integer
+          nullable: true
+        started_at:
+          type: string
+          format: date-time
+          nullable: true
+        finished_at:
+          type: string
+          format: date-time
+          nullable: true
+    Build:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        number:
+          type: integer
+        state:
+          type: string
+          enum:
+          - running
+          - scheduled
+          - passed
+          - failed
+          - blocked
+          - canceled
+          - canceling
+          - skipped
+          - not_run
+          - finished
+        branch:
+          type: string
+        commit:
+          type: string
+        message:
+          type: string
+        url:
+          type: string
+          format: uri
+        web_url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
+        scheduled_at:
+          type: string
+          format: date-time
+        started_at:
+          type: string
+          format: date-time
+          nullable: true
+        finished_at:
+          type: string
+          format: date-time
+          nullable: true
+        creator:
+          $ref: '#/components/schemas/User'
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+  parameters:
+    Org:
+      name: org
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization slug
+    BuildNumber:
+      name: number
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Build number
+    Pipeline:
+      name: pipeline
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Pipeline slug
+  securitySchemes:
+    agentToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Agent Token (sent as `Token <value>`)

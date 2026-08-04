@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: Buildkite Agent API
+  version: v3
+  description: |
+    Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+    accept, and finish jobs. Most endpoints are reserved for internal use; only the documented
+    public endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).
+  contact:
+    name: Buildkite Agent
+    url: https://github.com/buildkite/agent
+servers:
+- url: https://agent.buildkite.com/v3
+  description: Standard Agent API
+- url: https://agent-edge.buildkite.com/v3
+  description: Edge Agent API (adds gRPC methods alongside JSON)
+security:
+- agentToken: []
+tags:
+- name: Metrics
+- name: Stacks
+paths:
+  /metrics:
+    get:
+      tags: [Metrics]
+      summary: Get Cluster Agent Metrics
+      operationId: getMetrics
+      description: Returns current agent and job counts for the cluster associated with the agent token.
+        Used by autoscalers (Lambda scaler, agent-stack-k8s, custom controllers) to size agent pools.
+      responses:
+        '200':
+          description: Cluster metrics payload
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  agents:
+                    type: object
+                    properties:
+                      idle:
+                        type: integer
+                      busy:
+                        type: integer
+                      total:
+                        type: integer
+                  jobs:
+                    type: object
+                    properties:
+                      scheduled:
+                        type: integer
+                      running:
+                        type: integer
+                      total:
+                        type: integer
+                  organization:
+                    type: object
+                    properties:
+                      slug:
+                        type: string
+  /stacks:
+    get:
+      tags: [Stacks]
+      summary: Get Stack Configuration For Self-Hosted Queues
+      operationId: getStacks
+      description: Returns the desired stack configuration for a self-hosted queue's controller process.
+        The controller watches the queue for jobs and runs agents on demand.
+      responses:
+        '200':
+          description: Stack configuration payload
+components:
+  securitySchemes:
+    agentToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Agent Token (sent as `Token <value>`)

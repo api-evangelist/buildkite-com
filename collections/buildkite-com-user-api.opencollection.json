@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Buildkite Agent Access Token User API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get The Current User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/user"
+          },
+          "docs": "Get The Current User"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

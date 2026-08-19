@@ -1,0 +1,162 @@
+{
+  "item": [
+    {
+      "id": "1882bad6-ea72-4018-9384-f3f62b1c6301",
+      "name": "Annotations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3eb0e6ef-bd18-4dfe-9f5a-96259e3d9437",
+          "name": "List Annotations For A Build",
+          "request": {
+            "name": "List Annotations For A Build",
+            "description": {},
+            "url": {
+              "path": [
+                "organizations",
+                ":org",
+                "pipelines",
+                ":pipeline",
+                "builds",
+                ":number",
+                "annotations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org",
+                  "description": "(Required) Organization slug"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pipeline",
+                  "description": "(Required) Pipeline slug"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "number",
+                  "description": "(Required) Build number"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea6ff182-bbe9-4967-8c21-3da6cafc2f17",
+              "name": "A list of annotations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":org",
+                    "pipelines",
+                    ":pipeline",
+                    "builds",
+                    ":number",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org",
+                      "description": "(Required) Organization slug"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pipeline",
+                      "description": "(Required) Pipeline slug"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "number",
+                      "description": "(Required) Build number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://agent.buildkite.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "12cf9ff9-cb63-490a-a9c2-14d8e8510015",
+    "name": "Buildkite Agent Access Token Annotations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,\naccept, and finish jobs. Most endpoints are reserved for internal use; only the documented\npublic endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).\n\n\nContact Support:\n Name: Buildkite Agent",
+      "type": "text/plain"
+    }
+  }
+}

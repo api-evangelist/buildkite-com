@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Buildkite Agent Access Token Emojis API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Emojis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Custom Emojis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/emojis",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "List Custom Emojis"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

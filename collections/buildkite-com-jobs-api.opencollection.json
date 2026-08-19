@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Buildkite Agent Access Token Jobs API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retry A Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines/:pipeline/builds/:number/jobs/:job/retry",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              },
+              {
+                "name": "job",
+                "value": "",
+                "type": "path",
+                "description": "Job UUID"
+              }
+            ]
+          },
+          "docs": "Retry A Job"
+        },
+        {
+          "info": {
+            "name": "Get Job Log Output",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines/:pipeline/builds/:number/jobs/:job/log",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              },
+              {
+                "name": "job",
+                "value": "",
+                "type": "path",
+                "description": "Job UUID"
+              }
+            ]
+          },
+          "docs": "Get Job Log Output"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

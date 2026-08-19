@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "960a74c3-9e16-42e0-9f21-42cbad71cf2f",
+      "name": "Pipeline Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "afdd61d1-b314-4626-be09-dc930eba02ad",
+          "name": "List Pipeline Templates",
+          "request": {
+            "name": "List Pipeline Templates",
+            "description": {},
+            "url": {
+              "path": [
+                "organizations",
+                ":org",
+                "pipeline-templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org",
+                  "description": "(Required) Organization slug"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e113b733-9341-4cd7-9594-3cb9bdb229ec",
+              "name": "A list of pipeline templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":org",
+                    "pipeline-templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org",
+                      "description": "(Required) Organization slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://agent.buildkite.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "58c795ce-0fa0-48ac-9be6-3381b6202658",
+    "name": "Buildkite Agent Access Token Pipeline Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,\naccept, and finish jobs. Most endpoints are reserved for internal use; only the documented\npublic endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).\n\n\nContact Support:\n Name: Buildkite Agent",
+      "type": "text/plain"
+    }
+  }
+}

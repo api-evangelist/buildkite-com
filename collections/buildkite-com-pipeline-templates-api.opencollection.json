@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Buildkite Agent Access Token Pipeline Templates API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipeline Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pipeline Templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipeline-templates",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "List Pipeline Templates"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

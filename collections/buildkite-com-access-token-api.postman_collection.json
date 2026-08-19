@@ -1,0 +1,171 @@
+{
+  "item": [
+    {
+      "id": "e73fbd9f-0d4b-47f3-a1df-4fe17e2cd798",
+      "name": "Access Token",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8e444713-b571-4c35-8f0c-b84cfe5b4f2b",
+          "name": "Get The Current Access Token",
+          "request": {
+            "name": "Get The Current Access Token",
+            "description": {},
+            "url": {
+              "path": [
+                "access-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22846e61-659e-4cff-bb07-0f954c7e4b64",
+              "name": "Access token metadata including scopes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "213f7e86-4a12-4b89-b8f5-e8f10e3556f9",
+          "name": "Revoke The Current Access Token",
+          "request": {
+            "name": "Revoke The Current Access Token",
+            "description": {},
+            "url": {
+              "path": [
+                "access-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ff38a36-0eed-47ca-b198-7662088b7eb5",
+              "name": "Revoked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://agent.buildkite.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6523bd49-4666-4f23-94a1-d6e4c5ed32e9",
+    "name": "Buildkite Agent Access Token API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,\naccept, and finish jobs. Most endpoints are reserved for internal use; only the documented\npublic endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).\n\n\nContact Support:\n Name: Buildkite Agent",
+      "type": "text/plain"
+    }
+  }
+}

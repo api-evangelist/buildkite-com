@@ -1,0 +1,126 @@
+{
+  "item": [
+    {
+      "id": "40f28f9e-e9ae-4289-a0ea-33bce6f6b8b3",
+      "name": "Emojis",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1c7b20d-e6c7-498b-b04f-4f2a2b277291",
+          "name": "List Custom Emojis",
+          "request": {
+            "name": "List Custom Emojis",
+            "description": {},
+            "url": {
+              "path": [
+                "organizations",
+                ":org",
+                "emojis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org",
+                  "description": "(Required) Organization slug"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0fbe05b-54a2-411f-8f08-12279a4cb363",
+              "name": "A list of custom emojis",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":org",
+                    "emojis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org",
+                      "description": "(Required) Organization slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://agent.buildkite.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b89e4ff-0dae-4df9-8fd3-e5bb88a13785",
+    "name": "Buildkite Agent Access Token Emojis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,\naccept, and finish jobs. Most endpoints are reserved for internal use; only the documented\npublic endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).\n\n\nContact Support:\n Name: Buildkite Agent",
+      "type": "text/plain"
+    }
+  }
+}

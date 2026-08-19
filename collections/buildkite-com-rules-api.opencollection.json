@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Buildkite Agent Access Token Rules API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organization Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/rules",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "List Organization Rules"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

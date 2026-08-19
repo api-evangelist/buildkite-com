@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Buildkite Agent Access Token Builds API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Builds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Builds For A Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines/:pipeline/builds",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              }
+            ]
+          },
+          "docs": "List Builds For A Pipeline"
+        },
+        {
+          "info": {
+            "name": "Create A Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines/:pipeline/builds",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              }
+            ]
+          },
+          "docs": "Create A Build"
+        },
+        {
+          "info": {
+            "name": "Get A Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines/:pipeline/builds/:number",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              }
+            ]
+          },
+          "docs": "Get A Build"
+        },
+        {
+          "info": {
+            "name": "Cancel A Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines/:pipeline/builds/:number/cancel",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              }
+            ]
+          },
+          "docs": "Cancel A Build"
+        },
+        {
+          "info": {
+            "name": "Rebuild A Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines/:pipeline/builds/:number/rebuild",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              }
+            ]
+          },
+          "docs": "Rebuild A Build"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

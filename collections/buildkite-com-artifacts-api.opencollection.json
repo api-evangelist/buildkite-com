@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Buildkite Agent Access Token Artifacts API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artifacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Artifacts For A Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines/:pipeline/builds/:number/artifacts",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              }
+            ]
+          },
+          "docs": "List Artifacts For A Build"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

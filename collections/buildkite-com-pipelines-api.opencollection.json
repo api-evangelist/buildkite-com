@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Buildkite Agent Access Token Pipelines API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipelines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ]
+          },
+          "docs": "List Pipelines"
+        },
+        {
+          "info": {
+            "name": "Create A Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create A Pipeline"
+        },
+        {
+          "info": {
+            "name": "Get A Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines/:pipeline",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              }
+            ]
+          },
+          "docs": "Get A Pipeline"
+        },
+        {
+          "info": {
+            "name": "Update A Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines/:pipeline",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              }
+            ]
+          },
+          "docs": "Update A Pipeline"
+        },
+        {
+          "info": {
+            "name": "Delete A Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/pipelines/:pipeline",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "pipeline",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline slug"
+              }
+            ]
+          },
+          "docs": "Delete A Pipeline"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

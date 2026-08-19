@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Buildkite Agent Access Token Agent Tokens API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agent Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Agent Tokens For A Cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/organizations/:org/clusters/:cluster/tokens",
+            "params": [
+              {
+                "name": "org",
+                "value": "",
+                "type": "path",
+                "description": "Organization slug"
+              },
+              {
+                "name": "cluster",
+                "value": "",
+                "type": "path",
+                "description": "Cluster UUID"
+              }
+            ]
+          },
+          "docs": "List Agent Tokens For A Cluster"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

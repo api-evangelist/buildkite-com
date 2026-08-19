@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Buildkite Agent Access Token Stacks API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stacks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Stack Configuration For Self-Hosted Queues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent.buildkite.com/v3/stacks"
+          },
+          "docs": "Returns the desired stack configuration for a self-hosted queue's controller process. The controller watches the queue for jobs and runs agents on demand."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

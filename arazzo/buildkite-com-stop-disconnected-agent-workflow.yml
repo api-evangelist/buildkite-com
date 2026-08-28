@@ -12,8 +12,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: buildkiteRestApi
-  url: ../openapi/buildkite-rest-api-openapi.yml
+- name: agentsApi
+  url: ../openapi/buildkite-com-agents-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: stop-disconnected-agent

@@ -11,8 +11,11 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: buildkiteRestApi
-  url: ../openapi/buildkite-rest-api-openapi.yml
+- name: buildsApi
+  url: ../openapi/buildkite-com-builds-api-openapi.yml
+  type: openapi
+- name: pipelinesApi
+  url: ../openapi/buildkite-com-pipelines-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-pipeline-and-first-build

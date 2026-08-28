@@ -13,8 +13,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: buildkiteRestApi
-  url: ../openapi/buildkite-rest-api-openapi.yml
+- name: buildsApi
+  url: ../openapi/buildkite-com-builds-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: rebuild-latest-build

@@ -12,8 +12,14 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: buildkiteRestApi
-  url: ../openapi/buildkite-rest-api-openapi.yml
+- name: annotationsApi
+  url: ../openapi/buildkite-com-annotations-api-openapi.yml
+  type: openapi
+- name: artifactsApi
+  url: ../openapi/buildkite-com-artifacts-api-openapi.yml
+  type: openapi
+- name: buildsApi
+  url: ../openapi/buildkite-com-builds-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: build-failure-triage

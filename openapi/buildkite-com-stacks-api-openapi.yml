@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Buildkite Agent Access Token Stacks API
+  title: Buildkite Agent Stacks API
   version: v3
   description: 'Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
 

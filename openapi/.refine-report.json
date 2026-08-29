@@ -1,27 +1,12 @@
 {
   "provider": "buildkite-com",
   "sources": [
-    "buildkite-com-access-token-api-openapi.yml",
-    "buildkite-com-agent-tokens-api-openapi.yml",
-    "buildkite-com-agents-api-openapi.yml",
-    "buildkite-com-annotations-api-openapi.yml",
-    "buildkite-com-artifacts-api-openapi.yml",
-    "buildkite-com-builds-api-openapi.yml",
-    "buildkite-com-clusters-api-openapi.yml",
-    "buildkite-com-emojis-api-openapi.yml",
-    "buildkite-com-jobs-api-openapi.yml",
-    "buildkite-com-meta-api-openapi.yml",
-    "buildkite-com-metrics-api-openapi.yml",
-    "buildkite-com-organizations-api-openapi.yml",
-    "buildkite-com-pipeline-templates-api-openapi.yml",
-    "buildkite-com-pipelines-api-openapi.yml",
-    "buildkite-com-queues-api-openapi.yml",
-    "buildkite-com-rules-api-openapi.yml",
-    "buildkite-com-stacks-api-openapi.yml",
-    "buildkite-com-teams-api-openapi.yml",
-    "buildkite-com-user-api-openapi.yml"
+    "_original/buildkite-agent-api-openapi.yml",
+    "_original/buildkite-rest-api-openapi.yml"
   ],
   "outputs": [
+    "buildkite-com-metrics-api-openapi.yml",
+    "buildkite-com-stacks-api-openapi.yml",
     "buildkite-com-access-token-api-openapi.yml",
     "buildkite-com-agent-tokens-api-openapi.yml",
     "buildkite-com-agents-api-openapi.yml",
@@ -32,19 +17,41 @@
     "buildkite-com-emojis-api-openapi.yml",
     "buildkite-com-jobs-api-openapi.yml",
     "buildkite-com-meta-api-openapi.yml",
-    "buildkite-com-metrics-api-openapi.yml",
     "buildkite-com-organizations-api-openapi.yml",
     "buildkite-com-pipeline-templates-api-openapi.yml",
     "buildkite-com-pipelines-api-openapi.yml",
     "buildkite-com-queues-api-openapi.yml",
     "buildkite-com-rules-api-openapi.yml",
-    "buildkite-com-stacks-api-openapi.yml",
     "buildkite-com-teams-api-openapi.yml",
     "buildkite-com-user-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "buildkite-agent-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "buildkite-rest-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "buildkite-com-access-token-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-agent-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-annotations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-artifacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-builds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-clusters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-emojis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-meta-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-pipeline-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-pipelines-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-queues-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-stacks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "buildkite-com-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

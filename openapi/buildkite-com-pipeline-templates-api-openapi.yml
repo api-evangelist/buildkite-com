@@ -1,24 +1,25 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Buildkite Agent Access Token Pipeline Templates API
-  version: v3
-  description: 'Public subset of the Buildkite Agent API consumed by the open-source agent (Go) to register,
+  title: Buildkite REST Pipeline Templates API
+  version: v2
+  description: 'Programmatic control of Buildkite Pipelines covering organizations, pipelines,
 
-    accept, and finish jobs. Most endpoints are reserved for internal use; only the documented
+    builds, jobs, artifacts, annotations, agents, clusters, queues, and access tokens.
 
-    public endpoints are stable. Authenticated with an Agent Token (`Authorization: Token <agent-token>`).
+    Authenticated with a Bearer API access token.
 
     '
   contact:
-    name: Buildkite Agent
-    url: https://github.com/buildkite/agent
+    name: Buildkite Support
+    url: https://buildkite.com/support
+  license:
+    name: Buildkite Terms of Service
+    url: https://buildkite.com/legal/terms-of-service
 servers:
-- url: https://agent.buildkite.com/v3
-  description: Standard Agent API
-- url: https://agent-edge.buildkite.com/v3
-  description: Edge Agent API (adds gRPC methods alongside JSON)
+- url: https://api.buildkite.com/v2
+  description: Buildkite REST API v2
 security:
-- agentToken: []
+- bearerAuth: []
 tags:
 - name: Pipeline Templates
 paths:
@@ -43,7 +44,7 @@ components:
         type: string
       description: Organization slug
   securitySchemes:
-    agentToken:
+    bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: Agent Token (sent as `Token <value>`)
+      bearerFormat: API access token

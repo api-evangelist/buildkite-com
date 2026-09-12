@@ -549,6 +549,8 @@ apis:
   - type: JSONLD
     url: json-ld/buildkite-com-context.jsonld
 common:
+- type: Website
+  url: https://www.buildkite.com/
 - type: AgenticAccess
   url: agentic-access/buildkite-com-agentic-access.yml
 - type: TrustCenter

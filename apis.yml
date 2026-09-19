@@ -194,6 +194,8 @@ apis:
   humanURL: https://buildkite.com/docs/apis/rest-api
   baseURL: https://api.buildkite.com/v2
   tags:
+  - Annotation
+  tags_raw:
   - Annotations
   properties:
   - type: OpenAPI

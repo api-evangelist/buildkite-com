@@ -6,9 +6,7 @@ info:
 
     builds, jobs, artifacts, annotations, agents, clusters, queues, and access tokens.
 
-    Authenticated with a Bearer API access token.
-
-    '
+    Authenticated with a Bearer API access token.'
   contact:
     name: Buildkite Support
     url: https://buildkite.com/support
@@ -38,6 +36,13 @@ paths:
           description: A list of annotations
 components:
   parameters:
+    BuildNumber:
+      name: number
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Build number
     Pipeline:
       name: pipeline
       in: path
@@ -52,13 +57,6 @@ components:
       schema:
         type: string
       description: Organization slug
-    BuildNumber:
-      name: number
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: Build number
   securitySchemes:
     bearerAuth:
       type: http

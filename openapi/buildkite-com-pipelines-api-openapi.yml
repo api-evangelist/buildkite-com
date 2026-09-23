@@ -6,9 +6,7 @@ info:
 
     builds, jobs, artifacts, annotations, agents, clusters, queues, and access tokens.
 
-    Authenticated with a Bearer API access token.
-
-    '
+    Authenticated with a Bearer API access token.'
   contact:
     name: Buildkite Support
     url: https://buildkite.com/support
@@ -90,6 +88,21 @@ paths:
         '204':
           description: Pipeline deleted
 components:
+  parameters:
+    Pipeline:
+      name: pipeline
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Pipeline slug
+    Org:
+      name: org
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization slug
   schemas:
     Pipeline:
       type: object
@@ -130,21 +143,6 @@ components:
           - string
           - 'null'
           format: date-time
-  parameters:
-    Pipeline:
-      name: pipeline
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Pipeline slug
-    Org:
-      name: org
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Organization slug
   securitySchemes:
     bearerAuth:
       type: http

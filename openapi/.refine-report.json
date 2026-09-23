@@ -31,7 +31,8 @@
   "notes": [
     "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "buildkite-agent-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "buildkite-rest-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+    "buildkite-rest-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "buildkite-com-access-token-api-openapi.yml: previously refined output, superseded by openapi/_original/",

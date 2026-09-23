@@ -6,9 +6,7 @@ info:
 
     builds, jobs, artifacts, annotations, agents, clusters, queues, and access tokens.
 
-    Authenticated with a Bearer API access token.
-
-    '
+    Authenticated with a Bearer API access token.'
   contact:
     name: Buildkite Support
     url: https://buildkite.com/support

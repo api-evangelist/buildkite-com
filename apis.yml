@@ -1,16 +1,21 @@
 aid: buildkite-com
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - buildkite/agent
+    - buildkite/buildkite-mcp-server
+    - buildkite/docs
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: paid
@@ -770,6 +775,7 @@ tags:
 - REST
 - MCP
 - Webhook
+- Australia
 tags_raw:
 - CI/CD
 - Continuous Integration
@@ -785,6 +791,7 @@ tags_raw:
 - REST
 - MCP
 - Webhooks
+- Australia
 created: '2026-05-25T00:00:00.000Z'
 modified: '2026-06-20'
 position: Consuming

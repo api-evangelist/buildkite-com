@@ -63,6 +63,21 @@ paths:
         '204':
           description: Agent stopped
 components:
+  parameters:
+    AgentId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Agent UUID
+    Org:
+      name: org
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization slug
   schemas:
     Agent:
       type: object
@@ -101,21 +116,6 @@ components:
         created_at:
           type: string
           format: date-time
-  parameters:
-    AgentId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Agent UUID
-    Org:
-      name: org
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Organization slug
   securitySchemes:
     bearerAuth:
       type: http

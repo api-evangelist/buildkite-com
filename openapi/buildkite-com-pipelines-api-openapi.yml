@@ -129,13 +129,6 @@ components:
           - 'null'
           format: date-time
   parameters:
-    Pipeline:
-      name: pipeline
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Pipeline slug
     Org:
       name: org
       in: path
@@ -143,6 +136,13 @@ components:
       schema:
         type: string
       description: Organization slug
+    Pipeline:
+      name: pipeline
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Pipeline slug
   securitySchemes:
     bearerAuth:
       type: http

@@ -90,46 +90,7 @@ paths:
         '200':
           description: Build re-queued
 components:
-  parameters:
-    BuildNumber:
-      name: number
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: Build number
-    Pipeline:
-      name: pipeline
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Pipeline slug
-    Org:
-      name: org
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Organization slug
   schemas:
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        avatar_url:
-          type: string
-          format: uri
-        created_at:
-          type: string
-          format: date-time
     Build:
       type: object
       properties:
@@ -185,6 +146,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Job'
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        avatar_url:
+          type: string
+          format: uri
+        created_at:
+          type: string
+          format: date-time
     Job:
       type: object
       properties:
@@ -232,6 +210,28 @@ components:
           - string
           - 'null'
           format: date-time
+  parameters:
+    BuildNumber:
+      name: number
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Build number
+    Org:
+      name: org
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization slug
+    Pipeline:
+      name: pipeline
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Pipeline slug
   securitySchemes:
     bearerAuth:
       type: http

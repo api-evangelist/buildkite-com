@@ -1,0 +1,67 @@
+slug: buildkite-com
+provider: Buildkite
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Builds
+  spec_file: buildkite-com-builds-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.95
+  evidence: POST /organizations/{org}/pipelines/{pipeline}/builds  createBuild  Create A Build; PUT .../rebuild  rebuildBuild
+  reason: Creating, cancelling and rebuilding pipeline builds is exactly CI build-pipeline execution on
+    a CI/CD platform; no other reading fits.
+- tag: Jobs
+  spec_file: buildkite-com-jobs-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.85
+  evidence: PUT .../jobs/{job}/retry  retryJob  Retry A Job; GET .../jobs/{job}/log  getJobLog  Get Job
+    Log Output
+  reason: Retrying CI build jobs and retrieving their log output is core continuous-integration pipeline
+    execution on this CI/CD platform.
+- tag: Pipelines
+  spec_file: buildkite-com-pipelines-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.85
+  evidence: POST /organizations/{org}/pipelines  createPipeline  Create A Pipeline; "Programmatic control
+    of Buildkite Pipelines covering organizations, pipelines, builds, jobs, artifacts"
+  reason: Full CRUD over CI/CD build pipelines on a CI platform — this is continuous integration pipeline
+    management, not a business pipeline (sales) homograph, as the surrounding builds/jobs/artifacts context
+    makes clear.
+- tag: Artifacts
+  spec_file: buildkite-com-artifacts-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.8
+  evidence: GET /organizations/{org}/pipelines/{pipeline}/builds/{number}/artifacts  listArtifactsForBuild  List
+    Artifacts For A Build
+  reason: Build artefacts produced by pipeline runs map directly to Continuous Integration Management,
+    defined as 'Build pipelines, artefact production'. Only ambiguity is whether artefact storage belongs
+    to release engineering.
+- tag: Agents
+  spec_file: buildkite-com-agents-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.7
+  evidence: GET /organizations/{org}/agents  listAgents; PUT /organizations/{org}/agents/{id}/stop  stopAgent  Stop
+    An Agent
+  reason: Buildkite agents are the workers that execute CI build jobs on customer infrastructure; listing
+    and stopping them is operation of the continuous-integration build fleet. Mapped to Continuous Integration
+    Management, with some ambiguity as to whether this is better read as build-environment plumbing.

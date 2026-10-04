@@ -556,6 +556,9 @@ apis:
   - type: JSONLD
     url: json-ld/buildkite-com-context.jsonld
 common:
+- type: CapabilityMap
+  url: capabilities/buildkite-com-capability-edges.yml
+  name: Buildkite Business Capability Map
 - type: Website
   url: https://www.buildkite.com/
 - type: AgenticAccess

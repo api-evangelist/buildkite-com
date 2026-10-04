@@ -88,6 +88,21 @@ paths:
         '204':
           description: Pipeline deleted
 components:
+  parameters:
+    Pipeline:
+      name: pipeline
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Pipeline slug
+    Org:
+      name: org
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization slug
   schemas:
     Pipeline:
       type: object
@@ -128,21 +143,6 @@ components:
           - string
           - 'null'
           format: date-time
-  parameters:
-    Org:
-      name: org
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Organization slug
-    Pipeline:
-      name: pipeline
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Pipeline slug
   securitySchemes:
     bearerAuth:
       type: http

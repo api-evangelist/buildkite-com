@@ -51,20 +51,6 @@ paths:
           description: Log content
 components:
   parameters:
-    BuildNumber:
-      name: number
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: Build number
-    Org:
-      name: org
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Organization slug
     Pipeline:
       name: pipeline
       in: path
@@ -72,6 +58,13 @@ components:
       schema:
         type: string
       description: Pipeline slug
+    Org:
+      name: org
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Organization slug
     JobId:
       name: job
       in: path
@@ -79,6 +72,13 @@ components:
       schema:
         type: string
       description: Job UUID
+    BuildNumber:
+      name: number
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Build number
   securitySchemes:
     bearerAuth:
       type: http

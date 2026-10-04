@@ -1,0 +1,31 @@
+generated: '2026-10-04'
+method: derived
+source: mcp/buildkite-com-mcp.yml
+crosswalk:
+  - tool: list_agents
+    category: agents
+    rest:
+      - listAgents
+    binding: direct
+    confidence: high
+  - tool: get_agent
+    category: agents
+    rest:
+      - getAgent
+    binding: direct
+    confidence: high
+  - tool: create_build
+    category: builds
+    rest:
+      - createBuild
+    binding: direct
+    confidence: high
+  - tool: cancel_build
+    category: builds
+    rest:
+      - cancelBuild
+    binding: direct
+    confidence: high
+coverage:
+  total_tools: 4
+  mapped_tools: 4

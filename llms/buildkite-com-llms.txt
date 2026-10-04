@@ -19,7 +19,7 @@
 - [Getting started](https://buildkite.com/docs/pipelines/getting-started.md): Step-by-step tutorial covering creating your first pipeline from a Buildkite example, writing your own pipeline definition in your repository, and adding a Test Engine test suite to collect test results.
 - [Getting started with coding agents](https://buildkite.com/docs/pipelines/getting-started-with-coding-agents.md): Three ways to give AI coding agents (Claude Code, Cursor, GitHub Copilot) the context and tools they need to work with Buildkite: connecting to the MCP server for live REST API access, installing Buildkite skills for expert patterns, and using Markdown documentation pages and per-section llms.txt files as context. Applies across Buildkite Pipelines, Test Engine, and Package Registries.
 - [Speed up builds with bktec](https://buildkite.com/docs/pipelines/speed-up-builds-with-bktec.md): How bktec (Test Engine Client) speeds builds using intelligent test splitting and quarantines flaky tests.
-- [Reduce flaky tests](https://buildkite.com/docs/pipelines/reduce-flaky-tests.md): Strategy for detecting, quarantining, and remediating flaky tests using workflows, labels, and notifications.
+- [Reduce flaky tests](https://buildkite.com/docs/pipelines/reduce-flaky-tests.md): Overview of how Test Engine helps Buildkite Pipelines detect, quarantine, remediate, and track the recovery of flaky tests.
 - [Buildkite Pipelines architecture](https://buildkite.com/docs/pipelines/architecture.md): Explains the self-hosted (hybrid) and Buildkite hosted architecture models for build environments.
 - [Dashboard walkthrough](https://buildkite.com/docs/pipelines/dashboard-walkthrough.md): Guide to the Pipelines dashboard UI including pipeline status, build history, speed, reliability metrics, and favorites.
 - [Build page](https://buildkite.com/docs/pipelines/build-page.md): Guide to the redesigned build page UI with sidebar navigation, step search, log viewing, and summary/steps/annotations views.
@@ -35,8 +35,9 @@
 
 ### Connect source control
 
-- [Overview](https://buildkite.com/docs/pipelines/source-control.md): Index of supported source control integrations: GitHub, GitHub Enterprise, GitLab, Bitbucket, Bitbucket Server, Phabricator, and Git.
-- [GitHub](https://buildkite.com/docs/pipelines/source-control/github.md): Complete GitHub integration guide: connecting via the GitHub App or OAuth, the Buildkite GitHub permissions and provider options comparison, creating pipelines, branch configuration, building pull requests and the test merge commit, merge queues, git tag builds, disabling webhooks, additional GitHub events, environment variables, noreply email handling, customizing build- and step-level commit statuses, GitHub API rate limits and how to reduce and raise them, using one repository across multiple pipelines, build skipping, and GitHub App installation access tokens.
+- [Overview](https://buildkite.com/docs/pipelines/source-control.md): Overview of supported source control integrations and private repository authentication options, including native access for Buildkite hosted agents, SSH keys stored in Buildkite Secrets or on self-hosted agent machines, and GitHub App installation access tokens.
+- [Origin](https://buildkite.com/docs/pipelines/source-control/origin.md): Guide for starting a Buildkite evaluation from Origin codebase Apps settings, connecting Origin to an existing Buildkite organization, selecting repositories, creating pipelines, checking out private repositories on hosted agents, using Origin as a clone mirror for GitHub, triggering branch, tag, and pull request builds, publishing check runs, configuring required-check keys, handling suspended installations, and troubleshooting.
+- [GitHub](https://buildkite.com/docs/pipelines/source-control/github.md): Complete GitHub integration guide: connecting via the GitHub App or OAuth, the Buildkite GitHub permissions and provider options comparison, creating pipelines, branch configuration, building pull requests and the test merge commit, merge queues, git tag builds, disabling webhooks, additional GitHub events, environment variables, noreply email handling, customizing build- and step-level commit statuses, GitHub API rate limits and how to reduce and raise them, using one repository across multiple pipelines, build skipping, workflow-scoped GitHub access tokens bounded by a workflow file's permissions, and GitHub App installation access tokens.
 - [GitHub Enterprise](https://buildkite.com/docs/pipelines/source-control/github-enterprise.md): Setting up GitHub Enterprise Server integration with OAuth app registration, webhooks, and commit status updates.
 - [GitLab](https://buildkite.com/docs/pipelines/source-control/gitlab.md): Setting up GitLab and GitLab Self-Managed integration with webhooks and commit status updates.
 - [Bitbucket](https://buildkite.com/docs/pipelines/source-control/bitbucket.md): Setting up Bitbucket Cloud integration with webhooks and commit status updates.
@@ -48,6 +49,7 @@
 
 - [Overview](https://buildkite.com/docs/pipelines/migration.md): Overview of migration tools and guides for moving to Buildkite from Jenkins, GitHub Actions, Bamboo, and other CI/CD platforms.
 - [From GitHub Actions](https://buildkite.com/docs/pipelines/migration/from-githubactions.md): End-to-end migration guide from GitHub Actions: architecture and default checkout differences, security model, mapping pipeline concepts, provisioning agent infrastructure, and pipeline translation fundamentals (files and syntax, step execution, workspace state, agent targeting). Includes a nine-step worked example translating a GitHub Actions workflow, a key mappings reference, and guidance on translating triggers, context variables, conditionals, matrix builds, services, job outputs, and step summaries.
+- [Run GitHub Actions workflows](https://buildkite.com/docs/pipelines/migration/run-github-actions-workflows.md): Public preview for running supported Linux x86-64 and macOS arm64 GitHub Actions workflows as Buildkite Pipelines jobs with the GitHub Actions Buildkite plugin and buildkite-gha runtime. Covers setup, architecture, requirements, agent targeting, compatibility limits, the credential and security boundary for public and limited private workflows, incremental migration, optional direct CLI use, and automatically detecting workflows when creating or editing an eligible GitHub-connected pipeline.
 - [From CircleCI](https://buildkite.com/docs/pipelines/migration/from-circleci.md): Migration guide from CircleCI covering architecture differences, orbs vs plugins, executor mapping, workspace handling, and pipeline translation.
 - [From Jenkins](https://buildkite.com/docs/pipelines/migration/from-jenkins.md): Migration guide from Jenkins covering architecture differences, pipeline translation, agents, plugins, and secrets.
 - [From Bitbucket Pipelines](https://buildkite.com/docs/pipelines/migration/from-bitbucket-pipelines.md): Migration guide from Bitbucket Pipelines: understanding the differences (system architecture, security, and pipeline configuration concepts), provisioning agent infrastructure, pipeline translation fundamentals, a worked example translating a bitbucket-pipelines.yml configuration, and translating common patterns to Buildkite Pipelines.
@@ -83,12 +85,14 @@
 ### Agent
 
 - [Overview](https://buildkite.com/docs/agent.md): Overview of the Buildkite agent, comparing self-hosted and Buildkite hosted agents, architecture, lifecycle, and CLI usage.
+- [Version support policy](https://buildkite.com/docs/agent/version-support-policy.md): Buildkite agent version support policy, effective January 1, 2027: each minor release line is supported for one year from its first stable release, deprecated for the final three months, then unsupported. Covers which release lines are affected when the policy takes effect, the end of agent v3 support, checking agent versions, upgrade paths by installation method, what support includes, and lifecycle warnings.
 - [v3 to v4 upgrade guide](https://buildkite.com/docs/agent/v3-v4-upgrade-guide.md)
 
 #### Self-hosted agents
 
 - [Overview](https://buildkite.com/docs/agent/self-hosted.md): Running agents on your own infrastructure, covering installation, configuration, starting agents, and experimental features.
-- [Tokens](https://buildkite.com/docs/agent/self-hosted/tokens.md): Creating, managing, and revoking agent tokens used to connect self-hosted agents to Buildkite clusters.
+- [Agent tokens](https://buildkite.com/docs/agent/self-hosted/tokens.md): Creating, managing, and revoking agent tokens used by self-hosted agents and stack controllers, plus internal session and job tokens.
+- [Job acquisition tokens](https://buildkite.com/docs/agent/self-hosted/job-acquisition-tokens.md): Using short-lived job acquisition tokens to register stack-managed ephemeral agents for one reserved job without exposing long-lived agent tokens to job workloads.
 - [Code access](https://buildkite.com/docs/agent/self-hosted/code-access.md): Configuring SSH keys on self-hosted agents to clone private Git repositories, including GitHub-specific setup.
 
 ##### Run on Kubernetes
@@ -157,8 +161,10 @@
 - [Setup with Terraform](https://buildkite.com/docs/agent/self-hosted/aws/elastic-ci-stack/ec2-linux-and-windows/terraform.md): Deploying the Elastic CI Stack for AWS using the Terraform module instead of CloudFormation.
 - [Security](https://buildkite.com/docs/agent/self-hosted/aws/elastic-ci-stack/ec2-linux-and-windows/security.md): Security configuration for Elastic CI Stack for AWS: S3 secrets, VPC settings, IAM permissions, and CloudFormation.
 - [Managing the Stack](https://buildkite.com/docs/agent/self-hosted/aws/elastic-ci-stack/ec2-linux-and-windows/managing-elastic-ci-stack.md): Managing Elastic CI Stack for AWS: Docker registries, ECR, custom hooks, bootstrap scripts, and autoscaling. Upgrading and rolling back stacks using the AWS Console, update-stack, and deploy, including exporting current parameters, change set previews, and the template size limit. Handling renamed and removed parameters when upgrading from v5 to v6, the ScalerEventScheduleRate to ScalerEventSchedulePeriod rename, and BuildkiteAgentScalerVersion, plus troubleshooting stack update errors.
+- [Upgrading from v6 to v7](https://buildkite.com/docs/agent/self-hosted/aws/elastic-ci-stack/ec2-linux-and-windows/v6-v7-upgrade-guide.md): Upgrading Elastic CI Stack for AWS from v6 to v7 with Buildkite agent v4, including parameter migration, cancellation timing, Datadog tracing, and agent environment configuration.
 - [Configuration parameters](https://buildkite.com/docs/agent/self-hosted/aws/elastic-ci-stack/ec2-linux-and-windows/configuration-parameters.md): Complete reference of all CloudFormation and Terraform configuration parameters for Elastic CI Stack for AWS.
 - [Creating custom AMIs](https://buildkite.com/docs/agent/self-hosted/aws/elastic-ci-stack/ec2-linux-and-windows/creating-custom-amis.md): Building custom AMIs for Elastic CI Stack for AWS using Packer templates and the ImageId parameter.
+- [Git mirror seeding](https://buildkite.com/docs/agent/self-hosted/aws/elastic-ci-stack/ec2-linux-and-windows/git-mirror-seeding.md)
 
 ###### Build container images
 
@@ -248,12 +254,14 @@
 
 ##### macOS hosted agents
 
-- [Overview](https://buildkite.com/docs/agent/buildkite-hosted/macos.md): macOS hosted agent sizes, Apple silicon support, pre-installed software (Xcode, Homebrew), and configuration.
+- [Overview](https://buildkite.com/docs/agent/buildkite-hosted/macos.md): macOS hosted agent sizes, Apple silicon support, pre-installed software (Xcode, Homebrew), Docker daemon limitations, and configuration.
 - [Getting started with iOS](https://buildkite.com/docs/agent/buildkite-hosted/macos/getting-started-with-ios.md): Tutorial for building iOS apps using Buildkite macOS hosted agents with the FlappyKite sample project.
 - [Troubleshooting fastlane](https://buildkite.com/docs/agent/buildkite-hosted/macos/troubleshooting-fastlane.md): Troubleshooting fastlane issues on Buildkite hosted macOS agents: code signing, provisioning profiles, and keychains.
+- [Windows hosted agents](https://buildkite.com/docs/agent/buildkite-hosted/windows.md): Windows hosted agents running Windows Server 2022 on AMD64, including private preview availability, instance sizes, and current limitations.
 - [Code access](https://buildkite.com/docs/agent/buildkite-hosted/code-access.md): Configuring hosted agents to access private GitHub repositories and other providers using SSH or HTTPS.
 - [Pipeline migration](https://buildkite.com/docs/agent/buildkite-hosted/pipeline-migration.md): Steps to migrate existing pipelines to Buildkite hosted agent queues, including repository checkout changes.
 - [Terminal access](https://buildkite.com/docs/agent/buildkite-hosted/terminal-access.md): Accessing a live terminal on running hosted agent jobs for debugging and environment inspection.
+- [Desktop access](https://buildkite.com/docs/agent/buildkite-hosted/desktop-access.md): Opening a browser-based remote desktop (VNC) for running jobs on macOS hosted agents.
 - [Cache volumes](https://buildkite.com/docs/agent/buildkite-hosted/cache-volumes.md): Configuring NVMe cache volumes on hosted agents for build dependencies, Docker images, and Git mirrors.
 - [Internal container registry](https://buildkite.com/docs/agent/buildkite-hosted/internal-container-registry.md): Using the cluster-scoped internal container registry to store and share Docker images built by hosted agents.
 - [Network security](https://buildkite.com/docs/agent/buildkite-hosted/network-security.md): IP allowlisting, OIDC-based authentication, and network security configuration for Buildkite hosted agents.
@@ -321,6 +329,7 @@
 - [Promise job failure](https://buildkite.com/docs/pipelines/configure/promise-job-failure.md): Promising job failures with buildkite-agent job promise-failure, including Test Engine Client setup, retries, soft failures, Preflight, notifications, and APIs.
 - [Soft fail](https://buildkite.com/docs/pipelines/configure/soft-fail.md): Using the soft_fail attribute of a command step to let a step exit with a non-zero status without failing the build, including its optional attributes (such as exit_status), behavior with step dependencies, and use within a build matrix.
 - [Build artifacts](https://buildkite.com/docs/pipelines/configure/artifacts.md): Uploading, downloading, and managing build artifacts using step attributes, CLI commands, and the API.
+- [Buildkite Cache](https://buildkite.com/docs/pipelines/configure/cache.md): Public preview documentation for Buildkite Cache: configuring cache stores, defining cache keys and target paths, saving and restoring entries, managing cluster cache registries, and controlling access with cache policies.
 - [Build timeouts](https://buildkite.com/docs/pipelines/configure/build-timeouts.md): Configuring command step timeouts and scheduled job expiration at step, pipeline, and organization levels.
 - [Pipeline tags](https://buildkite.com/docs/pipelines/configure/tags.md): Tagging pipelines with emoji and text labels for filtering and searching on the dashboard.
 - [Build retention](https://buildkite.com/docs/pipelines/configure/build-retention.md): Build data retention periods by plan tier and the lifecycle of build data removal.
@@ -345,6 +354,7 @@
 ### Test Engine
 
 - [Overview](https://buildkite.com/docs/pipelines/configure/tests.md): Overview of Test Engine, the testing layer of Buildkite Pipelines, covering test suites, collection, and reliability features.
+- [Flaky tests](https://buildkite.com/docs/pipelines/configure/tests/flaky-tests.md): How to use Test Engine workflows, labels, test states, notifications, and recover actions to manage flaky tests.
 
 #### Test suites
 
@@ -354,7 +364,7 @@
 - [Test ownership](https://buildkite.com/docs/pipelines/configure/tests/test-suites/test-ownership.md): Assigning team ownership to tests using a TESTOWNERS file with Buildkite team slugs.
 - [Labels](https://buildkite.com/docs/pipelines/configure/tests/test-suites/labels.md): Creating and applying labels to tests manually, using workflows, execution tags, or the REST API.
 - [Saved views](https://buildkite.com/docs/pipelines/configure/tests/test-suites/saved-views.md): Creating and managing saved filter/display views for test suite data in Test Engine.
-- [Public test suites](https://buildkite.com/docs/pipelines/configure/tests/test-suites/public.md): Making a test suite publicly accessible with read-only access to run results and analytics.
+- [Upload health](https://buildkite.com/docs/pipelines/configure/tests/test-suites/upload-health.md): Monitoring upload volume and health for a Test Engine suite over one-day or seven-day periods, including outcome totals, a chart split by succeeded/rejected/failed, an execution-count histogram, and a table of the top upload problem groups.
 
 #### Test collection
 
@@ -441,13 +451,13 @@
 - [Deploying with Argo](https://buildkite.com/docs/pipelines/deployments/with-argo-cd.md): Integrating Buildkite Pipelines with Argo CD for GitOps-based Kubernetes deployments.
 - [Deploying with Heroku](https://buildkite.com/docs/pipelines/deployments/with-heroku.md): Deploying Heroku applications from Buildkite pipelines using git push or Heroku's automatic deploys feature.
 - [Deployment visibility with Backstage](https://buildkite.com/docs/pipelines/deployments/deployment-visibility-with-backstage.md): Monitoring Buildkite deployment pipelines in Backstage developer portals with real-time status and build management.
-- [Deployment plugins](https://buildkite.com/docs/pipelines/deployments/deployment-plugins.md): Directory of Buildkite plugins for deployment automation.
+- [Deployment plugins](https://buildkite.com/resources/plugins/category/deploy/): Buildkite plugins directory filtered to deployment plugins, hosted on buildkite.com/resources (external page, no Markdown version).
 
 ### Insights
 
 - [Waterfall view](https://buildkite.com/docs/pipelines/insights/waterfall.md): Waterfall chart view for visualizing build job timing, wait times, agent assignment, and execution durations.
 - [Cluster insights](https://buildkite.com/docs/pipelines/insights/clusters.md): Enterprise dashboard showing real-time cluster metrics: queue wait time, agent utilization, and job pass rate.
-- [Queue metrics](https://buildkite.com/docs/pipelines/insights/queue-metrics.md): Real-time queue statistics showing connected agents, running/waiting/scheduled jobs, and agent utilization.
+- [Queue metrics](https://buildkite.com/docs/pipelines/insights/queue-metrics.md): Queue details for current agent capacity, job demand, dispatch wait times, active job samples, and queue-level activity.
 
 ### Integrations
 
@@ -467,31 +477,31 @@
 - [Slack (legacy)](https://buildkite.com/docs/pipelines/integrations/notifications/slack.md): Legacy per-channel Slack notification service for build and job status updates. Buildkite recommends using the Slack Workspace notification service instead.
 - [CCMenu and CCTray](https://buildkite.com/docs/pipelines/integrations/notifications/cc-menu.md): Using the cctray.xml feed to display build status in CCMenu, CCTray, and build dashboards.
 - [Linear](https://buildkite.com/docs/pipelines/integrations/notifications/linear.md): Connecting Linear to Pipelines test suites for automatic issue creation from workflow actions.
-- [Notification plugins](https://buildkite.com/docs/pipelines/integrations/notifications/plugins.md): Directory of Buildkite plugins for delivering notifications.
+- [Notification plugins](https://buildkite.com/resources/plugins/category/notify/): Buildkite plugins directory filtered to notification plugins, hosted on buildkite.com/resources (external page, no Markdown version).
 
 #### Observability
 
 - [Overview](https://buildkite.com/docs/pipelines/integrations/observability/overview.md): Overview of observability integrations: Datadog, Honeycomb, OpenTelemetry, Amazon EventBridge, and community plugins.
-- [Datadog](https://buildkite.com/docs/pipelines/integrations/observability/datadog.md): Configuring Datadog APM tracing and CI Pipeline Visibility for Buildkite Pipelines.
+- [Datadog](https://buildkite.com/docs/pipelines/integrations/observability/datadog.md): Configuring Datadog APM tracing, OTLP job logs, and CI Pipeline Visibility for Buildkite Pipelines.
 - [Honeycomb](https://buildkite.com/docs/pipelines/integrations/observability/honeycomb.md): Integrating Honeycomb with Buildkite using buildevents binary, OpenTelemetry tracing, or the Markers plugin.
 - [OpenTelemetry](https://buildkite.com/docs/pipelines/integrations/observability/opentelemetry.md): Sending OpenTelemetry traces from Buildkite agents and the dashboard to your OTLP endpoint.
 - [Amazon EventBridge](https://buildkite.com/docs/pipelines/integrations/observability/amazon-eventbridge.md): Streaming real-time build, job, and agent events to Amazon EventBridge with full event schema reference.
-- [Observability plugins](https://buildkite.com/docs/pipelines/integrations/observability/plugins.md): Directory of Buildkite plugins for observability.
+- [Observability plugins](https://buildkite.com/resources/plugins/category/observability/): Buildkite plugins directory filtered to observability plugins, hosted on buildkite.com/resources (external page, no Markdown version).
 
 #### Security and compliance
 
-- [Security and compliance plugins](https://buildkite.com/docs/pipelines/integrations/security-and-compliance/plugins.md): Directory of Buildkite plugins for security, governance, and compliance.
+- [Security and compliance plugins](https://buildkite.com/resources/plugins/category/security-compliance/): Buildkite plugins directory filtered to security, governance, and compliance plugins, hosted on buildkite.com/resources (external page, no Markdown version).
 - [SonarScanner CLI tutorial](https://buildkite.com/docs/pipelines/integrations/security-and-compliance/sonar.md): Tutorial for integrating SonarScanner CLI with Buildkite pipelines for static code analysis using SonarQube or SonarCloud.
 
 #### Secrets
 
-- [Secrets plugins](https://buildkite.com/docs/pipelines/integrations/secrets/plugins.md): Directory of Buildkite plugins for secrets management.
+- [Secrets plugins](https://buildkite.com/resources/plugins/category/secrets/): Buildkite plugins directory filtered to secrets management plugins, hosted on buildkite.com/resources (external page, no Markdown version).
 
 #### Artifacts and packages
 
 - [Artifactory](https://buildkite.com/docs/pipelines/integrations/artifacts-and-packages/artifactory.md): Configuring the Buildkite agent to upload and download artifacts directly from JFrog Artifactory.
-- [Artifact plugins](https://buildkite.com/docs/pipelines/integrations/artifacts-and-packages/artifact-plugins.md): Directory of Buildkite plugins for managing or uploading build artifacts.
-- [Package plugins](https://buildkite.com/docs/pipelines/integrations/artifacts-and-packages/package-plugins.md): Directory of Buildkite plugins for publishing or retrieving packages.
+- [Artifact plugins](https://buildkite.com/resources/plugins/category/artifacts/): Buildkite plugins directory filtered to plugins for managing or uploading build artifacts, hosted on buildkite.com/resources (external page, no Markdown version).
+- [Package plugins](https://buildkite.com/resources/plugins/category/packages/): Buildkite plugins directory filtered to plugins for publishing or retrieving packages, hosted on buildkite.com/resources (external page, no Markdown version).
 
 #### Other integrations
 
@@ -598,7 +608,7 @@
 - [config](https://buildkite.com/docs/platform/cli/reference/config.md): CLI reference for bk config: manage Buildkite CLI configurations, including list, get, set, and unset.
 - [configure](https://buildkite.com/docs/platform/cli/reference/configure.md): CLI reference for bk configure: add configuration for new organizations.
 - [init](https://buildkite.com/docs/platform/cli/reference/init.md): CLI reference for bk init: initialize a pipeline.yaml file.
-- [job](https://buildkite.com/docs/platform/cli/reference/job.md): CLI reference for bk job: cancel, list, log, reprioritize, retry, and view jobs.
+- [job](https://buildkite.com/docs/platform/cli/reference/job.md): CLI reference for bk job: cancel, list, log, reprioritize, retry, unblock, and remotely access running hosted jobs.
 - [maintainer](https://buildkite.com/docs/platform/cli/reference/maintainer.md): CLI reference for bk maintainer: manage maintainers on a cluster, including listing, creating, and deleting maintainers.
 - [organization](https://buildkite.com/docs/platform/cli/reference/organization.md): CLI reference for bk organization: manage Buildkite organizations, including listing organizations.
 - [package](https://buildkite.com/docs/platform/cli/reference/package.md): CLI reference for bk package: push packages to a Buildkite registry.
@@ -607,6 +617,7 @@
 - [queue](https://buildkite.com/docs/platform/cli/reference/queue.md): CLI reference for bk queue: manage queues within clusters, including listing, viewing, creating, updating, deleting, pausing, and resuming queues.
 - [secret](https://buildkite.com/docs/platform/cli/reference/secret.md): CLI reference for bk secret: manage Buildkite secrets, including listing, getting, creating, updating, and deleting secrets.
 - [skill](https://buildkite.com/docs/platform/cli/reference/skill.md): CLI reference for bk skill: manage Buildkite skills for AI coding agents, including adding, updating, and deleting skills.
+- [team](https://buildkite.com/docs/platform/cli/reference/team.md): CLI reference for bk team: list, view, create, update, and delete organization teams.
 - [update](https://buildkite.com/docs/platform/cli/reference/update.md): CLI reference for bk update: update the installed bk CLI or print update instructions, handling Homebrew, mise, and standalone binary installations.
 - [user](https://buildkite.com/docs/platform/cli/reference/user.md): CLI reference for bk user: invite users to your organization.
 - [version](https://buildkite.com/docs/platform/cli/reference/version.md): CLI reference for bk version: display the installed CLI version.
@@ -619,30 +630,31 @@
 - [Manage teams](https://buildkite.com/docs/platform/terraform-provider/manage-teams.md): Managing teams and their members as Terraform resources using the buildkite_team and team member resources, with examples and guidance on applying the configuration.
 - [Manage Buildkite organizations](https://buildkite.com/docs/platform/terraform-provider/manage-buildkite-organizations.md): Managing Buildkite organization-level settings and system banners as Terraform resources using the buildkite_organization resource, including enforcing two-factor authentication and restricting API access by IP address, with guidance on applying the configuration.
 - [Import existing Buildkite resources to Terraform](https://buildkite.com/docs/platform/terraform-provider/import-existing-resources.md): Bringing existing Buildkite resources under Terraform management by defining import blocks and using terraform plan to generate configuration, effectively exporting existing pipelines from Buildkite to Terraform using their GraphQL IDs.
+- [VS Code extension](https://buildkite.com/docs/platform/vscode-extension.md): Buildkite Visual Studio Code extension for managing pipelines, builds, jobs, agents, and annotations from VS Code: OAuth or API token authentication, Pipelines/Agents/Support panels, workspace pipeline filtering, job log viewing with ANSI colors, build status in the editor status bar, and configurable build completion notifications.
 
 ### SSO
 
-- [Overview](https://buildkite.com/docs/platform/sso.md): Overview of SSO support, listing providers (Okta, ADFS, GitHub, Google, Azure AD, OneLogin, custom SAML).
+- [Overview](https://buildkite.com/docs/platform/sso.md): Overview of SSO support, listing providers (Okta, ADFS, GitHub, Google, Microsoft Entra ID, OneLogin, custom SAML).
 - [Okta](https://buildkite.com/docs/platform/sso/okta.md): Configuring Okta as an SSO provider with SAML and optional SCIM user provisioning.
 - [ADFS](https://buildkite.com/docs/platform/sso/adfs.md): Step-by-step setup of Active Directory Federation Services (ADFS) as an SSO provider.
 - [Google Workspace](https://buildkite.com/docs/platform/sso/google-workspace.md): Setting up Google Workspace (G Suite) as an SSO provider using OpenID.
 - [Google Workspace (SAML)](https://buildkite.com/docs/platform/sso/google-workspace-saml.md): Setting up Google Workspace as an SSO provider using SAML instead of OpenID.
 - [GitHub](https://buildkite.com/docs/platform/sso/github-sso.md): Configuring GitHub as an SSO provider for your Buildkite organization.
 - [OneLogin](https://buildkite.com/docs/platform/sso/onelogin.md): Step-by-step setup of OneLogin as an SSO provider.
-- [Azure AD](https://buildkite.com/docs/platform/sso/azure-ad.md): Configuring Microsoft Entra ID (Azure AD) as an SSO provider using custom SAML.
+- [Microsoft Entra ID](https://buildkite.com/docs/platform/sso/azure-ad.md): Configuring Microsoft Entra ID (Azure AD) as an SSO provider using custom SAML.
 - [Custom SAML](https://buildkite.com/docs/platform/sso/custom-saml.md): Setting up any SAML 2.0 identity provider as an SSO provider for Buildkite.
 - [Set up with GraphQL](https://buildkite.com/docs/platform/sso/sso-setup-with-graphql.md): Programmatically setting up SSO providers using the GraphQL API.
 
 ### Security
 
-- [Token security](https://buildkite.com/docs/platform/security/tokens.md): Buildkite token types (API, agent, registry) and GitHub secret scanning integration.
+- [Token security](https://buildkite.com/docs/platform/security/tokens.md): Buildkite token types and prefixes, including API, agent, job acquisition, registry, and portal tokens, plus GitHub secret scanning integration.
 - [Accessibility](https://buildkite.com/docs/platform/accessibility.md): Accessibility features in the Buildkite web application, including theme options, keyboard navigation, screen reader support, and reduced motion preferences.
 
 ### Billing and usage
 
 - [Artifacts storage and transfer](https://buildkite.com/docs/platform/artifact-storage-and-transfer-billing.md): Artifacts billing for Buildkite-managed storage, including how storage is measured in GB-days and billed in GB-months, how transfer (downloads) usage is calculated, example inclusions and overage rates, the UTC day boundary, worked examples, and retention. Notes that actual inclusions, rates, and retention vary by plan and where to find them.
 - [Limits](https://buildkite.com/docs/platform/limits.md): Default usage limits by plan tier for builds, pipelines, agents, webhooks, and API requests. Includes how to view your Buildkite organization's actual service quotas in settings.
-- [Pricing and plans](https://buildkite.com/docs/platform/pricing-and-plans.md): Overview of Buildkite plans (Personal, Pro, Enterprise) with links to detailed pricing and usage limits.
+- [Pricing and plans](https://buildkite.com/docs/platform/pricing-and-plans.md): Overview of Buildkite plans (Personal, Pro, Enterprise), usage limits, and billing spend alerts for invoice estimates.
 - [Service level agreement](https://buildkite.com/docs/platform/service-level-agreement.md): Buildkite SLA availability commitments, links to the status page for uptime data, and the full SLA document.
 - [Legal and policies](https://buildkite.com/docs/platform/legal-and-policies.md): Buildkite legal documents including terms of service, privacy policies, and data processing agreements.
 
@@ -668,15 +680,17 @@
 
 #### Organizations
 
-- [Overview](https://buildkite.com/docs/apis/rest-api/organizations.md): REST endpoints to list and retrieve Buildkite organization details.
+- [Overview](https://buildkite.com/docs/apis/rest-api/organizations.md): REST endpoints to list and retrieve Buildkite organization details. Organizations without an active plan are omitted, and requests for them return 404 No organization found.
 - [API settings](https://buildkite.com/docs/apis/rest-api/organizations/api-settings.md): REST endpoints to read and update an organization's API security settings: IP allowlist, inactive token revocation policy, and restriction of user token creation.
 - [Audit log](https://buildkite.com/docs/apis/rest-api/organizations/audit-events.md): REST endpoints to list and retrieve an organization's audit log events (Enterprise plan).
+- [Invitations](https://buildkite.com/docs/apis/rest-api/organizations/invitations.md): REST endpoints to list, retrieve, create, and revoke invitations for a Buildkite organization, including role, SSO, and team assignment options.
 - [Members](https://buildkite.com/docs/apis/rest-api/organizations/members.md): REST endpoints to list, retrieve, update, and remove members of a Buildkite organization.
 - [Rate limits](https://buildkite.com/docs/apis/rest-api/organizations/rate-limits.md): REST endpoint to query an organization's current REST and GraphQL API rate limit status.
 - [Notification services](https://buildkite.com/docs/apis/rest-api/organizations/notification-services.md): REST endpoints to list, retrieve, create, update, delete, enable, and disable notification services for a Buildkite organization.
 - [Pipeline settings](https://buildkite.com/docs/apis/rest-api/organizations/pipeline-settings.md): REST endpoints to read and update organization-level pipeline settings, including default branch, timeouts, hosted agents SSH access, public pipeline creation, advanced queue metrics, and build exports (admin only).
-- [Repository connections](https://buildkite.com/docs/apis/rest-api/organizations/repository-connections.md): REST endpoints to list and retrieve an organization's connected source control integrations, including GitHub, GitHub Enterprise Server, Bitbucket Server, and GitLab Self-Managed connections.
-- [Repositories for a connection](https://buildkite.com/docs/apis/rest-api/repository-connections.md): REST endpoint to list repositories available to an organization's repository connection, with optional case-insensitive filtering by full name. Supported for GitHub, GitHub Limited Access, GitHub Restricted, and GHES connections.
+- [Repository connections](https://buildkite.com/docs/apis/rest-api/organizations/repository-connections.md): REST endpoints to list and retrieve an organization's connected source control integrations, including GitHub, GitHub Enterprise Server, Bitbucket Server, GitLab Self-Managed, and Origin connections.
+- [Repositories for a connection](https://buildkite.com/docs/apis/rest-api/repository-connections.md): REST endpoint to list repositories available to an organization's repository connection, with optional case-insensitive filtering by full name. Supported for GitHub, GitHub Limited Access, GitHub Restricted, GHES, and Origin connections.
+- [Usage](https://buildkite.com/docs/apis/rest-api/organizations/usage.md): REST endpoint to retrieve an organization's billable active-user count for the current usage summary period, including deduplicated users from linked billing children.
 
 #### Package Registries 
 
@@ -702,10 +716,14 @@
 - [Agent images](https://buildkite.com/docs/apis/rest-api/clusters/agent-images.md): REST endpoints to list, get, create, and delete custom Dockerfile-based agent images for Buildkite hosted agents in a cluster.
 - [Network ranges](https://buildkite.com/docs/apis/rest-api/clusters/network-ranges.md): REST endpoint to list egress network ranges (IP CIDR blocks) for a Buildkite hosted agent cluster.
 - [Cache volumes](https://buildkite.com/docs/apis/rest-api/clusters/cache-volumes.md): REST endpoints to list and delete cache volumes for a Buildkite hosted agent cluster.
+- [Cache registries](https://buildkite.com/docs/apis/rest-api/clusters/cache-registries.md): REST endpoints to list, get, create, update, and delete cache registries in a cluster (public preview).
 - [Jobs](https://buildkite.com/docs/apis/rest-api/jobs.md): REST endpoints to list, get, retry, unblock, get log output, get environment variables, and delete jobs.
 - [Pipeline templates](https://buildkite.com/docs/apis/rest-api/pipeline-templates.md): REST endpoints to create and manage pipeline templates (Enterprise plan).
 - [Rules](https://buildkite.com/docs/apis/rest-api/rules.md): REST endpoints to create, list, get, and delete organization rules.
 - [Schedules](https://buildkite.com/docs/apis/rest-api/pipeline-schedules.md): REST endpoints to list, get, create, update, and delete pipeline schedules that automatically trigger builds at specified intervals.
+- [Step uploads](https://buildkite.com/docs/apis/rest-api/step-uploads.md): REST endpoints to list a build's dynamic pipeline (step) uploads and get a single upload's definition rendered as YAML, gated to builds within their maximum lifetime.
+- [Trigger deliveries](https://buildkite.com/docs/apis/rest-api/pipeline-trigger-deliveries.md): REST endpoints to list and get a pipeline trigger's retained recent deliveries and fetch a delivery's parsed request payload and redacted headers.
+- [Triggers](https://buildkite.com/docs/apis/rest-api/pipeline-triggers.md): REST endpoints to list, get, create, update, and delete generic webhook, GitHub, and Linear pipeline triggers, including one-time endpoint URL disclosure and redacted secrets.
 - [Portals](https://buildkite.com/docs/apis/rest-api/portals.md): REST endpoints to list, get, create, update, and delete portals, which expose stored GraphQL operations as authenticated URL endpoints with restricted scope.
 
 #### Teams
@@ -717,15 +735,12 @@
 
 #### Test Engine 
 
-- [Flaky tests](https://buildkite.com/docs/apis/rest-api/test-engine/flaky-tests.md): Deprecated REST endpoint for listing flaky tests; use the tests endpoint with label=flaky instead.
+- [Build tests](https://buildkite.com/docs/apis/rest-api/test-engine/build-tests.md): REST endpoint to list tests and aggregated execution metrics for a Buildkite Pipelines build.
+- [Execution tags](https://buildkite.com/docs/apis/rest-api/test-engine/execution-tags.md): REST endpoint to bulk replace or delete mutable tags on Test Engine executions.
 - [Quarantine](https://buildkite.com/docs/apis/rest-api/test-engine/quarantine.md): REST endpoints to skip, mute, and enable tests for quarantine management.
 - [Runs](https://buildkite.com/docs/apis/rest-api/test-engine/runs.md): REST endpoints to list and get test suite runs.
-- [Suites](https://buildkite.com/docs/apis/rest-api/test-engine/suites.md): REST endpoints to list, get, create, update, and delete test suites.
+- [Suites](https://buildkite.com/docs/apis/rest-api/test-engine/suites.md): REST endpoints to list, get, create, update, and delete test suites, including listing the suites associated with a pipeline.
 - [Tests](https://buildkite.com/docs/apis/rest-api/test-engine/tests.md): REST endpoints to list and get individual tests with filtering by label, state, and scope.
-
-#### Test Scheduler
-
-- [Pools](https://buildkite.com/docs/apis/rest-api/test-scheduler-pools.md): REST endpoints to list, get, and create Test Scheduler pools scoped to an organization, test suite, pipeline, and build using suite-scoped OIDC authentication.
 
 ### GraphQL
 
@@ -738,7 +753,7 @@
 - [Agents](https://buildkite.com/docs/apis/graphql/cookbooks/agents.md): GraphQL recipes for listing agent tokens, searching agents, revoking tokens, and stopping agents.
 - [Artifacts](https://buildkite.com/docs/apis/graphql/cookbooks/artifacts.md): GraphQL recipes for listing artifact download URLs from builds.
 - [Builds](https://buildkite.com/docs/apis/graphql/cookbooks/builds.md): GraphQL recipes for querying builds by ID, listing builds, creating, canceling, and rebuilding.
-- [Clusters](https://buildkite.com/docs/apis/graphql/cookbooks/clusters.md): GraphQL recipes for listing, creating, updating, and deleting clusters and their queues.
+- [Clusters](https://buildkite.com/docs/apis/graphql/cookbooks/clusters.md): GraphQL recipes for listing, creating, updating, and deleting clusters, their queues, and their cache registries. The cache registries GraphQL API is in public preview.
 - [GitHub rate limits](https://buildkite.com/docs/apis/graphql/cookbooks/github-rate-limits.md): GraphQL recipes for checking GitHub API rate limits on repository providers.
 - [Hosted agents](https://buildkite.com/docs/apis/graphql/cookbooks/hosted-agents.md): GraphQL recipes for creating and managing Buildkite hosted agent queues.
 - [Jobs](https://buildkite.com/docs/apis/graphql/cookbooks/jobs.md): GraphQL recipes for querying jobs by queue, concurrency group, and other criteria.
@@ -806,7 +821,7 @@
 
 - [Overview](https://buildkite.com/docs/apis/agent-api.md): Agent REST API overview for metrics, stacks, and internal job endpoints on agent.buildkite.com.
 - [Metrics](https://buildkite.com/docs/apis/agent-api/metrics.md): Agent API endpoint returning idle/busy agent counts, job totals, and queue statistics.
-- [Stacks](https://buildkite.com/docs/apis/agent-api/stacks.md): Agent API endpoints for implementing a stack: acquiring jobs, starting agents, and heartbeats.
+- [Stacks](https://buildkite.com/docs/apis/agent-api/stacks.md): Agent API endpoints for implementing a stack: listing and reserving jobs, issuing short-lived job acquisition tokens, starting agents, and reporting job states.
 - [Internal job](https://buildkite.com/docs/apis/agent-api/internal-job.md): Internal Unix socket API for querying and mutating job environment variables within a running agent.
 
 ### Model providers
@@ -821,7 +836,7 @@ Focused subsets of this documentation are available for specific topics:
 - [Buildkite AI Tools and MCP Documentation](https://buildkite.com/docs/llms-ai-tools-and-mcp.txt): Buildkite documentation for AI tool integration, covering the MCP server (remote and local), available tools and toolsets, model providers, GraphQL portals, and configuring AI coding agents.
 - [Getting Started with Buildkite Pipelines](https://buildkite.com/docs/llms-getting-started.txt): Buildkite documentation for getting started with Buildkite Pipelines, covering first pipeline creation, architecture, dashboard walkthrough, build page, pipeline converter, glossary, and connecting source control.
 - [Why Buildkite Pipelines](https://buildkite.com/docs/llms-why-buildkite-pipelines.txt): Buildkite documentation explaining the advantages of Buildkite Pipelines, including comparisons with Jenkins, GitLab, GitHub Actions, and CircleCI, getting started guides, architecture overview, pipeline converter, migration guides, and source control setup.
-- [Migrating to Buildkite Pipelines](https://buildkite.com/docs/llms-migrating-to-buildkite.txt): Buildkite documentation for migrating to Buildkite Pipelines from other CI/CD tools, covering migration guides from Jenkins, GitHub Actions, Bamboo, and CircleCI, plus the AI-powered pipeline converter for translating CI configurations.
+- [Migrating to Buildkite Pipelines](https://buildkite.com/docs/llms-migrating-to-buildkite.txt): Buildkite documentation for migrating to Buildkite Pipelines from other CI/CD tools, covering migration guides, running supported GitHub Actions workflows in Buildkite, and the AI-powered pipeline converter for translating CI configurations.
 - [Buildkite Pipelines Documentation](https://buildkite.com/docs/llms-pipelines.txt): Buildkite documentation for Buildkite Pipelines, covering getting started, architecture, configuration, best practices, and API integration.
 - [Buildkite Pipeline Configuration Documentation](https://buildkite.com/docs/llms-pipeline-configurations.txt): Buildkite documentation for configuring pipelines, including step types, dynamic pipelines, environment variables, workflows, artifacts, and build settings.
 - [Buildkite Dynamic Pipelines Documentation](https://buildkite.com/docs/llms-dynamic-pipelines.txt): Buildkite documentation for dynamic pipelines, including runtime step generation, the Buildkite SDK, if_changed conditions, tutorials, and example pipelines.
@@ -830,15 +845,15 @@ Focused subsets of this documentation are available for specific topics:
 - [Buildkite Deployments Documentation](https://buildkite.com/docs/llms-deployments.txt): Buildkite documentation for deployment pipelines, including deploying to AWS Lambda, Kubernetes, Argo CD, Heroku, deployment plugins, and visibility with Backstage.
 - [Buildkite Agent Documentation](https://buildkite.com/docs/llms-agent.txt): Buildkite documentation for the Buildkite agent, covering self-hosted and Buildkite hosted agents, installation, configuration, CLI reference, queues, hooks, and lifecycle.
 - [Buildkite Self-Hosted Agent Documentation](https://buildkite.com/docs/llms-self-hosted-agents.txt): Buildkite documentation for self-hosted agents, covering installation on Linux, macOS, Windows, and Docker, running on AWS, GCP, and Kubernetes, agent configuration, security, monitoring, and the CLI reference.
-- [Buildkite Hosted Agent Documentation](https://buildkite.com/docs/llms-hosted-agents.txt): Buildkite documentation for Buildkite hosted agents, covering Linux and macOS instances, cache volumes, internal container registry, remote Docker builders, network security, code access, pipeline migration, and terminal access.
+- [Buildkite Hosted Agent Documentation](https://buildkite.com/docs/llms-hosted-agents.txt): Buildkite documentation for Buildkite hosted agents, covering Linux, macOS, and Windows instances, cache volumes, internal container registry, remote Docker builders, network security, code access, pipeline migration, terminal access, and desktop access.
 - [Buildkite Integrations Documentation](https://buildkite.com/docs/llms-integrations.txt): Buildkite documentation for integrations with third-party tools and services, including plugins, source control providers, notifications, observability, deployments, and platform integrations.
 - [Buildkite Security Documentation](https://buildkite.com/docs/llms-security.txt): Buildkite documentation for security, including secrets management, OIDC, clusters, permissions, SSO, agent security, signed pipelines, and security best practices.
 - [Buildkite Governance Documentation](https://buildkite.com/docs/llms-governance.txt): Buildkite documentation for governance and compliance, including pipeline templates, build exports, audit logging, team management, and platform controls.
 - [Buildkite User Management Documentation](https://buildkite.com/docs/llms-user-management.txt): Buildkite documentation for user and team management, covering permissions, SSO providers, two-factor authentication, audit logging, API token management, and system banners.
 - [Buildkite Insights Documentation](https://buildkite.com/docs/llms-insights.txt): Buildkite documentation for pipeline and cluster insights, including waterfall views, cluster metrics, and queue monitoring.
-- [Buildkite Troubleshooting and Debugging Documentation](https://buildkite.com/docs/llms-debugging.txt): Buildkite documentation for debugging and troubleshooting builds, agents, and infrastructure, covering log output management, build annotations, terminal access, agent lifecycle, and platform-specific troubleshooting guides.
-- [Buildkite Developer Experience Documentation](https://buildkite.com/docs/llms-developer-experience.txt): Buildkite documentation for developer experience features, covering build annotations, structured log output, and embedding links and images in logs to reduce log digging.
+- [Buildkite Troubleshooting and Debugging Documentation](https://buildkite.com/docs/llms-debugging.txt): Buildkite documentation for debugging and troubleshooting builds, agents, and infrastructure, covering log output management, build annotations, terminal access, desktop access, agent lifecycle, and platform-specific troubleshooting guides.
+- [Buildkite Developer Experience Documentation](https://buildkite.com/docs/llms-developer-experience.txt): Buildkite documentation for developer experience features, covering build annotations, structured log output, embedding links and images in logs, and the Buildkite Visual Studio Code extension for managing pipelines from the editor.
 - [Buildkite Test Engine Documentation](https://buildkite.com/docs/llms-test-engine.txt): Buildkite documentation for Test Engine, the testing layer of Buildkite Pipelines, covering test suites, test collection, flaky test management, workflows, bktec client, and API integration.
 - [Buildkite Package Registries Documentation](https://buildkite.com/docs/llms-packages.txt): Buildkite documentation for Buildkite Package Registries, covering registry management, package ecosystems, security, migration, and API integration.
-- [Buildkite CLI Tools Documentation](https://buildkite.com/docs/llms-cli-tools.txt): Buildkite documentation for CLI tools, covering the Buildkite CLI (bk) for managing pipelines, builds, and agents, and the buildkite-agent CLI reference for agent operations, artifacts, meta-data, and pipeline uploads.
+- [Buildkite CLI Tools Documentation](https://buildkite.com/docs/llms-cli-tools.txt): Buildkite documentation for CLI tools and editor integrations, covering the Buildkite CLI (bk) for managing pipelines, builds, and agents, the buildkite-agent CLI reference for agent operations, artifacts, meta-data, and pipeline uploads, and the Buildkite Visual Studio Code extension.
 - [Buildkite APIs Documentation](https://buildkite.com/docs/llms-buildkite-apis.txt): Buildkite documentation for APIs, covering the REST API, GraphQL API, webhooks, MCP server, agent API, model providers, API token management, portals, and rate limits.

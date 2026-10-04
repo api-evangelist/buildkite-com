@@ -1,5 +1,6 @@
 # Buildkite FinOps Surface
 # Aligned with FinOps Framework / FOCUS data spec
+name: Buildkite API FinOps
 specVersion: "0.1"
 provider:
   aid: buildkite-com

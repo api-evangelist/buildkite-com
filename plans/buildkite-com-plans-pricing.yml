@@ -1,5 +1,7 @@
-# Buildkite Plans & Pricing
-# API Commons Plans 0.1
+generated: '2026-06-20'
+method: derived
+source: https://buildkite.com/pricing
+name: Buildkite API Plans
 specVersion: "0.1"
 provider:
   aid: buildkite-com
@@ -11,17 +13,9 @@ plans:
 - id: personal
   name: Personal
   type: free
-  price:
-    amount: 0
-    period: month
+  price: "0"
   audience: Individuals, side projects, evaluation
-  limits:
-    users: 1
-    concurrentJobs: 3
-    selfHostedAgents: 1
-    retentionDays: 90
-    monthlyTestExecutions: 50000
-    packageRegistryStorageGB: 1
+  limits: []
   features:
   - Buildkite Pipelines
   - Test Engine (50k monthly test executions)
@@ -32,14 +26,9 @@ plans:
 - id: pro
   name: Pro
   type: subscription
-  price:
-    amount: 30
-    period: month
-    unit: active-user
+  price: "30"
   audience: Growing engineering teams
-  limits:
-    users: unlimited
-    concurrentJobs: unlimited
+  limits: []
   features:
   - Unlimited concurrent jobs and users
   - All Buildkite Hosted Agent sizes including Mac M4
@@ -73,10 +62,7 @@ plans:
 - id: enterprise
   name: Enterprise
   type: contract
-  price:
-    amount: null
-    period: contract
-    note: Custom pricing with volume discounts; 30-user minimum
+  price: "custom"
   audience: Large organizations, regulated industries, scale CI/CD
   features:
   - Everything in Pro
@@ -92,10 +78,7 @@ plans:
 - id: trial
   name: All Access Trial
   type: trial
-  price:
-    amount: 0
-    period: 30-day
-    note: No credit card required
+  price: "0"
   features:
   - Full access to Pipelines, Test Engine, Package Registries, and Hosted Agents
   - Dedicated Developer Success Engineer

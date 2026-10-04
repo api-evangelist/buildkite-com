@@ -40,6 +40,7 @@ error_envelope:
     validation failures additionally return an errors array. Not RFC 9457
     problem+json.
 idempotency:
+  coverage: none
   supported: false
   note: No documented idempotency-key header; write operations are not idempotent by key.
 request_tracing:

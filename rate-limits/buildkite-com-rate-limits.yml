@@ -1,5 +1,6 @@
 # Buildkite Rate Limits
 # API Commons Rate Limits 0.1
+name: Buildkite API Rate Limits
 specVersion: "0.1"
 provider:
   aid: buildkite-com

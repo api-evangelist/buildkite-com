@@ -1,0 +1,55 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://buildkite.com/docs/pipelines/security/incoming-webhooks.md
+sources:
+- https://buildkite.com/docs/pipelines/security/incoming-webhooks.md
+- https://buildkite.com/docs/apis/webhooks.md
+- https://buildkite.com/docs/apis/webhooks/pipelines.md
+- https://buildkite.com/docs/apis/webhooks/pipelines/build-events.md
+description: Buildkite outgoing webhooks for pipelines deliver JSON payloads via HTTP POST. Each request includes an `X-Buildkite-Event` header
+  identifying the event type and either an `X-Buildkite-Token` header (plain‑text token) or an `X-Buildkite-Signature` header (HMAC‑SHA256 signature)
+  for authenticity. TLS is required for the endpoint. No retry policy is documented on the pages.
+events:
+- event: ping
+  description: Webhook notification settings have changed
+- event: build.scheduled
+  description: A build has been scheduled
+- event: build.running
+  description: A build has started running
+- event: build.failing
+  description: A build is failing
+- event: build.finished
+  description: A build has finished
+- event: build.skipped
+  description: A build has been skipped
+- event: job.scheduled
+  description: A job has been scheduled
+- event: job.started
+  description: A command step job has started running on an agent
+- event: job.finished
+  description: A job has finished
+- event: job.activated
+  description: A block step job has been unblocked using the web or API
+- event: job.promised_exit_status
+  description: A running job has declared an anticipated exit status before it has finished
+- event: agent.connected
+  description: An agent has connected to the API
+- event: agent.lost
+  description: An agent has been marked as lost. This happens when Buildkite stops receiving pings from the agent
+- event: agent.disconnected
+  description: An agent has disconnected. This happens when the agent shuts down and disconnects from the API
+- event: agent.stopping
+  description: An agent is stopping. This happens when an agent is instructed to stop from the API. It first transitions to stopping and finishes
+    any current jobs
+- event: agent.stopped
+  description: An agent has stopped. This happens when an agent is instructed to stop from the API. It can be graceful or forceful
+- event: agent.blocked
+  description: An agent has been blocked. This happens when an agent's IP address is no longer included in the agent token's allowed IP addresses
+- event: cluster_token.registration_blocked
+  description: An attempted agent registration has been blocked because the request IP address is not included in the agent token's allowed IP
+    addresses
+delivery:
+  auth: Either X-Buildkite-Token (plain token) or X-Buildkite-Signature (HMAC‑SHA256) header is included in every request.
+  signature: 'X-Buildkite-Signature header format: `timestamp=...,signature=...` using the webhook token as the secret key.'
+docs: https://buildkite.com/docs/pipelines/security/incoming-webhooks.md

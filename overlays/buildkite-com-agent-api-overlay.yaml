@@ -2,7 +2,7 @@ overlay: 1.0.0
 info:
   title: API Evangelist enhancements for Buildkite Agent API
   version: 1.0.0
-extends: openapi/buildkite-agent-api-openapi.yml
+extends: ../openapi/_original/buildkite-agent-api-openapi.yml
 actions:
   - target: $.info
     update:

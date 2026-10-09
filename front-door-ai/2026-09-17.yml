@@ -7,14 +7,17 @@ front_door_ai:
   probed_at: '2026-09-17'
   host: www.buildkite.com
   final_host: buildkite.com
-  ownership: inherited
+  ownership: own
   owner: buildkite-com
   shares_host_with: null
-  inherited_from: buildkite.com
+  inherited_from: null
+  alias_of: buildkite.com
   verdict: scored
-  score: null
+  score: 14
+  band: 5
+  band_label: prominent
   host_score: 14
-  density: null
+  density: 13.36
   words: 1048
   tiers:
     agentic: 3

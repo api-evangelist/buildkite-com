@@ -165,7 +165,7 @@
     - alpha
     in_cloud: true
     builder: unknown (community connector; contributor not in the record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: buildkite-com-fivetran
   label: Fivetran
@@ -191,7 +191,7 @@
     - connectors/applications/buildkite
     vendor_link: https://buildkite.com
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: buildkite-com-slack-own
   label: Slack (own)

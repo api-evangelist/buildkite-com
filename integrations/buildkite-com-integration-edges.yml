@@ -14,6 +14,7 @@ checked:
 - https://github.com/marketplace?type=apps
 - https://zapier.com/api/v4/apps/
 - okta/integrations/okta-integration-edges.yml
+- slack/integrations/slack-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -229,6 +230,23 @@ edges:
     builder: Fivetran
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain+product
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/AN19RS48G-buildkite
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Buildkite
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
 source:
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps

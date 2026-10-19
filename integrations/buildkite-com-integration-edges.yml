@@ -1,9 +1,11 @@
 generated: '2026-10-13'
 method: searched
 checked:
+- https://api.nuget.org/v3
 - https://aws.amazon.com/marketplace/
 - https://connectors.airbyte.com/files/registries/v0/cloud_registry.json
 - https://connectors.airbyte.com/files/registries/v0/oss_registry.json
+- https://crates.io/api/v1
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/connectors/partner-built-program
 - https://focus.finops.org/data-generators/
@@ -12,6 +14,11 @@ checked:
 - https://github.com/cncf/landscape
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://zapier.com/api/v4/apps/
 - okta/integrations/okta-integration-edges.yml
 - slack/integrations/slack-integration-edges.yml
@@ -247,6 +254,45 @@ edges:
   detected: '2026-10-18'
   detected_by: mirror-platform-listings.py
   category: Slack app
+- partner_name: Go module proxy
+  partner: null
+  partner_match: null
+  type: register
+  direction: provider-built
+  category: official SDK (Go)
+  evidence: https://pkg.go.dev/github.com/buildkite/go-buildkite/v5
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/buildkite/go-buildkite/v5
+      version: v5.23.0
+      released: '2026-10-13'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/buildkite/go-buildkite/v5
+      repo_leg: github-org:buildkite
+      publisher_leg: org:buildkite
+      matched_by: github-org
+    - name: github.com/buildkite/go-pipeline
+      version: v0.18.1
+      released: '2026-09-28'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/buildkite/go-pipeline
+      repo_leg: github-org:buildkite
+      publisher_leg: org:buildkite
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 source:
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps

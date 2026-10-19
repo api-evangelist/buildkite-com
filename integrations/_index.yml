@@ -206,3 +206,42 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: buildkite-com-go-module-proxy
+  label: Go module proxy
+  partner_name: Go module proxy
+  category: official SDK (Go)
+  type: register
+  channel: package-registry
+  evidence: https://pkg.go.dev/github.com/buildkite/go-buildkite/v5
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Go module proxy (public registry JSON)
+    spec_file: null
+    language: Go
+    packages:
+    - name: github.com/buildkite/go-buildkite/v5
+      version: v5.23.0
+      released: '2026-10-13'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/buildkite/go-buildkite/v5
+      repo_leg: github-org:buildkite
+      publisher_leg: org:buildkite
+      matched_by: github-org
+    - name: github.com/buildkite/go-pipeline
+      version: v0.18.1
+      released: '2026-09-28'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/buildkite/go-pipeline
+      repo_leg: github-org:buildkite
+      publisher_leg: org:buildkite
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null

@@ -15,30 +15,6 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
-- slug: buildkite-com-github-marketplace-apps
-  label: GitHub Marketplace (apps)
-  partner: github
-  partner_name: GitHub Marketplace (apps)
-  type: marketplace
-  marketplace: github-apps
-  channel: partner-built
-  evidence: https://github.com/marketplace/buildkite-test-analytics
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: buildkite-com-github-marketplace-actions
-  label: GitHub Marketplace (actions)
-  partner: github-actions
-  partner_name: GitHub Marketplace (actions)
-  type: marketplace
-  marketplace: github-actions
-  channel: partner-built
-  evidence: https://github.com/marketplace/actions/trigger-buildkite-pipeline
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: buildkite-com-okta-own
   label: Okta (own)
   partner: okta
@@ -52,89 +28,56 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: buildkite-com-cncf-cloud-native-landscape
-  label: CNCF (Cloud Native Landscape)
-  partner: cncf
-  partner_name: CNCF (Cloud Native Landscape)
-  category: Cloud native landscape
+- slug: buildkite-com-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/AN19RS48G-buildkite
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: buildkite-com-go-module-proxy
+  label: Go module proxy
+  partner_name: Go module proxy
+  category: official SDK (Go)
   type: register
-  channel: standard-directory
-  evidence: https://github.com/cncf/landscape/blob/3a7d378b1824b82e729a453bb03fa6f1e37557e1/landscape.yml
+  channel: package-registry
+  evidence: https://pkg.go.dev/github.com/buildkite/go-buildkite/v5
   source: edge
-  relationship: standard-participant
+  relationship: distribution-channel
   contract_reference:
-    register: CNCF Cloud Native Landscape (github.com/cncf/landscape landscape.yml @3a7d378b18)
+    register: Go module proxy (public registry JSON)
     spec_file: null
-    standard: Cloud Native (CNCF)
-    role: landscape-listed
-    registered_name: Buildkite
-    registered_names:
-    - Buildkite
-    website: https://buildkite.com/
-    matched_domain: buildkite.com
-    matched_by: domain
-    member_tier: null
-    joined: null
-    end_user: false
-    cncf_projects: []
-    landscape_categories:
-    - App Definition and Development / Continuous Integration & Delivery
-    landscape_entries: 1
-    signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
-      categories, tier and projects are CONTEXT, never read (breadth is not credit)'
-    detected_by: sweep-cloud-native.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
-- slug: buildkite-com-zapier
-  label: Zapier
-  partner: zapier
-  partner_name: Zapier
-  type: marketplace
-  marketplace: zapier-directory
-  channel: ipaas-listing
-  evidence: https://zapier.com/apps/buildkite/integrations
-  source: edge
-  relationship: ipaas-bridge
-  contract_reference:
-    register: Zapier app directory (zapier.com/api/v4/apps)
-    spec_file: null
-    role: ipaas-connector:zapier
-    registered_name: Buildkite
-    matched_domain: buildkite.com
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: buildkite
-    beta: false
-    builder: unknown (not in the directory record)
-  status: not-a-workflow
-  arazzo: null
-- slug: buildkite-com-pipedream
-  label: Pipedream
-  partner: pipedream
-  partner_name: Pipedream
-  type: marketplace
-  marketplace: pipedream-components
-  channel: open-source-node
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/buildkite
-  source: edge
-  relationship: ipaas-bridge
-  contract_reference:
-    register: Pipedream components (PipedreamHQ/pipedream components/)
-    spec_file: null
-    role: ipaas-connector:pipedream
-    registered_name: buildkite
-    matched_domain: buildkite.com
-    matched_by: domain
-    detected_by: sweep-workflow-automation.py
-    detected: '2026-10-15'
-    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
-    app_slug: buildkite
-    actions: true
-    sources: false
-    builder: Pipedream repo (component)
+    language: Go
+    packages:
+    - name: github.com/buildkite/go-buildkite/v5
+      version: v5.23.0
+      released: '2026-10-13'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/buildkite/go-buildkite/v5
+      repo_leg: github-org:buildkite
+      publisher_leg: org:buildkite
+      matched_by: github-org
+    - name: github.com/buildkite/go-pipeline
+      version: v0.18.1
+      released: '2026-09-28'
+      released_field: Time
+      lapsed: false
+      page: https://pkg.go.dev/github.com/buildkite/go-pipeline
+      repo_leg: github-org:buildkite
+      publisher_leg: org:buildkite
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
 - slug: buildkite-com-airbyte
@@ -193,55 +136,100 @@
     builder: Fivetran
   status: not-a-workflow
   arazzo: null
-- slug: buildkite-com-slack-own
-  label: Slack (own)
-  partner: slack
-  partner_name: Slack (own)
-  category: Slack app
+- slug: buildkite-com-github-marketplace-actions
+  label: GitHub Marketplace (actions)
+  partner: github-actions
+  partner_name: GitHub Marketplace (actions)
   type: marketplace
-  marketplace: own
+  marketplace: github-actions
   channel: partner-built
-  evidence: https://slack.com/marketplace/AN19RS48G-buildkite
+  evidence: https://github.com/marketplace/actions/trigger-buildkite-pipeline
   source: edge
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: buildkite-com-go-module-proxy
-  label: Go module proxy
-  partner_name: Go module proxy
-  category: official SDK (Go)
+- slug: buildkite-com-cncf-cloud-native-landscape
+  label: CNCF (Cloud Native Landscape)
+  partner: cncf
+  partner_name: CNCF (Cloud Native Landscape)
+  category: Cloud native landscape
   type: register
-  channel: package-registry
-  evidence: https://pkg.go.dev/github.com/buildkite/go-buildkite/v5
+  channel: standard-directory
+  evidence: https://github.com/cncf/landscape/blob/42dd4cd91dad8ec8558ac02467a43f0805b9957a/landscape.yml
   source: edge
-  relationship: distribution-channel
+  relationship: standard-participant
   contract_reference:
-    register: Go module proxy (public registry JSON)
+    register: CNCF Cloud Native Landscape (github.com/cncf/landscape landscape.yml @42dd4cd91d)
     spec_file: null
-    language: Go
-    packages:
-    - name: github.com/buildkite/go-buildkite/v5
-      version: v5.23.0
-      released: '2026-10-13'
-      released_field: Time
-      lapsed: false
-      page: https://pkg.go.dev/github.com/buildkite/go-buildkite/v5
-      repo_leg: github-org:buildkite
-      publisher_leg: org:buildkite
-      matched_by: github-org
-    - name: github.com/buildkite/go-pipeline
-      version: v0.18.1
-      released: '2026-09-28'
-      released_field: Time
-      lapsed: false
-      page: https://pkg.go.dev/github.com/buildkite/go-pipeline
-      repo_leg: github-org:buildkite
-      publisher_leg: org:buildkite
-      matched_by: github-org
-    current: true
-    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
-      24 months'
-    detected_by: sweep-official-sdks.py
-    detected: '2026-10-18'
+    standard: Cloud Native (CNCF)
+    role: landscape-listed
+    registered_name: Buildkite
+    registered_names:
+    - Buildkite
+    website: https://buildkite.com/
+    matched_domain: buildkite.com
+    matched_by: domain
+    member_tier: null
+    joined: null
+    end_user: false
+    cncf_projects: []
+    landscape_categories:
+    - App Definition and Development / Continuous Integration & Delivery
+    landscape_entries: 1
+    signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
+      categories, tier and projects are CONTEXT, never read (breadth is not credit)'
+    detected_by: sweep-cloud-native.py
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: buildkite-com-zapier
+  label: Zapier
+  partner: zapier
+  partner_name: Zapier
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  evidence: https://zapier.com/apps/buildkite/integrations
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Buildkite
+    matched_domain: buildkite.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: buildkite
+    beta: false
+    builder: unknown (not in the directory record)
+  status: not-a-workflow
+  arazzo: null
+- slug: buildkite-com-pipedream
+  label: Pipedream
+  partner: pipedream
+  partner_name: Pipedream
+  type: marketplace
+  marketplace: pipedream-components
+  channel: open-source-node
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/buildkite
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Pipedream components (PipedreamHQ/pipedream components/)
+    spec_file: null
+    role: ipaas-connector:pipedream
+    registered_name: buildkite
+    matched_domain: buildkite.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: buildkite
+    actions: true
+    sources: false
+    builder: Pipedream repo (component)
   status: not-a-workflow
   arazzo: null

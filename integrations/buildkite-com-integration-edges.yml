@@ -47,6 +47,9 @@ checked:
 - https://graphql.landscape2.io/data/full.json
 - https://graphql.org/community/tools-and-libraries/
 - https://graphql.org/foundation/members/
+- https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions
+- https://www.raycast.com/api/v1/store_listings
+- backstage/integrations/backstage-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -320,6 +323,116 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-agent-skills.py
   first_seen: '2026-10-20'
+- partner_name: GitHub secret scanning partner program
+  partner: github
+  partner_match: register-name
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://docs.github.com/en/code-security/reference/secret-security/supported-secret-scanning-patterns#supported-provider-patterns
+  category: GitHub platform partnership (security)
+  contract_reference:
+    register: GitHub secret scanning partner program (docs.github.com supported-secret-scanning-patterns, 'Partner'
+      column = isPublic in the page's own pattern data)
+    standard: GitHub secret scanning partner program
+    spec_file: null
+    role: secret-scanning-partner
+    registered_name: Buildkite
+    register_id: https://docs.github.com/en/code-security/reference/secret-security/supported-secret-scanning-patterns#supported-provider-patterns
+    matched_domain: null
+    matched_by: register-name
+    register_name_note: register-name 'buildkite' = buildkite-com; wikidata P856 buildkite.com agrees or unheld
+    token_types:
+    - buildkite_agent_access_token
+    - buildkite_agent_job_token
+    - buildkite_agent_registration_token
+    - buildkite_cluster_queue_token
+    - buildkite_cluster_token
+    - buildkite_packages_registry_token
+    - buildkite_packages_temporary_token
+    - buildkite_portal_secret
+    - buildkite_portal_token
+    - buildkite_user_access_token
+    context:
+      push_protection: 9
+      validity_check: 0
+    signal_note: 'participation only: GitHub notifies the provider when its token leaks publicly (the provider runs
+      a verification endpoint for the programme); token types and counts are context, never counted'
+    detected_by: sweep-github-marketplace.py
+    detected: '2026-10-21'
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  detected_by: sweep-github-marketplace.py
+  first_seen: '2026-10-21'
+- partner_name: graphql-kit public GraphQL APIs
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://github.com/graphql-kit/graphql-apis
+  category: public GraphQL API
+  contract_reference:
+    register: graphql-kit public GraphQL APIs, Official APIs (github.com/graphql-kit/graphql-apis README)
+    standard: GraphQL
+    spec_file: null
+    role: public-graphql-api
+    registered_name: Buildkite
+    register_id: https://github.com/graphql-kit/graphql-apis#official-apis
+    matched_domain: buildkite.com
+    matched_by: domain
+    graphql_endpoints:
+    - https://graphql.buildkite.com/
+    signal_note: 'participation only: a listed public GraphQL API (endpoint named by the list, not guessed)'
+    detected_by: sweep-graphql-ecosystem.py
+    detected: '2026-10-21'
+  detected_by: sweep-graphql-ecosystem.py
+  first_seen: '2026-10-21'
+- partner_name: Raycast
+  partner: raycast
+  partner_match: domain
+  partner_url: https://www.raycast.com
+  partner_domain: raycast.com
+  type: marketplace
+  marketplace: raycast-store
+  channel: connector-listing
+  relationship: connector-coverage
+  evidence: https://www.raycast.com/mskelton/buildkite
+  app: Buildkite
+  category: Raycast Store extension (community wrapper)
+  listing_count: 1
+  contract_reference:
+    register: Raycast Store (raycast/extensions monorepo + store_listings JSON)
+    spec_file: null
+    role: raycast-community-wrapper
+    builder: community
+    authors:
+    - mskelton
+    matched_domain: buildkite.com
+    matched_by: domain
+    monorepo_commit: 84f9ac51336a8c69f70974a75bc067c0feae3658
+    listings:
+    - title: Buildkite
+      store_url: https://www.raycast.com/mskelton/buildkite
+      installs: 425
+      categories:
+      - Developer Tools
+      source: https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions/buildkite/
+      author: mskelton
+    categories:
+    - Developer Tools
+    identity_note: the extension's own source calls a host on the product's domain AND its title / package name
+      passes partner_link's name check; built by Raycast community developers, not the vendor
+    signal_note: 'coverage: Raycast''s store reaches the product through community-built extensions; one edge per
+      (product, store); install / listing counts are context, never counted'
+    detected_by: sweep-raycast-store-extensions.py
+    detected: '2026-10-22'
+  detected_by: sweep-raycast-store-extensions.py
+  first_seen: '2026-10-22'
+  direction: partner-built
 - partner_name: Okta (own)
   partner: okta
   partner_match: mirror
@@ -399,74 +512,23 @@ edges:
   badges:
   - Verified publisher (Terraform partner tier)
   - Verified publisher (GitHub domain-verified organization)
-- partner_name: GitHub secret scanning partner program
-  partner: github
-  partner_match: register-name
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://docs.github.com/en/code-security/reference/secret-security/supported-secret-scanning-patterns#supported-provider-patterns
-  category: GitHub platform partnership (security)
-  contract_reference:
-    register: GitHub secret scanning partner program (docs.github.com supported-secret-scanning-patterns, 'Partner'
-      column = isPublic in the page's own pattern data)
-    standard: GitHub secret scanning partner program
-    spec_file: null
-    role: secret-scanning-partner
-    registered_name: Buildkite
-    register_id: https://docs.github.com/en/code-security/reference/secret-security/supported-secret-scanning-patterns#supported-provider-patterns
-    matched_domain: null
-    matched_by: register-name
-    register_name_note: register-name 'buildkite' = buildkite-com; wikidata P856 buildkite.com agrees or unheld
-    token_types:
-    - buildkite_agent_access_token
-    - buildkite_agent_job_token
-    - buildkite_agent_registration_token
-    - buildkite_cluster_queue_token
-    - buildkite_cluster_token
-    - buildkite_packages_registry_token
-    - buildkite_packages_temporary_token
-    - buildkite_portal_secret
-    - buildkite_portal_token
-    - buildkite_user_access_token
-    context:
-      push_protection: 9
-      validity_check: 0
-    signal_note: 'participation only: GitHub notifies the provider when its token leaks publicly (the provider runs
-      a verification endpoint for the programme); token types and counts are context, never counted'
-    detected_by: sweep-github-marketplace.py
-    detected: '2026-10-21'
-    identity_source: register-name
-    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
-      P856 not contradicting (Kin 2026-10-20 decision 2)
-  detected_by: sweep-github-marketplace.py
-  first_seen: '2026-10-21'
-- partner_name: graphql-kit public GraphQL APIs
-  partner: null
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://github.com/graphql-kit/graphql-apis
-  category: public GraphQL API
-  contract_reference:
-    register: graphql-kit public GraphQL APIs, Official APIs (github.com/graphql-kit/graphql-apis README)
-    standard: GraphQL
-    spec_file: null
-    role: public-graphql-api
-    registered_name: Buildkite
-    register_id: https://github.com/graphql-kit/graphql-apis#official-apis
-    matched_domain: buildkite.com
-    matched_by: domain
-    graphql_endpoints:
-    - https://graphql.buildkite.com/
-    signal_note: 'participation only: a listed public GraphQL API (endpoint named by the list, not guessed)'
-    detected_by: sweep-graphql-ecosystem.py
-    detected: '2026-10-21'
-  detected_by: sweep-graphql-ecosystem.py
-  first_seen: '2026-10-21'
+- partner_name: Backstage (own)
+  partner: backstage
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/buildkite.yaml
+  mirror_of: backstage/integrations/backstage-integration-edges.yml
+  apps:
+  - Buildkite
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: CI/CD
 source:
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps

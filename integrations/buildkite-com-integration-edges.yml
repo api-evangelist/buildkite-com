@@ -53,6 +53,9 @@ checked:
 - https://landscape.cd.foundation/data/full.json
 - https://plugins.jenkins.io/api/plugin/
 - https://plugins.jenkins.io/api/plugins
+- https://aur.archlinux.org/cgit/aur.git/tree/.SRCINFO
+- https://aur.archlinux.org/packages-meta-ext-v1.json.gz
+- https://aur.archlinux.org/rpc/v5/info
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -562,6 +565,40 @@ edges:
     detected: '2026-10-22'
   detected_by: sweep-jenkins-cd-foundation-plugins.py
   first_seen: '2026-10-22'
+- partner_name: Arch User Repository (AUR)
+  partner: null
+  partner_match: null
+  type: register
+  direction: provider-built
+  category: official CLI (Arch User Repository (AUR))
+  evidence: https://aur.archlinux.org/packages/buildkite-cli-bin
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Arch User Repository (AUR) (public package index)
+    spec_file: null
+    packages:
+    - name: buildkite-cli-bin
+      kind: aur
+      version: 3.34.0-1
+      released: '2026-04-09'
+      released_field: AUR LastModified
+      out_of_date: true
+      lapsed: true
+      page: https://aur.archlinux.org/packages/buildkite-cli-bin
+      upstream: https://github.com/buildkite/cli
+      cli: 'AUR description: The official Buildkite CLI'
+      repo_leg: github-org:buildkite
+      publisher_leg: artifact-github-org:buildkite
+      matched_by: github-org
+    current: false
+    signal_note: 'the provider''s own command-line tool packaged for Arch Linux (community-maintained PKGBUILD whose
+      upstream and source artifact are the provider''s): distribution, not an integration; lapsed = flagged out-of-date
+      or not updated in 24 months'
+    detected_by: sweep-aur-vendor-cli-packages.py
+    detected: '2026-10-23'
+  detected_by: sweep-aur-vendor-cli-packages.py
+  first_seen: '2026-10-23'
 source:
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps

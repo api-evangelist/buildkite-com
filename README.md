@@ -1,4 +1,4 @@
-# Buildkite (buildkite-com)
+# Buildkite
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,199 +66,277 @@
 
 Buildkite is a hybrid CI/CD platform that combines a hosted control plane (pipelines.buildkite.com) with self-hosted or Buildkite-Hosted agents that run jobs on customer-controlled infrastructure. The platform spans three core products — Pipelines, Test Engine, and Package Registries — and exposes them through a v2 REST API, a Relay-compliant GraphQL API at graphql.buildkite.com/v1, an Agent API at agent.buildkite.com/v3 consumed by the open-source Go agent, webhooks, and an official MCP server that surfaces those APIs to AI coding agents. Customers route work to specific agent pools through clusters and queues, define pipelines as YAML with dynamic uploads, and integrate with the major source control, cloud, identity, secrets, and observability vendors.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/buildkite-com/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/buildkite-com/refs/heads/main/apis.yml)
+**Areas:** CI/CD · Continuous Integration · Continuous Delivery · DevOps · Pipelines · Hybrid CI · Build Automation · Test Engine · Package Registries · Agents · GraphQL · REST
 
-## Scope
+## Buildkite on APIs.io
 
-- **Position:** Consuming
+Everything profiled for Buildkite is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/buildkite-com/](https://apis.io/providers/buildkite-com/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (23)
 
-- CI/CD
-- Continuous Integration
-- Continuous Delivery
-- DevOps
-- Pipelines
-- Hybrid CI
-- Build Automation
-- Test Engine
-- Package Registries
-- Agents
-- GraphQL
-- REST
-- MCP
-- Webhooks
+- [Buildkite GraphQL API](https://apis.io/apis/buildkite-com/buildkite-graphql-api/) — GraphQL endpoint that returns deeply nested data on organizations, pipelines, builds, jobs, agents, clusters, queues, teams, audit events, suites, test…
+- [Buildkite Agent API](https://apis.io/apis/buildkite-com/buildkite-agent-api/) — Backplane consumed by the Buildkite Agent (open source, Go) to register, deregister, accept and finish jobs, upload artifacts, stream job logs, and emit…
+- [Buildkite Webhooks](https://apis.io/apis/buildkite-com/buildkite-webhooks/) — Outbound HTTP notifications fired in response to build, job, agent, ping, deployment, and package events across Pipelines, Test Engine, and Package…
+- [Buildkite MCP Server](https://apis.io/apis/buildkite-com/buildkite-mcp-server/) — Official Model Context Protocol server that exposes Buildkite REST API surfaces (pipelines, builds, jobs, agents, artifacts, annotations) as MCP tools and…
+- [Buildkite Access Token API](https://apis.io/apis/buildkite-com/buildkite-com-access-token-api/) — The Access Token API from Buildkite — 1 operation(s) for access token.
+- [Buildkite Agent Tokens API](https://apis.io/apis/buildkite-com/buildkite-com-agent-tokens-api/) — The Agent Tokens API from Buildkite — 1 operation(s) for agent tokens.
+- [Buildkite Agents API](https://apis.io/apis/buildkite-com/buildkite-com-agents-api/) — The Agents API from Buildkite — 3 operation(s) for agents.
+- [Buildkite Annotations API](https://apis.io/apis/buildkite-com/buildkite-com-annotations-api/) — The Annotations API from Buildkite — 1 operation(s) for annotations.
+- [Buildkite Artifacts API](https://apis.io/apis/buildkite-com/buildkite-com-artifacts-api/) — The Artifacts API from Buildkite — 1 operation(s) for artifacts.
+- [Buildkite Builds API](https://apis.io/apis/buildkite-com/buildkite-com-builds-api/) — The Builds API from Buildkite — 4 operation(s) for builds.
+- [Buildkite Clusters API](https://apis.io/apis/buildkite-com/buildkite-com-clusters-api/) — The Clusters API from Buildkite — 1 operation(s) for clusters.
+- [Buildkite Emojis API](https://apis.io/apis/buildkite-com/buildkite-com-emojis-api/) — The Emojis API from Buildkite — 1 operation(s) for emojis.
+- [Buildkite Jobs API](https://apis.io/apis/buildkite-com/buildkite-com-jobs-api/) — The Jobs API from Buildkite — 2 operation(s) for jobs.
+- [Buildkite Meta API](https://apis.io/apis/buildkite-com/buildkite-com-meta-api/) — The Meta API from Buildkite — 1 operation(s) for meta.
+- [Buildkite Metrics API](https://apis.io/apis/buildkite-com/buildkite-com-metrics-api/) — The Metrics API from Buildkite — 1 operation(s) for metrics.
+- [Buildkite Organizations API](https://apis.io/apis/buildkite-com/buildkite-com-organizations-api/) — The Organizations API from Buildkite — 2 operation(s) for organizations.
+- [Buildkite Pipeline Templates API](https://apis.io/apis/buildkite-com/buildkite-com-pipeline-templates-api/) — The Pipeline Templates API from Buildkite — 1 operation(s) for pipeline templates.
+- [Buildkite Pipelines API](https://apis.io/apis/buildkite-com/buildkite-com-pipelines-api/) — The Pipelines API from Buildkite — 2 operation(s) for pipelines.
+- [Buildkite Queues API](https://apis.io/apis/buildkite-com/buildkite-com-queues-api/) — The Queues API from Buildkite — 1 operation(s) for queues.
+- [Buildkite Rules API](https://apis.io/apis/buildkite-com/buildkite-com-rules-api/) — The Rules API from Buildkite — 1 operation(s) for rules.
+- [Buildkite Stacks API](https://apis.io/apis/buildkite-com/buildkite-com-stacks-api/) — The Stacks API from Buildkite — 1 operation(s) for stacks.
+- [Buildkite Teams API](https://apis.io/apis/buildkite-com/buildkite-com-teams-api/) — The Teams API from Buildkite — 1 operation(s) for teams.
+- [Buildkite User API](https://apis.io/apis/buildkite-com/buildkite-com-user-api/) — The User API from Buildkite — 1 operation(s) for user.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25T00:00:00.000Z
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (9)
 
-### Buildkite REST API
+Multi-step workflows that chain operations into a business task.
 
-Programmatic access to Buildkite Pipelines covering organizations, pipelines, builds, jobs, artifacts, annotations, agents, clusters, queues, agent tokens, teams, pipeline templates, rules, and emojis. Uses Bearer token authentication with scoped API access tokens. Designed to extend, integrate, and automate CI/CD workflows across hybrid infrastructure.
+- [Buildkite Build Failure Triage](https://apis.io/arazzos/buildkite-com/buildkite-com-build-failure-triage-workflow/)
+- [Buildkite Cancel Running Build](https://apis.io/arazzos/buildkite-com/buildkite-com-cancel-running-build-workflow/)
+- [Buildkite Collect Build Artifacts](https://apis.io/arazzos/buildkite-com/buildkite-com-collect-build-artifacts-workflow/)
+- [Buildkite Fetch Job Log](https://apis.io/arazzos/buildkite-com/buildkite-com-fetch-job-log-workflow/)
+- [Buildkite Provision Pipeline And First Build](https://apis.io/arazzos/buildkite-com/buildkite-com-provision-pipeline-and-first-build-workflow/)
+- [Buildkite Rebuild Latest Build](https://apis.io/arazzos/buildkite-com/buildkite-com-rebuild-latest-build-workflow/)
+- [Buildkite Retry Failed Job](https://apis.io/arazzos/buildkite-com/buildkite-com-retry-failed-job-workflow/)
+- [Buildkite Stop Disconnected Agent](https://apis.io/arazzos/buildkite-com/buildkite-com-stop-disconnected-agent-workflow/)
+- [Buildkite Trigger And Poll Build](https://apis.io/arazzos/buildkite-com/buildkite-com-trigger-and-poll-build-workflow/)
 
-- **Human URL:** [https://buildkite.com/docs/apis/rest-api](https://buildkite.com/docs/apis/rest-api)
-- **Base URL:** `https://api.buildkite.com/v2`
+#### AsyncAPI (1)
 
-#### Tags
+Event-driven and webhook contracts.
 
-- CI/CD
-- Continuous Integration
-- Continuous Delivery
-- Pipelines
-- Builds
-- Agents
+- [Buildkite Com Webhooks](https://apis.io/asyncapis/buildkite-com/buildkite-com-webhooks/)
 
-#### Properties
+#### GraphQL (1)
 
-- [Documentation](https://buildkite.com/docs/apis/rest-api)
-- [Authentication](https://buildkite.com/docs/apis/managing-api-tokens)
-- [OpenAPI](openapi/buildkite-rest-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/buildkite-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/buildkite-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/buildkite-pipeline-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/buildkite-build-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/buildkite-agent-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/buildkite-com-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+GraphQL schemas.
 
-### Buildkite GraphQL API
+- [Buildkite GraphQL API](https://apis.io/graphqls/buildkite-com/buildkite-com-graphql/)
 
-GraphQL endpoint that returns deeply nested data on organizations, pipelines, builds, jobs, agents, clusters, queues, teams, audit events, suites, test executions, and package registries in a single request. Implements the Relay specification for pagination and supports schema introspection. Requires an API access token with "Enable GraphQL API Access" permission. GraphQL Portals allow scoped, schema-filtered access without per-token scopes.
+#### MCP servers (1)
 
-- **Human URL:** [https://buildkite.com/docs/apis/graphql-api](https://buildkite.com/docs/apis/graphql-api)
-- **Base URL:** `https://graphql.buildkite.com/v1`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [buildkite](https://apis.io/servers/buildkite-com/buildkite/)
 
-- CI/CD
-- GraphQL
-- Pipelines
-- Test Engine
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://buildkite.com/docs/apis/graphql-api)
-- [Documentation](https://buildkite.com/docs/apis/graphql/graphql-cookbook)
-- [Sandbox](https://graphql.buildkite.com/explorer)
-- [Postman Collection](collections/buildkite-agent-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/buildkite-agent-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/buildkite-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/buildkite-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Buildkite Com Agentic Access](https://apis.io/agentic-access/buildkite-com/buildkite-com-agentic-access/)
 
-### Buildkite Agent API
+#### JSON Schema (3)
 
-Backplane consumed by the Buildkite Agent (open source, Go) to register, deregister, accept and finish jobs, upload artifacts, stream job logs, and emit metrics for cluster autoscaling. Authenticated via Agent Tokens issued per cluster. Public surface includes `/metrics` (for autoscaling) and `/stacks` (for self-hosted queue controllers). The `agent-edge.buildkite.com` host adds gRPC methods. Most other endpoints are reserved for internal agent use.
+The data models the API reads and writes.
 
-- **Human URL:** [https://buildkite.com/docs/apis/agent-api](https://buildkite.com/docs/apis/agent-api)
-- **Base URL:** `https://agent.buildkite.com/v3`
+- [Buildkite Agent](https://apis.io/schemas/buildkite-com/buildkite-agent/)
+- [Buildkite Build](https://apis.io/schemas/buildkite-com/buildkite-build/)
+- [Buildkite Pipeline](https://apis.io/schemas/buildkite-com/buildkite-pipeline/)
 
-#### Tags
+#### JSON Structure (1)
 
-- CI/CD
-- Agents
-- Hybrid CI
+Data models expressed in JSON Structure.
 
-#### Properties
+- [Buildkite Com Pipeline Structure](https://apis.io/json-structure/buildkite-com/buildkite-com-pipeline-structure/)
 
-- [Documentation](https://buildkite.com/docs/apis/agent-api)
-- [Documentation](https://buildkite.com/docs/agent/v3)
-- [Source Code](https://github.com/buildkite/agent)
-- [Postman Collection](collections/buildkite-agent-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/buildkite-agent-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/buildkite-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/buildkite-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### JSON-LD (1)
 
-### Buildkite Webhooks
+Linked-data contexts for the provider's vocabulary.
 
-Outbound HTTP notifications fired in response to build, job, agent, ping, deployment, and package events across Pipelines, Test Engine, and Package Registries. Verified with the `X-Buildkite-Token` header. Configured per organization via Notification Services. Supports an expanded set of GitHub-style triggers including pull request reviews, releases, issue comments, and deployment status events.
+- [Buildkite Com Context](https://apis.io/jsonld/buildkite-com/buildkite-com-context/)
 
-- **Human URL:** [https://buildkite.com/docs/apis/webhooks](https://buildkite.com/docs/apis/webhooks)
+#### Vocabulary (1)
 
-#### Tags
+The provider's domain terms, defined.
 
-- CI/CD
-- Webhooks
-- Events
-- Notifications
+- [Buildkite Com Vocabulary](https://apis.io/vocabularies/buildkite-com/buildkite-com-vocabulary/)
 
-#### Properties
+#### Examples (3)
 
-- [Documentation](https://buildkite.com/docs/apis/webhooks)
-- [Documentation](https://buildkite.com/docs/pipelines/integrations/notifications)
-- [Postman Collection](collections/buildkite-agent-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/buildkite-agent-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/buildkite-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/buildkite-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Example requests and responses.
 
-### Buildkite MCP Server
+- [Buildkite Create Build Example](https://apis.io/examples/buildkite-com/buildkite-create-build-example/)
+- [Buildkite Graphql Builds Example](https://apis.io/examples/buildkite-com/buildkite-graphql-builds-example/)
+- [Buildkite List Agents Example](https://apis.io/examples/buildkite-com/buildkite-list-agents-example/)
 
-Official Model Context Protocol server that exposes Buildkite REST API surfaces (pipelines, builds, jobs, agents, artifacts, annotations) as MCP tools and toolsets for AI coding agents. Available as both a remote endpoint and a local binary. Pairs with the official Buildkite Skills for Claude Code and Cursor.
+#### Collections (22)
 
-- **Human URL:** [https://github.com/buildkite/buildkite-mcp-server](https://github.com/buildkite/buildkite-mcp-server)
+Postman and Open Collection request collections.
 
-#### Tags
+- [Buildkite Agent API](https://apis.io/collections/buildkite-com/open-buildkite-agent-api/)
+- [Buildkite Agent Access Token API](https://apis.io/collections/buildkite-com/open-buildkite-com-access-token-api/)
+- [Buildkite Agent Access Token Agent Tokens API](https://apis.io/collections/buildkite-com/open-buildkite-com-agent-tokens-api/)
+- [Buildkite Agent Access Token Agents API](https://apis.io/collections/buildkite-com/open-buildkite-com-agents-api/)
+- [Buildkite Agent Access Token Annotations API](https://apis.io/collections/buildkite-com/open-buildkite-com-annotations-api/)
+- [Buildkite Agent Access Token Artifacts API](https://apis.io/collections/buildkite-com/open-buildkite-com-artifacts-api/)
+- [Buildkite Agent Access Token Builds API](https://apis.io/collections/buildkite-com/open-buildkite-com-builds-api/)
+- [Buildkite Agent Access Token Clusters API](https://apis.io/collections/buildkite-com/open-buildkite-com-clusters-api/)
+- [Buildkite Agent Access Token Emojis API](https://apis.io/collections/buildkite-com/open-buildkite-com-emojis-api/)
+- [Buildkite Agent Access Token Jobs API](https://apis.io/collections/buildkite-com/open-buildkite-com-jobs-api/)
+- [Buildkite Agent Access Token Meta API](https://apis.io/collections/buildkite-com/open-buildkite-com-meta-api/)
+- [Buildkite Agent Access Token Metrics API](https://apis.io/collections/buildkite-com/open-buildkite-com-metrics-api/)
+- [Buildkite Agent Access Token Organizations API](https://apis.io/collections/buildkite-com/open-buildkite-com-organizations-api/)
+- [Buildkite Agent Access Token Pipeline Templates API](https://apis.io/collections/buildkite-com/open-buildkite-com-pipeline-templates-api/)
+- [Buildkite Agent Access Token Pipelines API](https://apis.io/collections/buildkite-com/open-buildkite-com-pipelines-api/)
+- [Buildkite Agent Access Token Queues API](https://apis.io/collections/buildkite-com/open-buildkite-com-queues-api/)
+- [Buildkite Agent Access Token Rules API](https://apis.io/collections/buildkite-com/open-buildkite-com-rules-api/)
+- [Buildkite Agent Access Token Stacks API](https://apis.io/collections/buildkite-com/open-buildkite-com-stacks-api/)
+- [Buildkite Agent Access Token Teams API](https://apis.io/collections/buildkite-com/open-buildkite-com-teams-api/)
+- [Buildkite Agent Access Token User API](https://apis.io/collections/buildkite-com/open-buildkite-com-user-api/)
+- [Buildkite REST API](https://apis.io/collections/buildkite-com/open-buildkite-rest-api/)
+- [Buildkite REST API](https://apis.io/collections/buildkite-com/postman-buildkite-rest-api/)
 
-- CI/CD
-- MCP
-- Model Context Protocol
-- AI
-- Agents
+#### Overlays (22)
 
-#### Properties
+OpenAPI overlays, including conversational phrasing for each operation.
 
-- [Documentation](https://github.com/buildkite/buildkite-mcp-server)
-- [Source Code](https://github.com/buildkite/buildkite-mcp-server)
-- [Postman Collection](collections/buildkite-agent-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/buildkite-agent-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/buildkite-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/buildkite-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Buildkite Com Access Token Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-access-token-api-phrasing-overlay/)
+- [Buildkite Com Agent Api Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-agent-api-overlay/)
+- [Buildkite Com Agent Tokens Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-agent-tokens-api-phrasing-overlay/)
+- [Buildkite Com Agents Api Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-agents-api-overlay/)
+- [Buildkite Com Agents Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-agents-api-phrasing-overlay/)
+- [Buildkite Com Annotations Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-annotations-api-phrasing-overlay/)
+- [Buildkite Com Artifacts Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-artifacts-api-phrasing-overlay/)
+- [Buildkite Com Builds Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-builds-api-phrasing-overlay/)
+- [Buildkite Com Clusters Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-clusters-api-phrasing-overlay/)
+- [Buildkite Com Emojis Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-emojis-api-phrasing-overlay/)
+- [Buildkite Com Jobs Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-jobs-api-phrasing-overlay/)
+- [Buildkite Com Meta Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-meta-api-phrasing-overlay/)
+- [Buildkite Com Metrics Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-metrics-api-phrasing-overlay/)
+- [Buildkite Com Organizations Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-organizations-api-phrasing-overlay/)
+- [Buildkite Com Pipeline Templates Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-pipeline-templates-api-phrasing-overlay/)
+- [Buildkite Com Pipelines Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-pipelines-api-phrasing-overlay/)
+- [Buildkite Com Queues Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-queues-api-phrasing-overlay/)
+- [Buildkite Com Rest Api Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-rest-api-overlay/)
+- [Buildkite Com Rules Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-rules-api-phrasing-overlay/)
+- [Buildkite Com Stacks Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-stacks-api-phrasing-overlay/)
+- [Buildkite Com Teams Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-teams-api-phrasing-overlay/)
+- [Buildkite Com User Api Phrasing Overlay](https://apis.io/overlays/buildkite-com/buildkite-com-user-api-phrasing-overlay/)
 
-## Common Properties
+#### Governance rules (3)
 
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://buildkite.com)
+Spectral rulesets for the provider's contracts.
+
+- [Buildkite — jsonschema rules](https://apis.io/rules/buildkite-com/buildkite-com-jsonschema-spectral-rules/)
+- [Buildkite API Rules](https://apis.io/rules/buildkite-com/buildkite-com-rules/)
+- [Buildkite — buildkite rules](https://apis.io/rules/buildkite-com/buildkite-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Buildkite Com Authentication](https://apis.io/security/buildkite-com/buildkite-com-authentication/)
+- [Buildkite Com Domain Security](https://apis.io/security/buildkite-com/buildkite-com-domain-security/)
+- [Buildkite Com Trust Center](https://apis.io/security/buildkite-com/buildkite-com-trust-center/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Buildkite Com Scopes](https://apis.io/scopes/buildkite-com/buildkite-com-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Buildkite Com Plans Pricing](https://apis.io/plans/buildkite-com/buildkite-com-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Buildkite Com Rate Limits](https://apis.io/rate-limits/buildkite-com/buildkite-com-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Buildkite Com Finops](https://apis.io/finops/buildkite-com/buildkite-com-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.buildkite.com/)
 - [Documentation](https://buildkite.com/docs)
-- [Getting Started](https://buildkite.com/docs/tutorials/getting-started)
-- [Sign Up](https://buildkite.com/signup)
+- [Getting started](https://buildkite.com/docs/tutorials/getting-started)
 - [Pricing](https://buildkite.com/pricing)
-- [Terms of Service](https://buildkite.com/legal/terms-of-service)
-- [Privacy Policy](https://buildkite.com/legal/privacy-policy)
-- [Security Policy](https://buildkite.com/security)
-- [Trust Center](https://buildkite.com/security)
-- [Status Page](https://buildkitestatus.com)
+- [Support](https://buildkite.com/support)
 - [Changelog](https://buildkite.com/changelog)
 - [Blog](https://buildkite.com/blog)
-- [Forum](https://forum.buildkite.community)
-- [Support](https://buildkite.com/support)
-- [Authentication](https://buildkite.com/docs/apis/managing-api-tokens)
-- [Rate Limits](https://buildkite.com/docs/apis/rest-api#rate-limits)
-- [GitHub Organization](https://github.com/buildkite)
-- [Source Code](https://github.com/buildkite/agent)
-- [C L I](https://github.com/buildkite/cli)
-- [SDK](https://github.com/buildkite/go-buildkite)
-- [SDK](https://github.com/buildkite/go-pipeline)
-- [JSON Schema](https://github.com/buildkite/pipeline-schema) — [JSON Schema](https://json-schema.org/specification)
-- [Tool](https://github.com/buildkite/buildkite-mcp-server)
-- [Tool](https://github.com/buildkite/skills)
-- [Tool](https://github.com/buildkite/agent-stack-k8s)
-- [Tool](https://github.com/buildkite/elastic-ci-stack-for-aws)
-- [Tool](https://github.com/buildkite/buildkite-agent-scaler)
-- [Tool](https://github.com/buildkite/cleanroom)
-- [Tool](https://github.com/buildkite/emojis)
-- [Source Code](https://github.com/buildkite/docs)
-- [Integrations](undefined)
-- [Features](undefined)
-- [Plans](plans/buildkite-com-plans-pricing.yml)
-- [Rate Limits](rate-limits/buildkite-com-rate-limits.yml)
-- [Fin Ops](finops/buildkite-com-finops.yml)
-- [Vocabulary](vocabulary/buildkite-com-vocabulary.yml)
-- [Spectral Rules](rules/buildkite-rules.yml) — [Spectral](https://docs.stoplight.io/docs/spectral)
+- [Compliance](https://trust.buildkite.com/)
+- [Trust centre](https://buildkite.com/security)
+- [Terms of service](https://buildkite.com/legal/terms-of-service)
+- [Privacy policy](https://buildkite.com/legal/privacy-policy)
+- [GitHub](https://github.com/buildkite)
+- [Status](https://buildkitestatus.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 66.5** — exemplar · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 66.0 |
+| Contract governance | 31.8 |
+| Operational transparency | 63.2 |
+| Developer ergonomics | 72.6 |
+| Access clarity | 68.4 |
+
+**Agent readiness 50.6** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 39.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/buildkite-com/](https://apis.io/providers/buildkite-com/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Buildkite: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/buildkite-com/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
